@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 6bd178419e66ac54c8eed4174246b6a4
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Round_fade: {fileID: 2800000, guid: 9da626d174ed87240992f5c448ea5c19, type: 3}
+  - _TileableFire: {fileID: 2800000, guid: 22f8d01adcd5c2a4f9ff727cd648ea23, type: 3}
+  - _TextureSample0: {fileID: 2800000, guid: e7f9b5baa9b51954b9131aa70fe86006, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

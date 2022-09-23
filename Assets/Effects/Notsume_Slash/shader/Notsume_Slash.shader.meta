@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: ddb89b99277fdec42bb0f900e9d5ac43
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Scroll_image1: {fileID: 2800000, guid: 22f8d01adcd5c2a4f9ff727cd648ea23, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
