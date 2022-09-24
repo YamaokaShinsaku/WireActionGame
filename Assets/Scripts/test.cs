@@ -58,6 +58,7 @@ namespace SpiderChan
         private Transform cameraTransform;
         private LineRenderer lineRenderer;
         private SpringJoint springJoint;
+        private ConfigurableJoint joint;
 
         // 右手を伸ばす、戻す動作をスムーズにするため
         private float currentIkWeight;  // 現在のウェイト
@@ -69,6 +70,22 @@ namespace SpiderChan
         private float stringLength;         // 現在の糸の長さ....これをFixedUpdate中でSpringJointのmaxDistanceにセットする
         private readonly Vector3[] stringAnchor = new Vector3[2];   // SpringJointのプレイヤー側と接着面側の末端
         private Vector3 worldCasterCenter;   // casterCenterをワールド座標に変換したもの
+
+        public int jointCount;
+
+        void HingeJoint()
+        {
+            if (Physics.Linecast(this.stringAnchor[0], this.stringAnchor[1],
+                out var obstacle, this.interactiveLayers))
+            {
+                // 障害物があれば、接着点を障害物に変更する
+                this.stringAnchor[1] = obstacle.point;
+
+
+
+                this.needsUpdateSpring = true;
+            }
+        }
 
         /// <summary>
         /// エフェクト再生
@@ -241,6 +258,8 @@ namespace SpiderChan
                 //        Vector3.Distance(this.stringAnchor[0], this.stringAnchor[1]), this.stringLength);
                 //    this.needsUpdateSpring = true;
                 //}
+
+                HingeJoint();
 
                 ///  糸の描画設定
                 // 糸の端点同士の距離とstringLengthとの乖離具合によって糸を赤くする
