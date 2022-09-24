@@ -81,7 +81,7 @@ namespace SpiderChan
                 // áŠQ•¨‚ª‚ ‚ê‚ÎAÚ’…“_‚ğáŠQ•¨‚É•ÏX‚·‚é
                 this.stringAnchor[1] = obstacle.point;
 
-
+                
 
                 this.needsUpdateSpring = true;
             }
