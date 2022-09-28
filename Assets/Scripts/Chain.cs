@@ -101,9 +101,9 @@ public class Chain : MonoBehaviour
 		}
 	}
 
-	// 下矢印キーを押し下げると巻き取りモード、離すと通常モードとする
 	private void Update()
 	{
+		// 下矢印キーを押し下げると巻き取りモード、離すと通常モードとする
 		if (Input.GetKeyDown(KeyCode.K))
 		{
 			this.IsWinding = true;
