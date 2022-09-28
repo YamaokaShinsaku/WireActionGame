@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Stage
   - Slash
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - AttackEffects
   - Player
   - Effect
-  - 
+  - Crystal
   - 
   - 
   - 
