@@ -52,6 +52,7 @@ namespace SpiderChan
         [SerializeField]
         private GameObject Crystal;     // クリスタル
 
+
         private GameObject clone;       // オブジェクトのclone生成用
 
         private Animator animator;
@@ -80,8 +81,6 @@ namespace SpiderChan
             {
                 // 障害物があれば、接着点を障害物に変更する
                 this.stringAnchor[1] = obstacle.point;
-
-                
 
                 this.needsUpdateSpring = true;
             }
@@ -115,6 +114,8 @@ namespace SpiderChan
 
             bulletTimeCount = 5.0f;
             isBulletTime = false;
+
+            Stop();
         }
 
         // Start is called before the first frame update
@@ -321,5 +322,4 @@ namespace SpiderChan
             this.needsUpdateSpring = false;
         }
     }
-
 }
