@@ -8,6 +8,7 @@ TagManager:
   - Slash
   - Fire
   - Enemy
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Cube
   - Water
   - UI
-  - AttackEffects
+  - Sword
   - Player
   - Effect
   - Crystal
