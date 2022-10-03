@@ -24,9 +24,15 @@ public class ClickShot : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.J))
             {
                 clone = Instantiate(shotObj[count]);    // 武器のクローンを生成
+<<<<<<< HEAD
                 shotObj[count].SetActive(false);   // 武器本体を非表示に
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 Vector3 dir = ray.direction;
+=======
+                shotObj[count].SetActive(false);        // 武器本体を非表示に
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Vector3 dir = ray.direction;            // 飛ばす向き
+>>>>>>> main
                 clone.GetComponent<Rigidbody>().AddForce(dir * 3000);   // マウスの位置に飛ばす
                 count++;
 
@@ -48,5 +54,8 @@ public class ClickShot : MonoBehaviour
             }
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 }

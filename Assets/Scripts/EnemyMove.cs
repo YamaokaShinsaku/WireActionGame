@@ -17,12 +17,21 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         //if(target.GetComponent<DangerArea>().isArea == true)
         //{
         //    GetComponent<Renderer>().material.color = Color.red;
         //    transform.LookAt(target.transform);
         //    transform.position += transform.forward * speed;
         //}
+=======
+        if (target.GetComponent<DangerArea>().isArea == true)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+            transform.LookAt(target.transform);
+            transform.position += transform.forward * speed;
+        }
+>>>>>>> main
         //else
         //{
         //    GetComponent<Renderer>().material.color = Color.white;

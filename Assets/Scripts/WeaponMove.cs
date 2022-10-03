@@ -16,6 +16,25 @@ public class WeaponMove : MonoBehaviour
     void Update()
     {
         transform.position =
+<<<<<<< HEAD
             new Vector3(transform.position.x, nowPosition + Mathf.PingPong(Time.time / 3, 0.3f), transform.position.z);
+=======
+            new Vector3(transform.position.x,
+            nowPosition + Mathf.PingPong(Time.time / 3, 0.3f),
+            transform.position.z);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("enemyHit");
+            collision.gameObject.GetComponent<Renderer>().material.color = Color.black;
+        }
+        else
+        {
+            Debug.Log("elseHit");
+        }
+>>>>>>> main
     }
 }
