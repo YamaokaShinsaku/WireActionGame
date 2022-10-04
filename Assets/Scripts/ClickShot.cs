@@ -13,6 +13,7 @@ public class ClickShot : MonoBehaviour
     public Transform target;
 
     public GameObject lookTarget;
+    private Vector3 prevPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,14 @@ public class ClickShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 diff = shotObj[0].transform.position - prevPosition;
+        prevPosition = shotObj[0].transform.position;
+
+        if (diff.magnitude > 0.01f)
+        {
+            shotObj[0].transform.rotation = Quaternion.LookRotation(diff);
+        }
+
         // ïêäÌÇ™écÇ¡ÇƒÇ¢ÇÈÇ∆Ç´
         if (count < shotObj.Length)
         {
@@ -39,13 +48,20 @@ public class ClickShot : MonoBehaviour
                 shotObj[i].transform.position = target.transform.position + offset[i];
 
                 // å¸Ç´ÇÃåvéZ
-                Vector3 direction = lookTarget.transform.position - shotObj[i].transform.position;
-                direction.y = 0;
+                //Vector3 diff = shotObj[0].transform.position - prevPosition;
+                //prevPosition = shotObj[0].transform.position;
+
+                //if(diff.magnitude > 0.01f)
+                //{
+                //    transform.rotation = Quaternion.LookRotation(diff);
+                //}
+
+                //Vector3 direction = lookTarget.transform.position - shotObj[i].transform.position;
+                //direction.y = 0;
+                //Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+                //lookRotation.x = 1.0f;
                 
-                Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
-                lookRotation.x = 1.0f;
-                
-                shotObj[i].transform.rotation = Quaternion.Lerp(shotObj[i].transform.rotation, lookRotation, 0.1f);
+                //shotObj[i].transform.rotation = Quaternion.Lerp(shotObj[i].transform.rotation, lookRotation, 0.1f);
 
                 //Debug.Log(shotObj[i].transform.rotation);
             }
