@@ -29,7 +29,6 @@ public class ClickShot : MonoBehaviour
             rotation[i] = shotObj[i].transform.rotation;
 
             position[i] = target.position + offset[i];
-
             shotObj[i].transform.position = position[i];
         }
 
