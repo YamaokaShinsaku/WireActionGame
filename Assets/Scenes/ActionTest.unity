@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1079,6 +1079,7 @@ GameObject:
   - component: {fileID: 685235525}
   - component: {fileID: 685235524}
   - component: {fileID: 685235523}
+  - component: {fileID: 685235528}
   m_Layer: 6
   m_Name: Sword14_Red (1)
   m_TagString: Untagged
@@ -1190,6 +1191,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685235521}
   m_Mesh: {fileID: 3961813556567730997, guid: 5e3ece6a343a3f04fa7bc7a3c7ce9e02, type: 3}
+--- !u!114 &685235528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685235521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd9d9ebe44db9458f9a49334de9215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1840088310}
 --- !u!1 &698543373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,8 +1235,8 @@ Transform:
   - {fileID: 685235522}
   - {fileID: 2012054979}
   - {fileID: 2057802269}
-  m_Father: {fileID: 1996510771}
-  m_RootOrder: 4
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -1386,7 +1400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &881150397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1394,12 +1408,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881150395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03bd9d9ebe44db9458f9a49334de9215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1840088310}
+  target: {fileID: 0}
 --- !u!65 &881150398
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1422,12 +1436,12 @@ Rigidbody:
   m_GameObject: {fileID: 881150395}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 114
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!23 &881150400
 MeshRenderer:
@@ -2524,10 +2538,10 @@ MonoBehaviour:
   - {fileID: 2057802268}
   count: 0
   position:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: 2, y: 0, z: 0}
+  - {x: -1, y: 1, z: 0}
+  - {x: -2, y: 1, z: 0}
   rotation:
   - {x: 0, y: 0, z: 0, w: 0}
   - {x: 0, y: 0, z: 0, w: 0}
@@ -2867,7 +2881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840088310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.56, y: 5.37, z: 8.66}
+  m_LocalPosition: {x: 11.42, y: 9.84, z: 26.16}
   m_LocalScale: {x: 2.7566597, y: 2.7566597, z: 2.7566597}
   m_Children: []
   m_Father: {fileID: 321843792}
@@ -2887,7 +2901,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 16
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!135 &1840088313
 SphereCollider:
@@ -2958,7 +2972,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840088310}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0bd7ddad11e0b8459106c947c942f38, type: 3}
   m_Name: 
@@ -3231,7 +3245,6 @@ Transform:
   - {fileID: 1996510783}
   - {fileID: 199056967}
   - {fileID: 1996510781}
-  - {fileID: 698543374}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8975,6 +8988,7 @@ GameObject:
   - component: {fileID: 2012054982}
   - component: {fileID: 2012054981}
   - component: {fileID: 2012054980}
+  - component: {fileID: 2012054985}
   m_Layer: 6
   m_Name: Sword14_Red (2)
   m_TagString: Untagged
@@ -9086,6 +9100,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012054978}
   m_Mesh: {fileID: 3961813556567730997, guid: 5e3ece6a343a3f04fa7bc7a3c7ce9e02, type: 3}
+--- !u!114 &2012054985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012054978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd9d9ebe44db9458f9a49334de9215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1840088310}
 --- !u!1 &2057802268
 GameObject:
   m_ObjectHideFlags: 0
@@ -9100,6 +9127,7 @@ GameObject:
   - component: {fileID: 2057802272}
   - component: {fileID: 2057802271}
   - component: {fileID: 2057802270}
+  - component: {fileID: 2057802275}
   m_Layer: 6
   m_Name: Sword14_Red (3)
   m_TagString: Untagged
@@ -9211,6 +9239,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057802268}
   m_Mesh: {fileID: 3961813556567730997, guid: 5e3ece6a343a3f04fa7bc7a3c7ce9e02, type: 3}
+--- !u!114 &2057802275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057802268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd9d9ebe44db9458f9a49334de9215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1840088310}
 --- !u!1 &2112783312
 GameObject:
   m_ObjectHideFlags: 0
@@ -9433,6 +9474,7 @@ GameObject:
   - component: {fileID: 2123990982}
   - component: {fileID: 4214597694475896795}
   - component: {fileID: 4214597694475896796}
+  - component: {fileID: 4214597694475896797}
   m_Layer: 6
   m_Name: Sword14_Red
   m_TagString: Untagged
@@ -9465,6 +9507,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2492d6768b43784b924f497863c9e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4214597694475896797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4214597694475896794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd9d9ebe44db9458f9a49334de9215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1840088310}
 --- !u!114 &4382355816581809867
 MonoBehaviour:
   m_ObjectHideFlags: 0

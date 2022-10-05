@@ -11,6 +11,9 @@ public class WeaponCollision : MonoBehaviour
         {
             Debug.Log("enemyHit");
             collision.gameObject.GetComponent<Renderer>().material.color = Color.black;
+
+            // 武器オブジェクトを削除
+            Destroy(this.gameObject);
         }
         else
         {
@@ -18,6 +21,6 @@ public class WeaponCollision : MonoBehaviour
         }
 
         // オブジェクトを削除
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }

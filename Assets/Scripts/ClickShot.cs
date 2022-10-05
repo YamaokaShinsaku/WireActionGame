@@ -17,6 +17,11 @@ public class ClickShot : MonoBehaviour
     void Start()
     {
         count = 0;
+
+        for (int i = 0; i < shotObj.Length; i++)
+        {
+            shotObj[i].GetComponent<Homing_2>().enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -32,6 +37,7 @@ public class ClickShot : MonoBehaviour
             shotObj[i].transform.position = position[i];
         }
 
+
         // 武器が残っているとき
         if (count < shotObj.Length)
         {
@@ -39,13 +45,11 @@ public class ClickShot : MonoBehaviour
             {
                 clone = Instantiate(shotObj[count], position[count], rotation[count]);    // 武器のクローンを生成
                 shotObj[count].SetActive(false);        // 武器本体を非表示に
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Vector3 dir = ray.direction;            // 飛ばす向き
-                clone.GetComponent<Rigidbody>().AddForce(dir * 3000);   // マウスの位置に飛ばす
+                clone.GetComponent<Homing_2>().enabled = true;
                 count++;
 
-                //// 5秒後にクローンを削除
-                Destroy(clone, 5f);
+                // 5秒後にクローンを削除
+                //Destroy(clone, 5f);
             }
         }
         else
@@ -58,7 +62,7 @@ public class ClickShot : MonoBehaviour
         {
             for (int i = 0; i < shotObj.Length; i++)
             {
-                shotObj[i].SetActive(true);
+                shotObj[i].SetActive(true);        // 武器本体を非表示に
             }
         }
     }

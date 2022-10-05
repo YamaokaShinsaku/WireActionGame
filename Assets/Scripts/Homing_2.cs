@@ -53,15 +53,15 @@ public class Homing_2 : MonoBehaviour
 
         // ベジェ曲線下側の目標座標
         P1 = new Vector3(
-            Random.Range(-5.0f, 5.0f),
-            Random.Range(0.0f,  0.0f),
-            Random.Range(-5.0f, 5.0f));
+            Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x),
+            Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
+            Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z));
 
         // ベジェ曲線真ん中付近の目標座標
         P2 = new Vector3(
-            Random.Range(-5.0f, 5.0f),
-            Random.Range(0.0f, 0.0f),
-            Random.Range(-5.0f, 5.0f));
+            Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x),
+            Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
+            Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z));
 
         // 目標座標
         Create_P3xyz(target.transform.position.x, target.transform.position.y, target.transform.position.z);
@@ -103,19 +103,28 @@ public class Homing_2 : MonoBehaviour
             (1.0f - u) * P02.y + u * P13.y,
             (1.0f - u) * P02.z + u * P13.z);
 
+        // 座標更新
         Vector3 pos = transform.position;
         pos = P03;
 
+        // ターゲットの方向にY軸回転する
+        Vector3 direction = target.transform.position - this.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+        Quaternion rotation2 = Quaternion.LookRotation(direction, Vector3.right);
+
+        rotation = new Quaternion(1.0f/*rotation2.x * target.transform.position.y*/, rotation.y * 2.0f, rotation.z, rotation.w);
+        
+
+
         // 表示座標
-        this.transform.position = pos;//レーザー表示座標
+        this.transform.position = pos;
+        this.transform.rotation = rotation;
+
+        // 確認用の線
+        Debug.DrawRay(this.transform.position, this.transform.up * 100, Color.red);
 
         // 速さ
-        Counter += 0.025f;//レーザーの速さ；
+        Counter += 0.05f;
 
-        if (u >= 1.0f)
-        {
-            //this.transform.DetachChildren();
-            //Destroy(this.gameObject);
-        }
     }
 }
