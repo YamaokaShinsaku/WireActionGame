@@ -5714,6 +5714,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   casterCenter: {x: 0, y: 0.5, z: 0}
+  casterCenterObj: {fileID: 0}
   spring: 50
   damper: 20
   equilibrimLength: 1
@@ -5723,8 +5724,9 @@ MonoBehaviour:
   reticleImageInValid: {fileID: 0}
   particle: {fileID: 0}
   bulletTimeCount: 0
-  BulletTime: 0
+  isBulletTime: 0
   Crystal: {fileID: 0}
+  jointCount: 0
 --- !u!1 &100266
 GameObject:
   m_ObjectHideFlags: 0
