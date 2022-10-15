@@ -37,7 +37,7 @@ namespace PlayerController
         float forwardAmount;
         float turnAmount;
         Vector3 groundNormal;
-        float groundCheckDistance = 0.1f;
+        public float groundCheckDistance;
 
         // Start is called before the first frame update
         void Start()
@@ -129,24 +129,27 @@ namespace PlayerController
         /// </summary>
         private void Move()
         {
-            // キー入力受付
-            float x = Input.GetAxisRaw("Horizontal");
-            float z = Input.GetAxisRaw("Vertical");
+            // キー入力受付...カメラを基準に方向を受け取る
+            var cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+            Vector3 direction = cameraForward * Input.GetAxis("Vertical") +
+                    Camera.main.transform.right * Input.GetAxis("Horizontal");
 
-            moveDirection = new Vector3(x, 0.0f, z);
+            moveDirection = new Vector3(direction.x, 0.0f, direction.z);
             moveDirection.Normalize();
             moveVelocity = moveDirection * moveSpeed;
 
             rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
 
             // プレイヤーが方向転換するのに必要な回転量と前進量を設定
+            if(moveDirection.magnitude > 1.0f)
+            {
+                moveDirection.Normalize();
+            }
             moveDirection = this.transform.InverseTransformDirection(moveDirection);
-            CheckGroundStatus();
             moveDirection = Vector3.ProjectOnPlane(moveDirection, groundNormal);
 
             turnAmount = Mathf.Atan2(moveDirection.x, moveDirection.z);
             forwardAmount = moveDirection.z;
-
         }
 
         /// <summary>
@@ -159,7 +162,7 @@ namespace PlayerController
                 return;
             }
 
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
 
             // 滞空時間の計算
             float t = jumpTime / maxJumpTime;
@@ -212,29 +215,11 @@ namespace PlayerController
             }
         }
 
-        /// <summary>
-        /// 地面の状態を取得
-        /// </summary>
-        void CheckGroundStatus()
+        private void OnCollisionExit(Collision collision)
         {
-            RaycastHit hitInfo;
-#if UNITY_EDITOR
-            // Editor上の動作
-            // シーンで地面の判定をするRayを可視化する(デバッグ用）
-            Debug.DrawLine(transform.position + (Vector3.up * 0.1f), 
-                transform.position + (Vector3.up * 0.1f) + (Vector3.down * groundCheckDistance));
-#endif
-            // Editor以外の動作
-            // 0.1f...キャラクター内部からRayを発射するためのオフセット
-            if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, groundCheckDistance))
+            if(collision.collider.tag == "Ground")
             {
-                groundNormal = hitInfo.normal;
-                animator.applyRootMotion = true;
-            }
-            else
-            {
-                groundNormal = Vector3.up;
-                animator.applyRootMotion = false;
+                isGround = false;
             }
         }
     }

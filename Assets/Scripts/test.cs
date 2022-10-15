@@ -72,19 +72,10 @@ namespace SpiderChan
         private readonly Vector3[] stringAnchor = new Vector3[2];   // SpringJointのプレイヤー側と接着面側の末端
         private Vector3 worldCasterCenter;   // casterCenterをワールド座標に変換したもの
 
-        public int jointCount;
+        public PlayerController.PlayerController playerController;
+        public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter thirdPerson;
+        public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl userControl;
 
-        void HingeJoint()
-        {
-            if (Physics.Linecast(this.stringAnchor[0], this.stringAnchor[1],
-                out var obstacle, this.interactiveLayers))
-            {
-                // 障害物があれば、接着点を障害物に変更する
-                this.stringAnchor[1] = obstacle.point;
-
-                this.needsUpdateSpring = true;
-            }
-        }
 
         /// <summary>
         /// エフェクト再生
@@ -121,7 +112,9 @@ namespace SpiderChan
         // Start is called before the first frame update
         void Start()
         {
-
+            playerController = playerController.GetComponent<PlayerController.PlayerController>();
+            thirdPerson = thirdPerson.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
+            userControl = userControl.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>();
         }
 
         // Update is called once per frame
@@ -194,6 +187,10 @@ namespace SpiderChan
 
                     clone = Instantiate(Crystal, aimingTarget.point, Quaternion.identity);
 
+                    playerController.enabled = false;
+                    thirdPerson.enabled = true;
+                    userControl.enabled = true;
+
                     this.stringAnchor[1] = aimingTarget.point;  // 糸の接着面末端を設定
                     this.casting = true;
                     //this.targetIkWeight = 1.0f;     // IK目標ウェイトを１にする ... 右手を射出方向に伸ばす
@@ -218,6 +215,10 @@ namespace SpiderChan
             if (/*Input.GetButtonUp("Shot")*/Input.GetMouseButtonUp(1))
             {
                 isBulletTime = true;
+
+                playerController.enabled = true;
+                thirdPerson.enabled = false;
+                userControl.enabled = false;
 
                 this.casting = false;
                 //this.targetIkWeight = 0.0f;     // IK目標ウェイトを0にする ... 右手を待機状態に戻そうとする
@@ -259,8 +260,6 @@ namespace SpiderChan
                 //        Vector3.Distance(this.stringAnchor[0], this.stringAnchor[1]), this.stringLength);
                 //    this.needsUpdateSpring = true;
                 //}
-
-                HingeJoint();
 
                 ///  糸の描画設定
                 // 糸の端点同士の距離とstringLengthとの乖離具合によって糸を赤くする
