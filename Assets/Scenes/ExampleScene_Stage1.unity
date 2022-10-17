@@ -7700,8 +7700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2f408ecd681b4428582751582bf87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 601173137}
-  attackEffect: {fileID: 3058066726865488297, guid: dc2823715f3e9ce44b8cc3b58c9e8bd2, type: 3}
 --- !u!114 &601173139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7741,7 +7739,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601173137}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6beda77b9170ee4aa79ce618a52fbfe, type: 3}
   m_Name: 
@@ -7759,10 +7757,10 @@ MonoBehaviour:
   equilibrimLength: 1
   ikGoal: 3
   ikTransitionTime: 0.25
-  reticle: {fileID: 0}
+  reticle: {fileID: 44533358}
   reticleImageValid: {fileID: 2800000, guid: 91f5432d306d6d940b2ea36857d034d6, type: 3}
   reticleImageInValid: {fileID: 2800000, guid: 45294470219f93348b29ae2ac9079514, type: 3}
-  particle: {fileID: 0}
+  particle: {fileID: 1730763332}
   bulletTimeCount: 0
   BulletTime: 0
   Crystal: {fileID: 5843687293481985856, guid: 1bc59d6a43595084caf47bbeacbc97a0, type: 3}
@@ -7901,7 +7899,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601173137}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f80b206ff599adc479917da79e19a175, type: 3}
   m_Name: 
@@ -7915,7 +7913,6 @@ MonoBehaviour:
   spring: 10
   damper: 10
   equilibrimLength: 1
-  ikTransitionTime: 0.5
   reticle: {fileID: 44533358}
   reticleImageValid: {fileID: 2800000, guid: 91f5432d306d6d940b2ea36857d034d6, type: 3}
   reticleImageInValid: {fileID: 2800000, guid: 45294470219f93348b29ae2ac9079514, type: 3}
@@ -7923,6 +7920,9 @@ MonoBehaviour:
   bulletTimeCount: 0
   isBulletTime: 0
   Crystal: {fileID: 5843687293481985856, guid: 1bc59d6a43595084caf47bbeacbc97a0, type: 3}
+  playerController: {fileID: 0}
+  thirdPerson: {fileID: 601173139}
+  userControl: {fileID: 601173140}
 --- !u!114 &601173146
 MonoBehaviour:
   m_ObjectHideFlags: 0
