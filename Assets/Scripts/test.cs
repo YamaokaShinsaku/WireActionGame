@@ -29,8 +29,8 @@ namespace SpiderChan
         [SerializeField]
         private float equilibrimLength = 1.0f;     // 糸を縮めた時の自然長
 
-        [SerializeField]
-        private float ikTransitionTime = 0.5f;      // 腕の位置の遷移時間
+        //[SerializeField]
+        //private float ikTransitionTime = 0.5f;      // 腕の位置の遷移時間
 
         [SerializeField]
         private RawImage reticle;       // 糸を張れるかどうかの状態に合わせて、照準マークを変更する
