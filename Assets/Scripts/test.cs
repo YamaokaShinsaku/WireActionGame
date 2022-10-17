@@ -47,7 +47,7 @@ namespace SpiderChan
         private float bulletTimeCount;         // バレットタイムの制限時間
 
         [SerializeField]
-        bool isBulletTime;        // バレットタイム中かどうか
+        public bool isBulletTime;        // バレットタイム中かどうか
 
         [SerializeField]
         private GameObject Crystal;     // クリスタル
