@@ -37,6 +37,8 @@ namespace WeaponChanger
 
                     isWire = false;
                     isShot = true;
+
+                    test.bulletTimeCount = 0.0f;
                 }
                 else
                 {
@@ -68,6 +70,10 @@ namespace WeaponChanger
 
                         isWire = false;
                         isShot = true;
+
+                        test.isBulletTime = false;
+                        test.bulletTimeCount = 0.0f;
+                        Time.timeScale = 1.0f;
                     }
                     else
                     {

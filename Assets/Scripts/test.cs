@@ -44,7 +44,7 @@ namespace SpiderChan
         private ParticleSystem particle;    // エフェクト（集中線）
 
         [SerializeField]
-        private float bulletTimeCount;         // バレットタイムの制限時間
+        public float bulletTimeCount;         // バレットタイムの制限時間
 
         [SerializeField]
         public bool isBulletTime;        // バレットタイム中かどうか
