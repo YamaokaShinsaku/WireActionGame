@@ -8,6 +8,12 @@ public class Homing_2 : MonoBehaviour
     private float Counter = 0f;     //レーザー進行フレーム用
 
     public GameObject target;       // 目標オブジェクト
+
+    public LockOnTarget.LockOnTarget lockonTarget;
+    public GameObject player;
+    [SerializeField]
+    private GameObject targetEnemy;
+
     private float u = 0f;           //ベジェ曲線位置用
 
     private Vector3 P0 = Vector3.zero;      // ベジェ曲線の発生位置
@@ -64,12 +70,21 @@ public class Homing_2 : MonoBehaviour
             Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z));
 
         // 目標座標
-        Create_P3xyz(target.transform.position.x, target.transform.position.y, target.transform.position.z);
+        //Create_P3xyz(target.transform.position.x, target.transform.position.y, target.transform.position.z);
 
+        lockonTarget = player.GetComponentInChildren<LockOnTarget.LockOnTarget>();
+
+        //// 目標座標
+       // Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
     }
 
     void Update()
     {
+        targetEnemy = lockonTarget.serchTag(this.gameObject,"Enemy");
+        // 目標座標
+        Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
+
+
         // ベジェ曲線の位置を移動
         u = (1.0f / DivNum) * Counter;//ベジェ曲線の位置を移動させる
 
@@ -113,15 +128,13 @@ public class Homing_2 : MonoBehaviour
         Quaternion rotation2 = Quaternion.LookRotation(direction, Vector3.right);
 
         rotation = new Quaternion(1.0f/*rotation2.x * target.transform.position.y*/, rotation.y * 2.0f, rotation.z, rotation.w);
-        
-
 
         // 表示座標
         this.transform.position = pos;
         this.transform.rotation = rotation;
 
         // 確認用の線
-        Debug.DrawRay(this.transform.position, this.transform.up * 100, Color.red);
+        //Debug.DrawRay(this.transform.position, this.transform.up * 100, Color.red);
 
         // 速さ
         Counter += 0.05f;

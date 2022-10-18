@@ -49,7 +49,7 @@ public class ClickShot : MonoBehaviour
                 count++;
 
                 // 5•bŒã‚ÉƒNƒ[ƒ“‚ğíœ
-                //Destroy(clone, 5f);
+                Destroy(clone, 5f);
             }
         }
         else

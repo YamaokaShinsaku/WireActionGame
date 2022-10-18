@@ -18,6 +18,7 @@ public class WeaponCollision : MonoBehaviour
         else
         {
             Debug.Log("elseHit");
+            Destroy(this.gameObject);
         }
 
         // オブジェクトを削除
