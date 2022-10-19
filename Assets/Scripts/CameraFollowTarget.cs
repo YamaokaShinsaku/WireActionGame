@@ -9,11 +9,16 @@ public class CameraFollowTarget : MonoBehaviour
 
     private Vector3 offset;
 
+    public LockOnTarget.LockOnTarget lockonTarget;
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
         //ゲーム開始時点のカメラとターゲットの距離を取得
         offset = gameObject.transform.position - target.transform.position;
+
+        lockonTarget = player.GetComponentInChildren<LockOnTarget.LockOnTarget>();
     }
 
     // Update is called once per frame

@@ -123,7 +123,8 @@ public class Homing_2 : MonoBehaviour
         pos = P03;
 
         // ターゲットの方向にY軸回転する
-        Vector3 direction = target.transform.position - this.transform.position;
+        //Vector3 direction = target.transform.position - this.transform.position;
+        Vector3 direction = targetEnemy.transform.position - this.transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
         Quaternion rotation2 = Quaternion.LookRotation(direction, Vector3.right);
 

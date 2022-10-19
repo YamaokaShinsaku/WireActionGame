@@ -19,16 +19,21 @@ namespace LockOn_Ray
             Vector3 RayPosition = new Vector3(screenWidth, screenHeight, 0.1f);
 
             // Ray�̍쐬
-            Ray ray = Camera.main.ScreenPointToRay(RayPosition);
+            //Ray ray = Camera.main.ScreenPointToRay(RayPosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
+            
+            //Debug.DrawRay(RayPosition, this.transform.forward * 1000, Color.green);
 
-            //Debug.DrawRay(RayPosition, transform.forward * 1000, Color.green);
-
-            if(Physics.Raycast(ray,out hit))
+            //if(Physics.Raycast(ray,out hit))
+            if(Physics.SphereCast(this.transform.position, 20.0f, this.transform.forward, out hit))
             {
-                if(hit.collider.CompareTag("Enemy"))
+                GameObject gameObject = hit.collider.gameObject;
+                //Debug.DrawRay(this.transform.position, ray.direction, Color.green);
+                if (hit.collider.CompareTag("Enemy"))
                 {
+                    Debug.Log(gameObject.name);
                     aimImg.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 }
                 else
