@@ -56,6 +56,7 @@ namespace PlayerController
             Jump();
 
             UpdateAnimation();
+            CheckGround();
         }
 
         private void FixedUpdate()
@@ -207,20 +208,31 @@ namespace PlayerController
 
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.collider.tag == "Ground")
-            {
-                isGround = true;
-            }
-        }
+        //private void OnCollisionEnter(Collision collision)
+        //{
+        //    if (collision.collider.tag == "Ground")
+        //    {
+        //        isGround = true;
+        //    }
+        //}
 
-        private void OnCollisionExit(Collision collision)
+        //private void OnCollisionExit(Collision collision)
+        //{
+        //    if(collision.collider.tag == "Ground")
+        //    {
+        //        isGround = false;
+        //    }
+        //}
+
+        private void CheckGround()
         {
-            if(collision.collider.tag == "Ground")
-            {
-                isGround = false;
-            }
+            Vector3 rayPosition = this.transform.position + new Vector3(0.0f, 0.0f, 0.0f);
+            Ray ray = new Ray(rayPosition, Vector3.down);
+
+            //float distance = 0.3f;
+            isGround = Physics.Raycast(ray, groundCheckDistance);
+
+            Debug.DrawRay(rayPosition, Vector3.down * groundCheckDistance, Color.red);
         }
     }
 }
