@@ -16,7 +16,7 @@ namespace LockOnTarget
         [SerializeField]
         private Camera targetCamera;
         [SerializeField]
-        private Transform target;
+        public Transform target;
         [SerializeField]
         private Transform targetUI;
         [SerializeField]
@@ -45,7 +45,9 @@ namespace LockOnTarget
         {
             // カメラが指定されていなければメインカメラにする
             if (targetCamera == null)
-                targetCamera = Camera.main;
+            {
+                targetCamera = Camera.main; 
+            }
 
             // 親UIのRectTransformを保持
             parentUI = targetUI.parent.GetComponent<RectTransform>();

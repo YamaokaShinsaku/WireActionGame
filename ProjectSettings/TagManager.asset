@@ -8,8 +8,8 @@ TagManager:
   - Slash
   - Fire
   - Enemy
-  - Sword
   - Ground
+  - Magic
   layers:
   - Default
   - TransparentFX
@@ -17,7 +17,7 @@ TagManager:
   - Cube
   - Water
   - UI
-  - Sword
+  - Magic
   - Player
   - Effect
   - Crystal

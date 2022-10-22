@@ -80,13 +80,24 @@ public class Homing_2 : MonoBehaviour
 
     void Update()
     {
-        targetEnemy = lockonTarget.serchTag(this.gameObject,"Enemy");
-        // 目標座標
-        Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
+        //targetEnemy = lockonTarget.serchTag(this.gameObject,"Enemy");
+        //// 目標座標
+        //Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
+
+        if(targetEnemy = null)
+        {
+            Vector3 centerPosition = Camera.main.transform.position;
+            // 目標座標
+            Create_P3xyz(centerPosition.x, centerPosition.y, centerPosition.z);
+        }
+        else if (targetEnemy = lockonTarget.serchTag(this.gameObject, "Enemy"))
+        {
+            Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
+        }
 
 
         // ベジェ曲線の位置を移動
-        u = (1.0f / DivNum) * Counter;//ベジェ曲線の位置を移動させる
+        u = (1.0f / DivNum) * Counter;
 
         P01 = new Vector3(
             (1.0f - u) * P0.x + u * P1.x,
@@ -124,21 +135,17 @@ public class Homing_2 : MonoBehaviour
 
         // ターゲットの方向にY軸回転する
         //Vector3 direction = target.transform.position - this.transform.position;
-        Vector3 direction = targetEnemy.transform.position - this.transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-        Quaternion rotation2 = Quaternion.LookRotation(direction, Vector3.right);
+        //Vector3 direction = targetEnemy.transform.position - this.transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+        //Quaternion rotation2 = Quaternion.LookRotation(direction, Vector3.right);
 
-        rotation = new Quaternion(1.0f/*rotation2.x * target.transform.position.y*/, rotation.y * 2.0f, rotation.z, rotation.w);
+        //rotation = new Quaternion(1.0f/*rotation2.x * target.transform.position.y*/, rotation.y * 2.0f, rotation.z, rotation.w);
 
         // 表示座標
         this.transform.position = pos;
-        this.transform.rotation = rotation;
-
-        // 確認用の線
-        //Debug.DrawRay(this.transform.position, this.transform.up * 100, Color.red);
+        //this.transform.rotation = rotation;
 
         // 速さ
         Counter += 0.05f;
-
     }
 }
