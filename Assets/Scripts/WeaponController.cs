@@ -20,6 +20,7 @@ namespace WeaponChanger
 
         public bool isWire;
         public bool isShot;
+        public ParticleSystem magicCircle;
 
         // Start is called before the first frame update
         void Start()
@@ -38,6 +39,8 @@ namespace WeaponChanger
                     isWire = false;
                     isShot = true;
 
+                    magicCircle.Play();
+
                     test.bulletTimeCount = 0.0f;
                 }
                 else
@@ -48,6 +51,8 @@ namespace WeaponChanger
 
                     isWire = true;
                     isShot = false;
+
+                    magicCircle.Stop();
                 }
             }
         }
@@ -71,6 +76,8 @@ namespace WeaponChanger
                         isWire = false;
                         isShot = true;
 
+                        magicCircle.Play();
+
                         test.isBulletTime = false;
                         test.bulletTimeCount = 0.0f;
                         Time.timeScale = 1.0f;
@@ -83,6 +90,8 @@ namespace WeaponChanger
 
                         isWire = true;
                         isShot = false;
+
+                        magicCircle.Stop();
                     }
                 }
             }

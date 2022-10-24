@@ -44,7 +44,7 @@ public class EnemyMove : MonoBehaviour
         if(rect.Contains(viewportPos))
         {
             // 表示されている場合の処理
-            ShowText(this.gameObject.name + "画面に表示");
+            //ShowText(this.gameObject.name + "画面に表示");
 
             isVisible = true;
             //lockOn.enabled = true;
@@ -52,7 +52,7 @@ public class EnemyMove : MonoBehaviour
         else
         {
             // 表示されていない場合の処理
-            ShowText(this.gameObject.name + "画面から消えた");
+            //ShowText(this.gameObject.name + "画面から消えた");
 
             isVisible = false;
             //lockOn.enabled = false;

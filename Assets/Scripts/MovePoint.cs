@@ -13,6 +13,9 @@ public class MovePoint : MonoBehaviour
     [SerializeField]
     private float vectorZ;      // ランダムＺ座標
 
+    [SerializeField]
+    public float restTime;
+
     // 生成する範囲の座標を持つオブジェクトを取得
     [SerializeField]
     private Transform rangeXMin;
@@ -49,7 +52,7 @@ public class MovePoint : MonoBehaviour
             this.transform.position = new Vector3(vectorX, vectorY, vectorZ);
 
             // 経過時間をリセット
-            deltaTime = 2.0f;
+            deltaTime = restTime;
         }
     }
 }
