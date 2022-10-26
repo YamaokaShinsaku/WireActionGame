@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 武器切り替え
@@ -20,7 +21,7 @@ namespace WeaponChanger
 
         public bool isWire;
         public bool isShot;
-        public ParticleSystem magicCircle;
+        public ParticleSystem magicCircle;      // 魔法陣エフェクト
 
         // Start is called before the first frame update
         void Start()

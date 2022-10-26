@@ -23,12 +23,14 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private LockOnTarget.LockOnTarget lockOn;
 
+
     // Start is called before the first frame update
     void Start()
     {
         //speed = 0.1f;
 
         lockOn = lockOn.GetComponent<LockOnTarget.LockOnTarget>();
+
     }
 
     // Update is called once per frame

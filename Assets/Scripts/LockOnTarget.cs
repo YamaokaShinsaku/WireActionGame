@@ -68,7 +68,7 @@ namespace LockOnTarget
                 nearObj = serchTag(gameObject, "Enemy");
 
                 // –¼‘O‚ğ•\¦
-                Debug.Log(nearObj.name);
+                //Debug.Log(nearObj.name);
 
                 //Œo‰ßŠÔ‚ğ‰Šú‰»
                 searchTime = 0;
