@@ -14,9 +14,13 @@ public class EnemyCount : MonoBehaviour
     [SerializeField]
     private int nowEnemy;
 
+    [SerializeField]
+    private GameObject[] specialEnemy;
+
     // Start is called before the first frame update
     void Start()
     {
+        enemyMax = specialEnemy.Length;
         nowEnemy = enemyMax;
         enemyCount.text = nowEnemy.ToString();
     }
