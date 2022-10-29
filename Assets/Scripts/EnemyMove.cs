@@ -11,11 +11,13 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private float speed;            // ˆÚ“®‘¬“x
 
+    private float rotationSpeed = 0.5f;
+
     public Camera targetCamera;
 
     Rect rect = new Rect(0, 0, 1, 1);
 
-    public bool isVisible;
+    public bool isVisible;      // ‰æ–Ê“à‚É•\Ž¦‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
 
     [SerializeField]
     Text uiText;
@@ -36,6 +38,10 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 vec3 = target.transform.position - this.transform.position;
+        Quaternion quaternion = Quaternion.LookRotation(vec3);
+        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, quaternion, rotationSpeed);
+
         // target ‚ÉŒü‚©‚Á‚ÄˆÚ“®‚·‚é
         this.transform.position =
             Vector3.MoveTowards(this.transform.position, target.transform.position, speed);
