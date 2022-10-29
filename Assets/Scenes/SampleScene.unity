@@ -5643,6 +5643,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1525103357}
+  lockonTarget: {fileID: 0}
+  player: {fileID: 0}
+  targetEnemy: {fileID: 0}
 --- !u!114 &729368430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5868,6 +5871,7 @@ MonoBehaviour:
   clickShot: {fileID: 786516301}
   isWire: 0
   isShot: 0
+  magicCircle: {fileID: 0}
 --- !u!4 &754633768
 Transform:
   m_ObjectHideFlags: 0
@@ -5921,6 +5925,8 @@ MonoBehaviour:
   offset:
   - {x: 1, y: 1, z: 0}
   target: {fileID: 626106329110113478}
+  rotateSpeed: 180
+  distanceFromTarget: []
 --- !u!4 &786516302
 Transform:
   m_ObjectHideFlags: 0
@@ -6514,6 +6520,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 0
+  targetCamera: {fileID: 0}
+  isVisible: 0
+  uiText: {fileID: 0}
+  lockOn: {fileID: 0}
 --- !u!54 &1525103359
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7090,7 +7100,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6972036068199909331}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508067074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f80b206ff599adc479917da79e19a175, type: 3}
   m_Name: 
