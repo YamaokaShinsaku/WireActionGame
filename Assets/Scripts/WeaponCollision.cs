@@ -10,7 +10,7 @@ public class WeaponCollision : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("enemyHit");
-            collision.gameObject.GetComponent<Renderer>().material.color = Color.black;
+            //collision.gameObject.GetComponent<Renderer>().material.color = Color.black;
 
             // 武器オブジェクトを削除
             Destroy(this.gameObject);
