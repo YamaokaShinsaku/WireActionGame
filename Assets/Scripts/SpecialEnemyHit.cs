@@ -21,7 +21,7 @@ public class SpecialEnemyHit : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
 
-        if (this.gameObject.name == "SpecialEnemy")
+        if (this.gameObject.transform.parent.name == "S_Enemy")
         {
             Debug.Log("SpecialEnemy");
             hitCount++;

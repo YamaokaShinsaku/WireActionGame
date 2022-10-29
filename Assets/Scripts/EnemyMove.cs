@@ -25,6 +25,8 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private LockOnTarget.LockOnTarget lockOn;
 
+    private Vector3 latePosition;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,14 +35,12 @@ public class EnemyMove : MonoBehaviour
 
         lockOn = lockOn.GetComponent<LockOnTarget.LockOnTarget>();
 
+        this.transform.rotation = Quaternion.identity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 vec3 = target.transform.position - this.transform.position;
-        Quaternion quaternion = Quaternion.LookRotation(vec3);
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, quaternion, rotationSpeed);
 
         // target Ç…å¸Ç©Ç¡Çƒà⁄ìÆÇ∑ÇÈ
         this.transform.position =
@@ -49,7 +49,16 @@ public class EnemyMove : MonoBehaviour
 
         var viewportPos = targetCamera.WorldToViewportPoint(this.transform.position);
 
-        if(rect.Contains(viewportPos))
+        Vector3 vec3 = this.transform.position - latePosition;
+        latePosition = this.transform.position;
+
+        if(vec3.magnitude > 0.01f)
+        {
+            this.transform.rotation = Quaternion.LookRotation(vec3);
+        }
+
+
+        if (rect.Contains(viewportPos))
         {
             // ï\é¶Ç≥ÇÍÇƒÇ¢ÇÈèÍçáÇÃèàóù
             //ShowText(this.gameObject.name + "âÊñ Ç…ï\é¶");
@@ -77,7 +86,9 @@ public class EnemyMove : MonoBehaviour
     {
         if (other.gameObject.tag == "Magic")
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+
+            this.gameObject.transform.parent.gameObject.SetActive(false);
         }
     }
 
