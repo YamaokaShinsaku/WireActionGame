@@ -40,6 +40,7 @@ namespace SpiderChan
 
         [SerializeField]
         private Texture reticleImageInValid;    // 禁止マーク
+
         [SerializeField]
         private ParticleSystem particle;    // エフェクト（集中線）
 
