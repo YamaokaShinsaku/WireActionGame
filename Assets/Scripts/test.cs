@@ -33,13 +33,13 @@ namespace SpiderChan
         //private float ikTransitionTime = 0.5f;      // 腕の位置の遷移時間
 
         [SerializeField]
-        private RawImage reticle;       // 糸を張れるかどうかの状態に合わせて、照準マークを変更する
+        public RawImage reticle;       // 糸を張れるかどうかの状態に合わせて、照準マークを変更する
 
         [SerializeField]
-        private Texture reticleImageValid;      // 照準マーク
+        public Texture reticleImageValid;      // 照準マーク
 
         [SerializeField]
-        private Texture reticleImageInValid;    // 禁止マーク
+        public Texture reticleImageInValid;    // 禁止マーク
 
         [SerializeField]
         private ParticleSystem particle;    // エフェクト（集中線）

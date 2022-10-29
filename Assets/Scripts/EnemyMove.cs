@@ -49,6 +49,7 @@ public class EnemyMove : MonoBehaviour
 
         var viewportPos = targetCamera.WorldToViewportPoint(this.transform.position);
 
+        // 進行方向に回転させる
         Vector3 vec3 = this.transform.position - latePosition;
         latePosition = this.transform.position;
 
@@ -77,6 +78,10 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// メッセージを表示する
+    /// </summary>
+    /// <param name="message">表示するメッセージ</param>
     void ShowText(string message)
     {
         uiText.text = message;

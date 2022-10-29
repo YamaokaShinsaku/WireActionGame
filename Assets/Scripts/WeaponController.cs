@@ -23,6 +23,10 @@ namespace WeaponChanger
         public bool isShot;
         public ParticleSystem magicCircle;      // 魔法陣エフェクト
 
+        [SerializeField]
+        private GameObject reticle;
+
+
         // Start is called before the first frame update
         void Start()
         {
@@ -40,6 +44,8 @@ namespace WeaponChanger
                     isWire = false;
                     isShot = true;
 
+                    reticle.SetActive(false);
+
                     magicCircle.Play();
 
                     test.bulletTimeCount = 0.0f;
@@ -52,6 +58,8 @@ namespace WeaponChanger
 
                     isWire = true;
                     isShot = false;
+
+                    reticle.SetActive(true);
 
                     magicCircle.Stop();
                 }
@@ -74,6 +82,9 @@ namespace WeaponChanger
                         test.enabled = false;
                         clickShot.enabled = true;
 
+
+                        reticle.SetActive(false);
+
                         isWire = false;
                         isShot = true;
 
@@ -88,6 +99,8 @@ namespace WeaponChanger
                         weapons[i].SetActive(false);
                         test.enabled = true;
                         clickShot.enabled = false;
+
+                        reticle.SetActive(true);
 
                         isWire = true;
                         isShot = false;
