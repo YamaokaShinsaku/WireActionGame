@@ -21,6 +21,8 @@ public class ClickShot : MonoBehaviour
     [SerializeField]
     private Vector3[] distanceFromTarget;
 
+    private float beforeTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,10 +59,12 @@ public class ClickShot : MonoBehaviour
         }
 
 
+        float rightTrigger = Input.GetAxis("magicShot");
+
         // 武器が残っているとき
         if (count < shotObj.Length)
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.J) || rightTrigger > 0 && beforeTrigger == 0.0f)
             {
                 clone = Instantiate(shotObj[count], shotObj[count].transform.position, shotObj[count].transform.rotation);    // 武器のクローンを生成
                 shotObj[count].SetActive(false);        // 武器本体を非表示に
@@ -76,8 +80,10 @@ public class ClickShot : MonoBehaviour
             count = 0;
         }
 
+        beforeTrigger = rightTrigger;
+
         //　武器を装填する
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetButtonDown("magicSet"))
         {
             for (int i = 0; i < shotObj.Length; i++)
             {

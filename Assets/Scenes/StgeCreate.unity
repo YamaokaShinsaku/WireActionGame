@@ -2063,6 +2063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bd9d9ebe44db9458f9a49334de9215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CounterSpeed: 0.5
   target: {fileID: 0}
   lockonTarget: {fileID: 1839274560}
   player: {fileID: 7529193743577630230}
@@ -5796,6 +5797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bd9d9ebe44db9458f9a49334de9215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CounterSpeed: 0.5
   target: {fileID: 0}
   lockonTarget: {fileID: 1839274560}
   player: {fileID: 7529193743577630230}
@@ -7794,6 +7796,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimImg: {fileID: 676102812}
+--- !u!1 &1840415690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1530308507261194198, guid: fdd55cf4f133ed749a29217d39675b86, type: 3}
+  m_PrefabInstance: {fileID: 1530308506524603334}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1840415695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840415690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad52f499ae91274b82b8b8bff82c6d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1842433017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012711248052, guid: db0765e6c54e2234d9644377794d9ce6, type: 3}
@@ -7896,6 +7915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bd9d9ebe44db9458f9a49334de9215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CounterSpeed: 0.5
   target: {fileID: 0}
   lockonTarget: {fileID: 1839274560}
   player: {fileID: 7529193743577630230}
@@ -30952,7 +30972,7 @@ PrefabInstance:
       objectReference: {fileID: 7526013876356827542}
     - target: {fileID: 1530308507270887986, guid: fdd55cf4f133ed749a29217d39675b86, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd55cf4f133ed749a29217d39675b86, type: 3}
@@ -31070,6 +31090,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 7529193743577630230}
+    - target: {fileID: 1614302157077651059, guid: afa8e8fa37d08214aba6281eaf993a7a, type: 3}
+      propertyPath: CounterSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1614302157077651059, guid: afa8e8fa37d08214aba6281eaf993a7a, type: 3}
       propertyPath: lockonTarget
       value: 

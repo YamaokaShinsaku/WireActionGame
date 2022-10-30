@@ -182,7 +182,7 @@ namespace PlayerController
         private void Jump()
         {
             // ジャンプ開始判定
-            if (isGround && Input.GetKey(KeyCode.Space))
+            if (isGround && /*Input.GetKey(KeyCode.Space) ||*/ Input.GetButton("Jump"))
             {
                 isJumping = true;
             }
@@ -193,13 +193,13 @@ namespace PlayerController
                 isGround = false;
 
                 // ジャンプボタンを離したら or 滞空時間が制限を超えたら
-                if (Input.GetKeyUp(KeyCode.Space) || jumpTime >= maxJumpTime)
+                if (/*Input.GetKeyUp(KeyCode.Space)*/ Input.GetButtonUp("Jump") || jumpTime >= maxJumpTime)
                 {
                     isJumping = false;
                     jumpTime = 0.0f;
                 }
                 // ジャンプボタンを押している間
-                else if (Input.GetKey(KeyCode.Space))
+                else if (/*Input.GetKey(KeyCode.Space)*/ Input.GetButton("Jump"))
                 {
                     // 滞空時間を加算
                     jumpTime += Time.deltaTime;

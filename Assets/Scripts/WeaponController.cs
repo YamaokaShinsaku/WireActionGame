@@ -70,7 +70,8 @@ namespace WeaponChanger
         void Update()
         {
             // ïêäÌÇêÿÇËë÷Ç¶ÇÈ
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.L)
+                || Input.GetButtonDown("WeaponChange"))
             {
                 currentNum = (currentNum + 1) % weapons.Length;
 
@@ -91,6 +92,7 @@ namespace WeaponChanger
                         magicCircle.Play();
 
                         test.isBulletTime = false;
+                        test.Stop();
                         test.bulletTimeCount = 0.0f;
                         Time.timeScale = 1.0f;
                     }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Homing_2 : MonoBehaviour
 {
-    private float DivNum = 40;      //分割数
-    private float Counter = 0f;     //レーザー進行フレーム用
+    private float DivNum = 40;      // 分割数
+    private float Counter = 0f;     // レーザー進行フレーム用
+    public float CounterSpeed;      // 進行フレーム数
 
     public GameObject target;       // 目標オブジェクト
 
@@ -146,6 +147,6 @@ public class Homing_2 : MonoBehaviour
         //this.transform.rotation = rotation;
 
         // 速さ
-        Counter += 0.05f;
+        Counter += CounterSpeed;
     }
 }

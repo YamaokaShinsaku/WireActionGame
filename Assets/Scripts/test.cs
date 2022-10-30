@@ -77,18 +77,20 @@ namespace SpiderChan
         public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter thirdPerson;
         public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl userControl;
 
+        private float beforeRightTrigger;
+        private float beforeLeftTrigger;
 
         /// <summary>
         /// エフェクト再生
         /// </summary>
-        private void Play()
+        public void Play()
         {
             particle.Play();
         }
         /// <summary>
         /// エフェクト停止
         /// </summary>
-        private void Stop()
+        public void Stop()
         {
             particle.Stop();
         }
@@ -121,6 +123,9 @@ namespace SpiderChan
         // Update is called once per frame
         void Update()
         {
+            float rightTrigger = Input.GetAxis("contractionWire");
+            float leftTrigger = Input.GetAxis("StopBulletTime");
+
             // バレットタイム
             if (isBulletTime)
             {
@@ -129,7 +134,7 @@ namespace SpiderChan
                 bulletTimeCount -= Time.unscaledDeltaTime;
 
                 // バレットタイムを終了する（デバッグ）
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || leftTrigger > 0 && beforeLeftTrigger == 0.0f)
                 {
                     isBulletTime = false;
                     //Stop();
@@ -175,14 +180,13 @@ namespace SpiderChan
                 ? focus.point - this.worldCasterCenter
                 : cameraForward);
 
-
             // 射出方向のmaxDistance以内の距離に糸が接着可能な物体があれば、糸を射出できる
             if (Physics.Raycast(aimingRay, out var aimingTarget, this.maxDistance, this.interactiveLayers))
             {
                 // reticleの表示を照準マークに変える
                 this.reticle.texture = this.reticleImageValid;
                 // 発射ボタンが押されたら
-                if (/*Input.GetButtonDown("Shot")*/Input.GetMouseButtonDown(1))
+                if (Input.GetButtonDown("WireShot") || Input.GetMouseButtonDown(1))
                 {
                     isBulletTime = false;
 
@@ -206,14 +210,14 @@ namespace SpiderChan
             }
 
             // 糸を射出中の状態で収縮ボタンが押されたら、糸の長さをequilibrimLengthまで縮小する
-            if (this.casting && /*Input.GetButtonDown("Contract")*/Input.GetMouseButtonDown(0))
+            if (this.casting && Input.GetMouseButtonDown(0) || rightTrigger > 0 && beforeRightTrigger == 0.0f)
             {
                 this.stringLength = this.equilibrimLength;
                 this.needsUpdateSpring = true;
             }
 
             // 発射ボタンが離されたら
-            if (/*Input.GetButtonUp("Shot")*/Input.GetMouseButtonUp(1))
+            if (Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1))
             {
                 isBulletTime = true;
 
@@ -237,6 +241,9 @@ namespace SpiderChan
 
             // 糸の状態を更新する
             this.UpdateString();
+
+            beforeRightTrigger = rightTrigger;
+            beforeLeftTrigger = leftTrigger;
         }
 
         /// <summary>
