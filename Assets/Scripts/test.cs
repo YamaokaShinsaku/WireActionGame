@@ -129,7 +129,7 @@ namespace SpiderChan
             // バレットタイム
             if (isBulletTime)
             {
-                Play();
+                //Play();
                 Time.timeScale = 0.01f;
                 bulletTimeCount -= Time.unscaledDeltaTime;
 
@@ -183,6 +183,8 @@ namespace SpiderChan
             // 射出方向のmaxDistance以内の距離に糸が接着可能な物体があれば、糸を射出できる
             if (Physics.Raycast(aimingRay, out var aimingTarget, this.maxDistance, this.interactiveLayers))
             {
+                Play();
+
                 // reticleの表示を照準マークに変える
                 this.reticle.texture = this.reticleImageValid;
                 // 発射ボタンが押されたら

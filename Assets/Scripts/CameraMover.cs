@@ -7,6 +7,8 @@ public class CameraMover : MonoBehaviour
     private float sight_x;
     private float sight_y;
 
+    [SerializeField]
+    private float moveSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +27,8 @@ public class CameraMover : MonoBehaviour
         float x = Input.GetAxis("CameraHorizontal");
         float z = Input.GetAxis("CameraVertical");
 
-        float angleH = Input.GetAxis("Horizontal2") * 5.0f;
-        float angleV = Input.GetAxis("Vertical2") * 5.0f;
+        float angleH = Input.GetAxis("Horizontal2") * moveSpeed;
+        float angleV = Input.GetAxis("Vertical2") * moveSpeed;
 
         if(sight_x >= 360)
         {
