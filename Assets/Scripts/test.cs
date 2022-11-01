@@ -54,7 +54,7 @@ namespace SpiderChan
         private GameObject Crystal;     // クリスタル
 
         [SerializeField]
-        private PostEffect postEffect;      // グレースケール
+        private PostEffect postEffect;      // ポストエフェクト（グレースケール）
 
 
         private GameObject clone;       // オブジェクトのclone生成用

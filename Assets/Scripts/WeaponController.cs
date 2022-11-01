@@ -71,7 +71,7 @@ namespace WeaponChanger
         {
             // •Ší‚ğØ‚è‘Ö‚¦‚é
             if (Input.GetKeyDown(KeyCode.L)
-                || Input.GetButtonDown("WeaponChange"))
+                || Input.GetButtonDown("WeaponChange") && test.isBulletTime == false)
             {
                 currentNum = (currentNum + 1) % weapons.Length;
 
