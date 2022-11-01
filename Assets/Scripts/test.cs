@@ -53,6 +53,9 @@ namespace SpiderChan
         [SerializeField]
         private GameObject Crystal;     // クリスタル
 
+        [SerializeField]
+        private PostEffect postEffect;      // グレースケール
+
 
         private GameObject clone;       // オブジェクトのclone生成用
 
@@ -102,6 +105,8 @@ namespace SpiderChan
             this.cameraTransform = Camera.main.transform;
             this.lineRenderer = this.GetComponent<LineRenderer>();
 
+            postEffect = postEffect.GetComponent<PostEffect>();
+
             // worldCasterCenterの初期化
             //this.worldCasterCenter = this.transform.TransformPoint(this.casterCenter);    // 手から発射する
             this.worldCasterCenter = casterCenterObj.transform.position;    // オブジェクトから発射する
@@ -129,20 +134,27 @@ namespace SpiderChan
             // バレットタイム
             if (isBulletTime)
             {
-                //Play();
                 Time.timeScale = 0.01f;
                 bulletTimeCount -= Time.unscaledDeltaTime;
+
+                // グレースケールをon
+                postEffect.enabled = true;
 
                 // バレットタイムを終了する（デバッグ）
                 if (Input.GetMouseButtonDown(0) || leftTrigger > 0 && beforeLeftTrigger == 0.0f)
                 {
                     isBulletTime = false;
-                    //Stop();
+
+                    // グレースケールをoff
+                    postEffect.enabled = false;
                 }
             }
             else
             {
                 Stop();
+                // グレースケールをoff
+                postEffect.enabled = false;
+
                 Time.timeScale = 1.0f;
                 bulletTimeCount = 5.0f;
             }
@@ -183,7 +195,6 @@ namespace SpiderChan
             // 射出方向のmaxDistance以内の距離に糸が接着可能な物体があれば、糸を射出できる
             if (Physics.Raycast(aimingRay, out var aimingTarget, this.maxDistance, this.interactiveLayers))
             {
-                Play();
 
                 // reticleの表示を照準マークに変える
                 this.reticle.texture = this.reticleImageValid;
@@ -259,6 +270,8 @@ namespace SpiderChan
                 // 糸を射出中のみ処理をする
                 // 糸のプレイヤー側の末端を設定
                 this.stringAnchor[0] = this.worldCasterCenter;
+
+                Play();
 
                 // プレイヤーと接着面との間に障害物があるかチェック
                 //if (Physics.Linecast(this.stringAnchor[0], this.stringAnchor[1],

@@ -40965,6 +40965,7 @@ MonoBehaviour:
   bulletTimeCount: 0
   isBulletTime: 0
   Crystal: {fileID: 2130097812}
+  postEffect: {fileID: 2108965794}
   playerController: {fileID: 7529193743577630231}
   thirdPerson: {fileID: 7529193743577630235}
   userControl: {fileID: 7529193743577630234}
