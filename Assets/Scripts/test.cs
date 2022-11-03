@@ -59,7 +59,6 @@ namespace SpiderChan
         [SerializeField]
         private MotionBlur motionBlur;      // モーションブラー
 
-
         private GameObject clone;       // オブジェクトのclone生成用
 
         private Animator animator;
@@ -82,9 +81,11 @@ namespace SpiderChan
         public PlayerController.PlayerController playerController;
         public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter thirdPerson;
         public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl userControl;
+        public GroundCheck groundCheck;
 
         private float beforeRightTrigger;
         private float beforeLeftTrigger;
+        private bool isGround;
 
         /// <summary>
         /// エフェクト再生
@@ -129,11 +130,14 @@ namespace SpiderChan
             playerController = playerController.GetComponent<PlayerController.PlayerController>();
             thirdPerson = thirdPerson.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
             userControl = userControl.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>();
+            groundCheck = groundCheck.GetComponent<GroundCheck>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            isGround = groundCheck.isGround;
+
             float rightTrigger = Input.GetAxis("contractionWire");
             float leftTrigger = Input.GetAxis("StopBulletTime");
 
@@ -161,6 +165,7 @@ namespace SpiderChan
             else
             {
                 Stop();
+                motionBlur.enabled = false;
                 // グレースケールをoff
                 postEffect.enabled = false;
 
@@ -280,7 +285,12 @@ namespace SpiderChan
                 // 糸のプレイヤー側の末端を設定
                 this.stringAnchor[0] = this.worldCasterCenter;
 
-                Play();
+                // プレイヤーが地面から離れてるとき
+                if (isGround == false)
+                {
+                    Play();
+                    motionBlur.enabled = true;
+                }
 
                 // プレイヤーと接着面との間に障害物があるかチェック
                 //if (Physics.Linecast(this.stringAnchor[0], this.stringAnchor[1],
@@ -338,7 +348,12 @@ namespace SpiderChan
                     this.springJoint.damper = this.damper;
                 }
 
-                motionBlur.enabled = true;
+                // プレイヤーが地面から離れてるとき
+                if(isGround == false)
+                {
+                    Play();
+                    motionBlur.enabled = true;
+                }
 
                 // SpringJointの自然長と接続先を設定
                 this.springJoint.maxDistance = this.stringLength;

@@ -9528,7 +9528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionBlur: {fileID: 2100000, guid: 1acf17672f9c43b489e27bf5a45ce0d9, type: 2}
-  speed: 0.5
+  speed: 0.3
 --- !u!1 &2124502502
 GameObject:
   m_ObjectHideFlags: 0
@@ -40893,6 +40893,7 @@ GameObject:
   - component: {fileID: 7529193743577630234}
   - component: {fileID: 7529193743577630237}
   - component: {fileID: 7529193743577630236}
+  - component: {fileID: 7529193743577630238}
   m_Layer: 7
   m_Name: Player_Unit
   m_TagString: Player
@@ -40917,10 +40918,10 @@ MonoBehaviour:
   moveSpeed: 6
   jumpPower: 6
   maxJumpTime: 0.5
-  isGround: 0
   isJumping: 0
   jumpTime: 0
   groundCheckDistance: 0.3
+  groundCheck: {fileID: 7529193743577630238}
 --- !u!136 &7529193743577630232
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -41016,6 +41017,7 @@ MonoBehaviour:
   playerController: {fileID: 7529193743577630231}
   thirdPerson: {fileID: 7529193743577630235}
   userControl: {fileID: 7529193743577630234}
+  groundCheck: {fileID: 7529193743577630238}
 --- !u!120 &7529193743577630237
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -41114,6 +41116,20 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &7529193743577630238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529193743577630230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69834d22e17105f4abffe0c257d7479d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheckDistance: 0.3
+  isGround: 0
 --- !u!1 &7529193793965393310
 GameObject:
   m_ObjectHideFlags: 0
