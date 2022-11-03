@@ -44,7 +44,7 @@ public class EnemyMove : MonoBehaviour
 
         // target ‚ÉŒü‚©‚Á‚ÄˆÚ“®‚·‚é
         this.transform.position =
-            Vector3.MoveTowards(this.transform.position, target.transform.position, speed);
+            Vector3.MoveTowards(this.transform.position, target.transform.position, Time.deltaTime * speed);
 
 
         var viewportPos = targetCamera.WorldToViewportPoint(this.transform.position);
