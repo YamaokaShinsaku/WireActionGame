@@ -54,7 +54,10 @@ namespace SpiderChan
         private GameObject Crystal;     // クリスタル
 
         [SerializeField]
-        private PostEffect postEffect;      // ポストエフェクト（グレースケール）
+        private PostEffect postEffect;      // グレースケール
+
+        [SerializeField]
+        private MotionBlur motionBlur;      // モーションブラー
 
 
         private GameObject clone;       // オブジェクトのclone生成用
@@ -106,6 +109,7 @@ namespace SpiderChan
             this.lineRenderer = this.GetComponent<LineRenderer>();
 
             postEffect = postEffect.GetComponent<PostEffect>();
+            motionBlur = motionBlur.GetComponent<MotionBlur>();
 
             // worldCasterCenterの初期化
             //this.worldCasterCenter = this.transform.TransformPoint(this.casterCenter);    // 手から発射する
@@ -113,6 +117,8 @@ namespace SpiderChan
 
             bulletTimeCount = 5.0f;
             isBulletTime = false;
+            postEffect.enabled = false;
+            motionBlur.enabled = false;
 
             Stop();
         }
@@ -139,6 +145,9 @@ namespace SpiderChan
 
                 // グレースケールをon
                 postEffect.enabled = true;
+
+                // モーションブラーをoff
+                motionBlur.enabled = false;
 
                 // バレットタイムを終了する（デバッグ）
                 if (Input.GetMouseButtonDown(0) || leftTrigger > 0 && beforeLeftTrigger == 0.0f)
@@ -329,6 +338,8 @@ namespace SpiderChan
                     this.springJoint.damper = this.damper;
                 }
 
+                motionBlur.enabled = true;
+
                 // SpringJointの自然長と接続先を設定
                 this.springJoint.maxDistance = this.stringLength;
                 this.springJoint.connectedAnchor = this.stringAnchor[1];
@@ -339,6 +350,8 @@ namespace SpiderChan
                 // 糸による引っぱりを起こらなくする
                 Destroy(this.springJoint);
                 this.springJoint = null;
+
+                motionBlur.enabled = false;
             }
 
             this.needsUpdateSpring = false;

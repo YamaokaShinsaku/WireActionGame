@@ -9509,12 +9509,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108965793}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6369a8f2574377648b5647a8af9d273b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monoTone: {fileID: 2100000, guid: 24c81825f14005a4396171b54e2ba4dc, type: 2}
+--- !u!114 &2108965798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108965793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b84673ba5e13f8d40aa1a80092828e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motionBlur: {fileID: 2100000, guid: 1acf17672f9c43b489e27bf5a45ce0d9, type: 2}
+  speed: 0.5
 --- !u!1 &2124502502
 GameObject:
   m_ObjectHideFlags: 0
@@ -40998,6 +41012,7 @@ MonoBehaviour:
   isBulletTime: 0
   Crystal: {fileID: 2130097812}
   postEffect: {fileID: 2108965794}
+  motionBlur: {fileID: 2108965798}
   playerController: {fileID: 7529193743577630231}
   thirdPerson: {fileID: 7529193743577630235}
   userControl: {fileID: 7529193743577630234}
