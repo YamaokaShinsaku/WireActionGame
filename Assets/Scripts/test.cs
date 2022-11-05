@@ -57,14 +57,14 @@ namespace SpiderChan
         private PostEffect postEffect;      // グレースケール
 
         [SerializeField]
-        private MotionBlur motionBlur;      // モーションブラー
+        public MotionBlur motionBlur;      // モーションブラー
 
-        private GameObject clone;       // オブジェクトのclone生成用
+        public GameObject clone;       // オブジェクトのclone生成用
 
         private Animator animator;
         private Transform cameraTransform;
-        private LineRenderer lineRenderer;
-        private SpringJoint springJoint;
+        public LineRenderer lineRenderer;
+        public SpringJoint springJoint;
         private ConfigurableJoint joint;
 
         // 右手を伸ばす、戻す動作をスムーズにするため
@@ -72,7 +72,7 @@ namespace SpiderChan
         private float targetIkWeight;   // 目標ウェイト
         private float ikWeightVelocity; // ウェイト変化率
 
-        private bool casting;               // 糸が射出中かどうか
+        public bool casting;               // 糸が射出中かどうか
         private bool needsUpdateSpring;     // FixedUpdate中でSpringJointの状態が必要かどうか
         private float stringLength;         // 現在の糸の長さ....これをFixedUpdate中でSpringJointのmaxDistanceにセットする
         private readonly Vector3[] stringAnchor = new Vector3[2];   // SpringJointのプレイヤー側と接着面側の末端

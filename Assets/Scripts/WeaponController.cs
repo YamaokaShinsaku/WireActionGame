@@ -83,7 +83,6 @@ namespace WeaponChanger
                         test.enabled = false;
                         clickShot.enabled = true;
 
-
                         reticle.SetActive(false);
 
                         isWire = false;
