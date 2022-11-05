@@ -77,10 +77,13 @@ public class Respown : MonoBehaviour
             userControl.enabled = false;
             test.enabled = false;
         }
+        else
+        {
+            test.enabled = true;
+        }
 
         if(castFlag)
         {
-
             castTime -= Time.deltaTime;
             if(castTime <= 0.0f)
             {
