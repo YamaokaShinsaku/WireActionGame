@@ -26,7 +26,7 @@ Material:
     m_Floats:
     - _BlurSize: 0.1
     - _EdgeCoeff: 3
-    - _SpeedCoeff: 0.5
+    - _SpeedCoeff: 0.3
     m_Colors:
     - _BlurCenterPoint: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []

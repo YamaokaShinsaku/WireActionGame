@@ -14,8 +14,8 @@ public class DisplayMessage : MonoBehaviour
     [SerializeField]
     private GameObject messageUI;       // messagePrefabのクローン生成用
 
-    private float fadeIn_x = 300;
-    private float fadeOut_x = 10;
+    private float fadeIn_x = 1920;
+    private float fadeOut_x = 1920;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +60,7 @@ public class DisplayMessage : MonoBehaviour
                 // メッセージを画面外に移動
                 iTween.MoveTo(messageUI, iTween.Hash(
                     "position", messageUI.transform.position + new Vector3(fadeOut_x, 0, 0),
-                    "time", 3));
+                    "time", 1));
 
                 yield return new WaitForSeconds(0.5f);
 
