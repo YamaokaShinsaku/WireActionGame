@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Magic
   - Sword
+  - DethZone
   layers:
   - Default
   - TransparentFX
