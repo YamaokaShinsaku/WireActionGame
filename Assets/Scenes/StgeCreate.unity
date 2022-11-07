@@ -41465,6 +41465,7 @@ MonoBehaviour:
   test: {fileID: 7529193743577630236}
   isDeth: 0
   respownEffect: {fileID: 170352, guid: 10cfa9b0a97cd1e488e0bd6ed196393e, type: 3}
+  weapon: {fileID: 1124144990}
   playerController: {fileID: 7529193743577630231}
   thirdPerson: {fileID: 7529193743577630235}
   userControl: {fileID: 7529193743577630234}

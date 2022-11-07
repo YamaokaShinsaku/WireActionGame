@@ -19,6 +19,9 @@ public class Respown : MonoBehaviour
     [SerializeField]
     private GameObject respownEffect;   // リスポーンエフェクト
 
+    [SerializeField]
+    private  WeaponChanger.WeaponController weapon;
+
     private GameObject clone;
     private float castTime = 2.0f;
     private bool castFlag;
@@ -31,6 +34,7 @@ public class Respown : MonoBehaviour
     void Start()
     {
         test = test.GetComponent<SpiderChan.test>();
+        weapon = weapon.GetComponent<WeaponChanger.WeaponController>();
 
         playerController = playerController.GetComponent<PlayerController.PlayerController>();
         thirdPerson = thirdPerson.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
@@ -77,12 +81,12 @@ public class Respown : MonoBehaviour
             userControl.enabled = false;
             test.enabled = false;
         }
-        else
+        else if(isDeth == false && weapon.isWire)
         {
             test.enabled = true;
         }
 
-        if(castFlag)
+        if (castFlag)
         {
             castTime -= Time.deltaTime;
             if(castTime <= 0.0f)
