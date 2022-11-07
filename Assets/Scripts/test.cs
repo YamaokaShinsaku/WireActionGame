@@ -59,7 +59,7 @@ namespace SpiderChan
         [SerializeField]
         public MotionBlur motionBlur;      // モーションブラー
 
-        public GameObject clone;       // オブジェクトのclone生成用
+        public GameObject clone;          // オブジェクトのclone生成用
 
         private Animator animator;
         private Transform cameraTransform;

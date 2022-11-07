@@ -88,9 +88,11 @@ public class Respown : MonoBehaviour
 
         if (castFlag)
         {
+            playerController.enabled = false;
             castTime -= Time.deltaTime;
             if(castTime <= 0.0f)
             {
+                playerController.enabled = true;
                 test.enabled = true;
                 castTime = 2.0f;
                 castFlag = false;

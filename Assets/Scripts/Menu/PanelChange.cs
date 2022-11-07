@@ -15,6 +15,7 @@ public class PanelChange : MonoBehaviour
 
     public GameObject button;
     public GameObject button2;
+    public GameObject button3;
 
     private EventSystem mES;
 
@@ -73,5 +74,4 @@ public class PanelChange : MonoBehaviour
         subPanel[1].SetActive(true);
         EventSystem.current.SetSelectedGameObject(button);
     }
-
 }
