@@ -17,7 +17,8 @@ namespace WeaponChanger
         private int currentNum = 0;     // アイテム番号
 
         public SpiderChan.test test;       // ワイヤースクリプト
-        public ClickShot clickShot;        // ショットオブジェクト
+        //public ClickShot clickShot;        // ショットオブジェクト
+        public MasicShot masicShot;
 
         public bool isWire;
         public bool isShot;
@@ -31,7 +32,8 @@ namespace WeaponChanger
         void Start()
         {
             test = test.GetComponent<SpiderChan.test>();
-            clickShot = clickShot.GetComponent<ClickShot>();
+            //clickShot = clickShot.GetComponent<ClickShot>();
+            masicShot = masicShot.GetComponent<MasicShot>();
 
             for (int i = 0; i < weapons.Length; i++)
             {
@@ -39,7 +41,8 @@ namespace WeaponChanger
                 {
                     weapons[i].SetActive(true);
                     test.enabled = false;
-                    clickShot.enabled = true;
+                    //clickShot.enabled = true;
+                    masicShot.enabled = true;
 
                     isWire = false;
                     isShot = true;
@@ -54,7 +57,8 @@ namespace WeaponChanger
                 {
                     weapons[i].SetActive(false);
                     test.enabled = true;
-                    clickShot.enabled = false;
+                    //clickShot.enabled = false;
+                    masicShot.enabled = false;
 
                     isWire = true;
                     isShot = false;
@@ -79,9 +83,10 @@ namespace WeaponChanger
                 {
                     if (i == currentNum)
                     {
-                        weapons[i].SetActive(true);
+                        //weapons[i].SetActive(true);
                         test.enabled = false;
-                        clickShot.enabled = true;
+                        //clickShot.enabled = true;
+                        masicShot.enabled = true;
 
                         reticle.SetActive(false);
 
@@ -97,9 +102,10 @@ namespace WeaponChanger
                     }
                     else
                     {
-                        weapons[i].SetActive(false);
+                        //weapons[i].SetActive(false);
                         test.enabled = true;
-                        clickShot.enabled = false;
+                        //clickShot.enabled = false;
+                        masicShot.enabled = false;
 
                         reticle.SetActive(true);
 

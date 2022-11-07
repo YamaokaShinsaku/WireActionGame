@@ -26,6 +26,7 @@ public class DisplayMessage : MonoBehaviour
     public bool isMenuOpen;
     private bool isFadeOut;
     private float deleteCount = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -96,54 +97,6 @@ public class DisplayMessage : MonoBehaviour
 
             firstSubPanel.SetActive(false);
             secondSubPanel.SetActive(false);
-
-            //yield return new WaitForSeconds(0.5f);
-
-            //Destroy(messageUI);
         }
     }
-
-    // Update is called once per frame
-    //[System.Obsolete]
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        if (!messageUI)
-    //        {
-    //            // messagePrefabのcloneを作成
-    //            messageUI = Instantiate(messagePrefab);
-    //            messageUI.transform.SetParent(canvas.transform, false);
-
-    //            // メッセージ内容を取得
-    //            Text messageUIText = messageUI.transform.Find("Message").GetComponent<Text>();
-    //            messageUIText.text = message;
-    //            // 画面内に表示
-    //            iTween.MoveFrom(messageUI, iTween.Hash(
-    //                "position", messageUI.transform.position + new Vector3(fadeIn_x, 0, 0),
-    //                "time", 1));
-    //        }
-    //    }
-    //}
-
-    //public IEnumerator OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        if (messageUI)
-    //        {
-    //            // 画面外に移動
-    //            iTween.MoveTo(messageUI, iTween.Hash(
-    //                "position", messageUI.transform.position + new Vector3(fadeOut_x, 0, 0),
-    //                "time", 3));
-
-    //            firstSubPanel.SetActive(false);
-    //            secondSubPanel.SetActive(false);
-
-    //            yield return new WaitForSeconds(0.5f);
-
-    //            Destroy(messageUI);
-    //        }
-    //    }
-    //}
 }
