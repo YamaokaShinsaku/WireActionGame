@@ -2088,6 +2088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2492d6768b43784b924f497863c9e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 0}
 --- !u!54 &334717528
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20634,6 +20635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2492d6768b43784b924f497863c9e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 0}
 --- !u!54 &1532448248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27534,6 +27536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2492d6768b43784b924f497863c9e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 0}
 --- !u!54 &1877123595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -55819,6 +55822,10 @@ PrefabInstance:
       propertyPath: lockonTarget
       value: 
       objectReference: {fileID: 1839274560}
+    - target: {fileID: 2783355261918795666, guid: afa8e8fa37d08214aba6281eaf993a7a, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 443653445314069269, guid: 7e3e8e2f6ecdbb04a982af0a14f2d887, type: 3}
     - target: {fileID: 2783355261918795695, guid: afa8e8fa37d08214aba6281eaf993a7a, type: 3}
       propertyPath: m_RootOrder
       value: 0
