@@ -54,21 +54,27 @@ public class Homing_2 : MonoBehaviour
 
         // ベジェ曲線発生位置
         P0 = new Vector3(
-            this.transform.position.x,
+            this.transform.position.x + 5.0f,
             this.transform.position.y,
             this.transform.position.z);
 
         // ベジェ曲線下側の目標座標
         P1 = new Vector3(
-            Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x),
-            Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
-            Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z));
+            /*Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x)*/
+            this.transform.position.x - 10.0f,
+            Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y)
+            //this.transform.position.y - 10.0f
+            ,
+            /*Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z)*/
+            this.transform.position.z + 20.0f);
 
         // ベジェ曲線真ん中付近の目標座標
         P2 = new Vector3(
-            Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x),
+            /*Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x)*/
+            this.transform.position.x,
             Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
-            Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z));
+            /*Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z)*/
+            this.transform.position.z - 20.0f);
 
         // 目標座標
         //Create_P3xyz(target.transform.position.x, target.transform.position.y, target.transform.position.z);
