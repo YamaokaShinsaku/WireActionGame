@@ -5691,7 +5691,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340957843}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b5cde4ad8b8304468df32edac748b4f, type: 3}
   m_Name: 
@@ -5700,6 +5700,8 @@ MonoBehaviour:
   messagePrefab: {fileID: 5871829566976961637, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
   canvas: {fileID: 519597263}
   messageUI: {fileID: 0}
+  firstSubPanel: {fileID: 1510029433}
+  secondSubPanel: {fileID: 1962761758}
 --- !u!1001 &1344605009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6018,6 +6020,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013735795762, guid: 5eb9966c8253a3649970e935258ad8d2, type: 3}
   m_PrefabInstance: {fileID: 277198110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1510029433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5871829567229932785, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
+  m_PrefabInstance: {fileID: 1345802686}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1510406104
 GameObject:
@@ -9017,6 +9024,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011232769348, guid: 838aed2c0bd6e074383add6c6e347995, type: 3}
   m_PrefabInstance: {fileID: 1960422536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1962761758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5871829568377276154, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
+  m_PrefabInstance: {fileID: 1345802686}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1964503376
 GameObject:
