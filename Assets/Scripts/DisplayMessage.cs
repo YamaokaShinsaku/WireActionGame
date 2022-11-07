@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class DisplayMessage : MonoBehaviour
 {
     [SerializeField]
-    public string message;              // •\¦‚·‚éƒƒbƒZ[ƒW
+    public string message;              // ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½éƒï¿½bï¿½Zï¿½[ï¿½W
     [SerializeField]
-    public GameObject messagePrefab;    // ƒƒbƒZ[ƒWUI‚ÌPrefab
+    public GameObject messagePrefab;    // ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½WUIï¿½ï¿½Prefab
     [SerializeField]
-    private GameObject canvas;          // •\¦‚·‚éCanvas
+    private GameObject canvas;          // ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Canvas
     [SerializeField]
-    private GameObject messageUI;       // messagePrefab‚ÌƒNƒ[ƒ“¶¬—p
+    private GameObject messageUI;       // messagePrefabï¿½ÌƒNï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½p
 
     private float fadeIn_x = 2000;
     private float fadeOut_x = 3000;
@@ -32,8 +32,45 @@ public class DisplayMessage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
+
+    public void FadeIn()
+    {
+        if (!messageUI)
+        {
+            // messagePrefabã®cloneã‚’ä½œæˆ
+            messageUI = Instantiate(messagePrefab);
+            messageUI.transform.SetParent(canvas.transform, false);
+
+            // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å†…å®¹ã‚’å–å¾—
+            Text messageUIText = messageUI.transform.Find("Message").GetComponent<Text>();
+            messageUIText.text = message;
+            // ç”»é¢å†…ã«è¡¨ç¤º
+            iTween.MoveFrom(messageUI, iTween.Hash(
+                "position", messageUI.transform.position + new Vector3(fadeIn_x, 0, 0),
+                "time", 1));
+        }
+    }
+
+    public IEnumerator FadeOut()
+    {
+        if (messageUI)
+        {
+            // ç”»é¢å¤–ã«ç§»å‹•
+            iTween.MoveTo(messageUI, iTween.Hash(
+                "position", messageUI.transform.position + new Vector3(fadeOut_x, 0, 0),
+                "time", 3));
+
+            firstSubPanel.SetActive(false);
+            secondSubPanel.SetActive(false);
+
+            yield return new WaitForSeconds(0.5f);
+
+            Destroy(messageUI);
+        }
+    }
+
 
     [System.Obsolete]
     public void OnTriggerEnter(Collider other)
@@ -42,14 +79,14 @@ public class DisplayMessage : MonoBehaviour
         {
             if(!messageUI)
             {
-                // messagePrefab‚ÌƒNƒ[ƒ“‚ğ¶¬
+                // messagePrefabã®cloneã‚’ä½œæˆ
                 messageUI = Instantiate(messagePrefab);
                 messageUI.transform.SetParent(canvas.transform, false);
 
-                // ƒƒbƒZ\ƒW‚ğİ’è
-                Text messageUIText = messageUI.transform.FindChild("Message").GetComponent<Text>();
+                // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å†…å®¹ã‚’å–å¾—
+                Text messageUIText = messageUI.transform.Find("Message").GetComponent<Text>();
                 messageUIText.text = message;
-                // ƒƒbƒZ[ƒW‚ğ‰æ–Ê“à‚ÉˆÚ“®
+                // ç”»é¢å†…ã«è¡¨ç¤º
                 iTween.MoveFrom(messageUI, iTween.Hash(
                     "position", messageUI.transform.position + new Vector3(fadeIn_x, 0, 0),
                     "time", 1));
@@ -63,7 +100,7 @@ public class DisplayMessage : MonoBehaviour
         {
             if (messageUI)
             {
-                // ƒƒbƒZ[ƒW‚ğ‰æ–ÊŠO‚ÉˆÚ“®
+                // ç”»é¢å¤–ã«ç§»å‹•
                 iTween.MoveTo(messageUI, iTween.Hash(
                     "position", messageUI.transform.position + new Vector3(fadeOut_x, 0, 0),
                     "time", 3));
