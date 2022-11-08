@@ -8,12 +8,18 @@ public class Homing_2 : MonoBehaviour
     private float Counter = 0f;     // レーザー進行フレーム用
     public float CounterSpeed;      // 進行フレーム数
 
-    public GameObject target;       // 目標オブジェクト
+    //public GameObject target;       // 目標オブジェクト
 
     public LockOnTarget.LockOnTarget lockonTarget;
     public GameObject player;
     [SerializeField]
     private GameObject targetEnemy;
+
+    // ベジェ曲線の目標座標を持つオブジェクト
+    [SerializeField]
+    public Transform firstPoint;
+    [SerializeField]
+    public Transform secondPoint;
 
     private float u = 0f;           //ベジェ曲線位置用
 
@@ -25,6 +31,7 @@ public class Homing_2 : MonoBehaviour
 
     private Vector3 P3 = Vector3.zero;      // 目標座標
 
+    // 補完用
     private Vector3 P01 = Vector3.zero;
 
     private Vector3 P12 = Vector3.zero;
@@ -54,31 +61,35 @@ public class Homing_2 : MonoBehaviour
 
         // ベジェ曲線発生位置
         P0 = new Vector3(
-            this.transform.position.x + 5.0f,
+            this.transform.position.x,
             this.transform.position.y,
             this.transform.position.z);
 
-        // ベジェ曲線下側の目標座標
-        P1 = new Vector3(
-            /*Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x)*/
-            this.transform.position.x - 10.0f,
-            Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y)
-            //this.transform.position.y - 10.0f
-            ,
-            /*Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z)*/
-            this.transform.position.z + 20.0f);
+        // ベジェ曲線最初の目標座標
+        //P1 = new Vector3(
+        //    /*Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x)*/
+        //    this.transform.position.x - 10.0f,
+        //    Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y)
+        //    //this.transform.position.y - 10.0f
+        //    ,
+        //    /*Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z)*/
+        //    this.transform.position.z + 20.0f);
 
-        // ベジェ曲線真ん中付近の目標座標
-        P2 = new Vector3(
-            /*Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x)*/
-            this.transform.position.x,
-            Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
-            /*Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z)*/
-            this.transform.position.z - 20.0f);
+        // ベジェ曲線二つ目の目標座標
+        //P2 = new Vector3(
+        //    /*Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x)*/
+        //    this.transform.position.x,
+        //    Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
+        //    /*Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z)*/
+        //    this.transform.position.z - 20.0f);
 
-        // 目標座標
+        // ベジェ曲線最初の目標座標
+        P1 = new Vector3(firstPoint.position.x, firstPoint.position.y, firstPoint.position.z);
+        // ベジェ曲線二つ目の目標座標
+        P2 = new Vector3(secondPoint.position.x,secondPoint.position.y,secondPoint.position.z);
+
+        // 最終目標座標
         //Create_P3xyz(target.transform.position.x, target.transform.position.y, target.transform.position.z);
-
         lockonTarget = player.GetComponentInChildren<LockOnTarget.LockOnTarget>();
 
         //// 目標座標
@@ -91,14 +102,17 @@ public class Homing_2 : MonoBehaviour
         //// 目標座標
         //Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
 
+        // エネミーがロックされていないとき
         if(targetEnemy = null)
         {
             Vector3 centerPosition = Camera.main.transform.position;
-            // 目標座標
+            // 最終目標座標
             Create_P3xyz(centerPosition.x, centerPosition.y, centerPosition.z);
         }
+        // エネミーがロックされているとき
         else if (targetEnemy = lockonTarget.serchTag(this.gameObject, "Enemy"))
         {
+            // エネミーの座標を最終目標座標に
             Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
         }
 
