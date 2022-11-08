@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MasicShot : MonoBehaviour
 {
-    public GameObject shotObj;       // 飛ばす武器
+    public GameObject[] shotObj;       // 飛ばす武器
     public int count;               // 発射カウント
     private GameObject clone;       // 武器のクローン
+    private GameObject cloneSecond;       // 武器のクローン
 
     [SerializeField]
-    private GameObject cloneCreatePosition;
+    private GameObject cloneCreatePosition;     // クローンを生成する場所
 
     public Vector3 position;
     public Quaternion rotation;
@@ -31,36 +32,46 @@ public class MasicShot : MonoBehaviour
     void Start()
     {
         count = 0;
-        shotObj.GetComponent<Homing_2>().enabled = false;
+        for(int i = 0; i < shotObj.Length; i++)
+        {
+            shotObj[i].GetComponent<Homing_2>().enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         // 座標更新
-        //　ユニットの位置 = ターゲットの位置 ＋ ターゲットから見たユニットの角度 ×　ターゲットからの距離
-        shotObj.transform.position = target.position + Quaternion.Euler(0f, angle, 0f) * distanceFromTarget;
-        //　ユニット自身の角度 = ターゲットから見たユニットの方向の角度を計算しそれをユニットの角度に設定する
-        shotObj.transform.rotation =
-            Quaternion.LookRotation(shotObj.transform.position -
-            new Vector3(target.position.x, shotObj.transform.position.y, target.position.z), Vector3.up);
-        //　ユニットの角度を変更
-        angle += rotateSpeed * Time.deltaTime;
-        //　角度を0～360度の間で繰り返す
-        angle = Mathf.Repeat(angle, 360f);
-
+        for (int i = 0; i < shotObj.Length; i++)
+        {
+            //　ユニットの位置 = ターゲットの位置 ＋ ターゲットから見たユニットの角度 ×　ターゲットからの距離
+            shotObj[i].transform.position = target.position + Quaternion.Euler(0f, angle, 0f) * distanceFromTarget;
+            //　ユニット自身の角度 = ターゲットから見たユニットの方向の角度を計算しそれをユニットの角度に設定する
+            shotObj[i].transform.rotation =
+                Quaternion.LookRotation(shotObj[i].transform.position -
+                new Vector3(target.position.x, shotObj[i].transform.position.y, target.position.z), Vector3.up);
+            //　ユニットの角度を変更
+            angle += rotateSpeed * Time.deltaTime;
+            //　角度を0～360度の間で繰り返す
+            angle = Mathf.Repeat(angle, 360f);
+        }
 
         float rightTrigger = Input.GetAxis("magicShot");
 
         if (Input.GetKeyDown(KeyCode.J) || rightTrigger > 0 && beforeTrigger == 0.0f)
         {
-            clone = Instantiate(shotObj, cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);    // 武器のクローンを生成
+            clone = Instantiate(shotObj[0], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);    // 武器のクローンを生成
+            cloneSecond = Instantiate(shotObj[1], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
+
             //shotObj.SetActive(false);        // 武器本体を非表示に
             clone.GetComponent<Homing_2>().enabled = true;
+            cloneSecond.GetComponent<Homing_2>().enabled = true;
+
             count++;
 
             // 5秒後にクローンを削除
             Destroy(clone, 5f);
+            Destroy(cloneSecond, 5f);
         }
 
         beforeTrigger = rightTrigger;
