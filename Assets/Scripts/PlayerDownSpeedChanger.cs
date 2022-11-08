@@ -37,17 +37,18 @@ public class PlayerDownSpeedChanger : MonoBehaviour
         // 魔法を使用していて、かつ空中にいるとき
         if (nowWeapon == true && isGround.isGround == false)
         {
-            // プレイヤーの抗力を5に
+            // プレイヤーの抵抗を5に
             player.drag = 5.0f;
             playerController.enabled = false;
         }
         
-        // 魔法を使っていない、かつプレイヤーの抗力が0ではないとき
+        // 魔法を使っていない、かつプレイヤーの抵抗が0ではないとき
         if(nowWeapon == false && player.drag != 0)
         {
             // 抗力を0に
             player.drag = 0.0f;
             playerController.enabled = true;
         }
+
     }
 }
