@@ -90,7 +90,7 @@ public class Respown : MonoBehaviour
         {
             playerController.enabled = false;
             castTime -= Time.deltaTime;
-            if(castTime <= 0.0f)
+            if(castTime <= 0.0f && weapon.isWire)
             {
                 playerController.enabled = true;
                 test.enabled = true;

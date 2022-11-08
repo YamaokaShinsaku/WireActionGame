@@ -38,7 +38,7 @@ public class PauseMode : MonoBehaviour
         else
         {
             Resume();
-            test.enabled = true;
+            //test.enabled = true;
             // グレースケールをoff
             postEffect.enabled = false;
             //player.enabled = true;

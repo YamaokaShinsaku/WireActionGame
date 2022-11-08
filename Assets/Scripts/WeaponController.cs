@@ -20,6 +20,9 @@ namespace WeaponChanger
         //public ClickShot clickShot;        // ショットオブジェクト
         public MasicShot masicShot;
 
+        [SerializeField]
+        private GameObject idleMagicFire;
+
         public bool isWire;
         public bool isShot;
         public ParticleSystem magicCircle;      // 魔法陣エフェクト
@@ -49,6 +52,7 @@ namespace WeaponChanger
 
                     reticle.SetActive(false);
 
+                    idleMagicFire.SetActive(true);
                     magicCircle.Play();
 
                     test.bulletTimeCount = 0.0f;
@@ -65,6 +69,7 @@ namespace WeaponChanger
 
                     reticle.SetActive(true);
 
+                    idleMagicFire.SetActive(false);
                     magicCircle.Stop();
                 }
             }
@@ -84,8 +89,8 @@ namespace WeaponChanger
                     if (i == currentNum)
                     {
                         //weapons[i].SetActive(true);
-                        test.enabled = false;
                         //clickShot.enabled = true;
+                        test.enabled = false;
                         masicShot.enabled = true;
 
                         reticle.SetActive(false);
@@ -93,6 +98,7 @@ namespace WeaponChanger
                         isWire = false;
                         isShot = true;
 
+                        idleMagicFire.SetActive(true);
                         magicCircle.Play();
 
                         test.isBulletTime = false;
@@ -103,8 +109,8 @@ namespace WeaponChanger
                     else
                     {
                         //weapons[i].SetActive(false);
-                        test.enabled = true;
                         //clickShot.enabled = false;
+                        test.enabled = true;
                         masicShot.enabled = false;
 
                         reticle.SetActive(true);
@@ -112,6 +118,7 @@ namespace WeaponChanger
                         isWire = true;
                         isShot = false;
 
+                        idleMagicFire.SetActive(false);
                         magicCircle.Stop();
                     }
                 }
