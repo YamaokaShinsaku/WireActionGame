@@ -8,6 +8,8 @@ public class MasicShot : MonoBehaviour
     public int count;               // 発射カウント
     private GameObject clone;       // 武器のクローン
     private GameObject cloneSecond;       // 武器のクローン
+    private GameObject cloneThird;       // 武器のクローン
+    private GameObject cloneForce;       // 武器のクローン
 
     [SerializeField]
     private GameObject cloneCreatePosition;     // クローンを生成する場所
@@ -60,18 +62,25 @@ public class MasicShot : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J) || rightTrigger > 0 && beforeTrigger == 0.0f)
         {
-            clone = Instantiate(shotObj[0], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);    // 武器のクローンを生成
+            // 武器のクローンを生成
+            clone = Instantiate(shotObj[0], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
             cloneSecond = Instantiate(shotObj[1], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
+            cloneThird = Instantiate(shotObj[2], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
+            cloneForce = Instantiate(shotObj[3], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
 
             //shotObj.SetActive(false);        // 武器本体を非表示に
             clone.GetComponent<Homing_2>().enabled = true;
             cloneSecond.GetComponent<Homing_2>().enabled = true;
+            cloneThird.GetComponent<Homing_2>().enabled = true;
+            cloneForce.GetComponent<Homing_2>().enabled = true;
 
             count++;
 
-            // 5秒後にクローンを削除
-            Destroy(clone, 5f);
-            Destroy(cloneSecond, 5f);
+            // 3秒後にクローンを削除
+            Destroy(clone, 3f);
+            Destroy(cloneSecond, 3f);
+            Destroy(cloneThird, 3f);
+            Destroy(cloneForce, 3f);
         }
 
         beforeTrigger = rightTrigger;
