@@ -167,6 +167,7 @@ public class Homing_2 : MonoBehaviour
         //this.transform.rotation = rotation;
 
         // ‘¬‚³
-        Counter += CounterSpeed;
+        //Counter += CounterSpeed;
+        Counter += CounterSpeed * Time.deltaTime;
     }
 }

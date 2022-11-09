@@ -39,6 +39,11 @@ public class EnemyCount : MonoBehaviour
     {
         nowEnemy -= nowEnemyHitCount;
 
+        if (nowEnemy < 0)
+        {
+            nowEnemy = 0;
+        }
+
         enemyCount.text = nowEnemy.ToString();
     }
 }

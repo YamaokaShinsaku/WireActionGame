@@ -1522,6 +1522,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 422945601}
     - target: {fileID: 2783355261918795665, guid: afa8e8fa37d08214aba6281eaf993a7a, type: 3}
+      propertyPath: CounterSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783355261918795665, guid: afa8e8fa37d08214aba6281eaf993a7a, type: 3}
       propertyPath: lockonTarget
       value: 
       objectReference: {fileID: 1839274560}
@@ -56417,6 +56421,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1767765949}
     - target: {fileID: 2783355261918795665, guid: afa8e8fa37d08214aba6281eaf993a7a, type: 3}
+      propertyPath: CounterSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783355261918795665, guid: afa8e8fa37d08214aba6281eaf993a7a, type: 3}
       propertyPath: lockonTarget
       value: 
       objectReference: {fileID: 1839274560}
@@ -66254,7 +66262,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7529193743577630230}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d246c7260df92f4fbf27154ecb61776, type: 3}
   m_Name: 
