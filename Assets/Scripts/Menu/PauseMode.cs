@@ -16,12 +16,16 @@ public class PauseMode : MonoBehaviour
     [SerializeField]
     private PostEffect postEffect;      // グレースケール
 
+    [SerializeField]
+    ButtonClick buttonClick;
+
     private void Start()
     {
         displayMessage = displayMessage.GetComponent<DisplayMessage>();
         test = test.GetComponent<SpiderChan.test>();
         player = player.GetComponent<PlayerController.PlayerController>();
         postEffect = postEffect.GetComponent<PostEffect>();
+        buttonClick = buttonClick.GetComponent<ButtonClick>();
     }
 
     private void Update()
@@ -47,7 +51,16 @@ public class PauseMode : MonoBehaviour
 
     private void Pause()
     {
-        Time.timeScale = 0.01f;
+        //Time.timeScale = 0.01f;
+
+        if(buttonClick.sw)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Time.timeScale = 0.01f;
+        }
     }
 
     private void Resume()
