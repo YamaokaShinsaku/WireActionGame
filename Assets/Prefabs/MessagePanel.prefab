@@ -843,9 +843,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5871829567797263032}
-        m_TargetAssemblyTypeName: SubFirstPanel, Assembly-CSharp
-        m_MethodName: MainView
+      - m_Target: {fileID: 2491400707216626539, guid: 5574fd9b504f0814a93988a270716c65, type: 3}
+        m_TargetAssemblyTypeName: GameEnd, Assembly-CSharp
+        m_MethodName: EndGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
