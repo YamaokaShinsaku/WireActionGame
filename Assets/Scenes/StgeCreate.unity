@@ -13895,8 +13895,8 @@ Canvas:
   m_GameObject: {fileID: 519597263}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 284504317}
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -13941,7 +13941,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: Menu
   messagePrefab: {fileID: 5871829566976961637, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
-  canvas: {fileID: 1700863511}
+  canvas: {fileID: 519597263}
+  messageUI: {fileID: 0}
   firstSubPanel: {fileID: 1510029433}
   secondSubPanel: {fileID: 1962761758}
   isMenuOpen: 0
@@ -13958,7 +13959,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayMessage: {fileID: 519597268}
+  test: {fileID: 7529193743577630236}
+  player: {fileID: 7529193743577630231}
   postEffect: {fileID: 2108965794}
+  buttonClick: {fileID: 3856973225755978885, guid: eec56b9623a14634b8821604087a4c3d, type: 3}
+  canWeaponChange: 0
 --- !u!4 &523279346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010281450330, guid: 46b49871773764447a894bbb1c459502, type: 3}
@@ -19231,7 +19236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &825327471
@@ -30021,7 +30026,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1124144991}
   - component: {fileID: 1124144990}
-  - component: {fileID: 1124144992}
   m_Layer: 0
   m_Name: WeaponController
   m_TagString: Untagged
@@ -30052,6 +30056,7 @@ MonoBehaviour:
   isShot: 0
   magicCircle: {fileID: 828452270}
   reticle: {fileID: 825327469}
+  pauseMode: {fileID: 519597269}
 --- !u!4 &1124144991
 Transform:
   m_ObjectHideFlags: 0
@@ -30066,18 +30071,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1124144992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124144989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a8231adfe232cc448f97733998a1a2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1128575221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62337,7 +62330,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2103294574}
   - component: {fileID: 2103294573}
-  - component: {fileID: 2103294575}
   m_Layer: 0
   m_Name: MagicShot
   m_TagString: Untagged
@@ -62384,18 +62376,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2103294575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103294572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a8231adfe232cc448f97733998a1a2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2108965793 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1530308507261194192, guid: fdd55cf4f133ed749a29217d39675b86, type: 3}
@@ -62596,8 +62576,8 @@ Canvas:
   m_GameObject: {fileID: 2124502502}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 284504317}
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -94623,11 +94603,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7529193743577630230}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a8231adfe232cc448f97733998a1a2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d246c7260df92f4fbf27154ecb61776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 7529193743577630233}
+  isGround: {fileID: 7529193743577630238}
+  playerController: {fileID: 7529193743577630231}
+  isWeapon: {fileID: 1124144990}
 --- !u!1 &7529193793965393310
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,9 @@ namespace WeaponChanger
         [SerializeField]
         private GameObject reticle;
 
+        [SerializeField]
+        private PauseMode pauseMode;
+
 
         // Start is called before the first frame update
         void Start()
@@ -37,6 +40,8 @@ namespace WeaponChanger
             test = test.GetComponent<SpiderChan.test>();
             //clickShot = clickShot.GetComponent<ClickShot>();
             masicShot = masicShot.GetComponent<MasicShot>();
+
+            pauseMode = pauseMode.GetComponent<PauseMode>();
 
             for (int i = 0; i < weapons.Length; i++)
             {
@@ -78,9 +83,13 @@ namespace WeaponChanger
         // Update is called once per frame
         void Update()
         {
+            pauseMode = pauseMode.GetComponent<PauseMode>();
+
             // ïêäÌÇêÿÇËë÷Ç¶ÇÈ
             if (Input.GetKeyDown(KeyCode.L)
-                || Input.GetButtonDown("WeaponChange") && test.isBulletTime == false)
+                || Input.GetButtonDown("WeaponChange") 
+                && test.isBulletTime == false 
+                && pauseMode.canWeaponChange == true)
             {
                 currentNum = (currentNum + 1) % weapons.Length;
 

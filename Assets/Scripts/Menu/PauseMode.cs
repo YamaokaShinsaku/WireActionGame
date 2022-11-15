@@ -8,12 +8,20 @@ public class PauseMode : Pauser
     private DisplayMessage displayMessage;
 
     [SerializeField]
-    private PostEffect postEffect;      // ƒOƒŒ[ƒXƒP[ƒ‹
+    private PostEffect postEffect;      // ï¿½Oï¿½ï¿½ï¿½[ï¿½Xï¿½Pï¿½[ï¿½ï¿½
+
+    [SerializeField]
+    ButtonClick buttonClick;
+
+    public bool canWeaponChange;
 
     private void Start()
     {
         displayMessage = displayMessage.GetComponent<DisplayMessage>();
         postEffect = postEffect.GetComponent<PostEffect>();
+        buttonClick = buttonClick.GetComponent<ButtonClick>();
+
+        canWeaponChange = true;
     }
 
     private void Update()
@@ -22,15 +30,38 @@ public class PauseMode : Pauser
         if (displayMessage.isMenuOpen)
         {
             Pauser.Pause();
-            // ƒOƒŒ[ƒXƒP[ƒ‹‚ğon
+            // ï¿½Oï¿½ï¿½ï¿½[ï¿½Xï¿½Pï¿½[ï¿½ï¿½ï¿½ï¿½on
             postEffect.enabled = true;
+            //player.enabled = false;
+
+            canWeaponChange = false;
         }
         else
         {
             Pauser.Resume();
-            // ƒOƒŒ[ƒXƒP[ƒ‹‚ğoff
+            // ï¿½Oï¿½ï¿½ï¿½[ï¿½Xï¿½Pï¿½[ï¿½ï¿½ï¿½ï¿½off
             postEffect.enabled = false;
+            //player.enabled = true;
+
+            buttonClick.noPush();
+            canWeaponChange = true;
         }
     }
 
+    private void Pause()
+    {
+        if(buttonClick.sw)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Time.timeScale = 0.01f;
+        }
+    }
+
+    private void Resume()
+    {
+        Time.timeScale = 1.0f;
+    }
 }

@@ -84,9 +84,9 @@ public class DisplayMessage : MonoBehaviour
             Text messageUIText = messageClone.transform.Find("Message").GetComponent<Text>();
             messageUIText.text = message;
             // 画面内に表示
-            iTween.MoveFrom(messageClone, iTween.Hash(
-                "position", messageClone.transform.position + new Vector3(fadeIn_x, 0, 0),
-                "time", 3 * Time.unscaledDeltaTime));
+            iTween.MoveFrom(messageUI, iTween.Hash(
+                "position", messageUI.transform.position + new Vector3(fadeIn_x, 0, 0),
+                "time", 1 * Time.unscaledDeltaTime));
         }
     }
 
