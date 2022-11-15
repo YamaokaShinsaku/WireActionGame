@@ -11,8 +11,9 @@ public class DisplayMessage : MonoBehaviour
     public GameObject messagePrefab;    // メッセージプレファブ
     [SerializeField]
     private GameObject canvas;          // 表示するCanvas
-    [SerializeField]
-    private GameObject messageUI;       // messagePrefabのclone作成用
+    
+    private GameObject messageClone;       // messagePrefabのclone作成用
+    private GameObject canvasClone;        // cancasPrefabのclone作成用
 
     private float fadeIn_x = 2000;
     private float fadeOut_x = 3000;
@@ -31,7 +32,9 @@ public class DisplayMessage : MonoBehaviour
     void Start()
     {
         isMenuOpen = false;
-        isFadeOut = false;
+        isFadeOut = false;      
+
+        canvasClone = canvas;
     }
 
     void Update()
@@ -55,10 +58,10 @@ public class DisplayMessage : MonoBehaviour
         }
 
         // カウントが0になったら
-        if(deleteCount < 0)
+        if (deleteCount < 0)
         {
             // clone を削除
-            Destroy(messageUI);
+            Destroy(messageClone);
             // カウントをリセット
             deleteCount = 0.5f;
             // フラグをリセット
@@ -70,33 +73,34 @@ public class DisplayMessage : MonoBehaviour
 
     public void FadeIn()
     {
-        if (!messageUI)
+        if (!messageClone)
         {
             // messagePrefabのcloneを作成
-            messageUI = Instantiate(messagePrefab);
-            messageUI.transform.SetParent(canvas.transform, false);
+            messageClone = Instantiate(messagePrefab);
+            messageClone.SetActive(true);
+            messageClone.transform.SetParent(canvasClone.transform, false);
 
             // メッセージ内容を取得
-            Text messageUIText = messageUI.transform.Find("Message").GetComponent<Text>();
+            Text messageUIText = messageClone.transform.Find("Message").GetComponent<Text>();
             messageUIText.text = message;
             // 画面内に表示
-            iTween.MoveFrom(messageUI, iTween.Hash(
-                "position", messageUI.transform.position + new Vector3(fadeIn_x, 0, 0),
+            iTween.MoveFrom(messageClone, iTween.Hash(
+                "position", messageClone.transform.position + new Vector3(fadeIn_x, 0, 0),
                 "time", 3 * Time.unscaledDeltaTime));
         }
     }
 
     public void FadeOut()
     {
-        if (messageUI)
+        if (messageClone)
         {
             // 画面外に移動
-            iTween.MoveTo(messageUI, iTween.Hash(
-                "position", messageUI.transform.position + new Vector3(fadeOut_x, 0, 0),
+            iTween.MoveTo(messageClone, iTween.Hash(
+                "position", messageClone.transform.position + new Vector3(fadeOut_x, 0, 0),
                 "time", 5 * Time.unscaledDeltaTime));
 
-            firstSubPanel.SetActive(false);
-            secondSubPanel.SetActive(false);
+            //firstSubPanel.SetActive(false);
+            //secondSubPanel.SetActive(false);
         }
     }
 }

@@ -14,16 +14,6 @@ public class SceneTransition : MonoBehaviour
     private int titleSceneNum = 0;
     private int gameSceneNum = 1;
 
-    private void OnGUI()
-    {
-        // デバッグ用
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneChange(nextSceneName);
-        }
-        //SceneChange(nextSceneName);
-    }
-
     public void SceneChange(string nextScene)
     {
         Time.timeScale = 1.0f;
@@ -40,16 +30,10 @@ public class SceneTransition : MonoBehaviour
 
         var fader = new FadeTransition()
         {
-            //nextScene = SceneManager.GetSceneByName(nextScene).buildIndex,
-            //fadedDelay = 0.2f,
-            //fadeToColor = Color.black
-
             nextScene = nextSceneNum,
             fadeToColor = Color.black
         };
         TransitionKit.instance.transitionWithDelegate(fader);
-
-        //SceneManager.LoadScene(nextScene);
     }
 
 }

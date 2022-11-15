@@ -2,30 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseMode : MonoBehaviour
+public class PauseMode : Pauser
 {
     [SerializeField]
     private DisplayMessage displayMessage;
 
     [SerializeField]
-    private SpiderChan.test test;
-
-    [SerializeField]
-    private PlayerController.PlayerController player;
-
-    [SerializeField]
     private PostEffect postEffect;      // グレースケール
-
-    [SerializeField]
-    ButtonClick buttonClick;
 
     private void Start()
     {
         displayMessage = displayMessage.GetComponent<DisplayMessage>();
-        test = test.GetComponent<SpiderChan.test>();
-        player = player.GetComponent<PlayerController.PlayerController>();
         postEffect = postEffect.GetComponent<PostEffect>();
-        buttonClick = buttonClick.GetComponent<ButtonClick>();
     }
 
     private void Update()
@@ -33,38 +21,19 @@ public class PauseMode : MonoBehaviour
         displayMessage = displayMessage.GetComponent<DisplayMessage>();
         if (displayMessage.isMenuOpen)
         {
-            Pause();
-            test.enabled = false;
+            Pauser.Pause();
             // グレースケールをon
             postEffect.enabled = true;
-            //player.enabled = false;
         }
         else
         {
-            Resume();
-            //test.enabled = true;
+            //Pauser.Resume();
             // グレースケールをoff
             postEffect.enabled = false;
-            //player.enabled = true;
+
+            //Pauser.Resume();
+
         }
     }
 
-    private void Pause()
-    {
-        //Time.timeScale = 0.01f;
-
-        if(buttonClick.sw)
-        {
-            Time.timeScale = 1.0f;
-        }
-        else
-        {
-            Time.timeScale = 0.01f;
-        }
-    }
-
-    private void Resume()
-    {
-        Time.timeScale = 1.0f;
-    }
 }
