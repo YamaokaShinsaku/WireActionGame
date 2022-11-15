@@ -29,7 +29,7 @@ public class Pauser : MonoBehaviour
 	void OnDestory()
 	{
 		// ポーズ対象から除外する
-		//targets.Remove(this);
+		targets.Remove(this);
 	}
 
 	// ポーズされたとき
@@ -41,7 +41,14 @@ public class Pauser : MonoBehaviour
 		}
 
 		// 有効なBehaviourを取得
-		pauseBehavs = Array.FindAll(GetComponentsInChildren<Behaviour>(), (obj) => { return obj.enabled; });
+		pauseBehavs = Array.FindAll(GetComponentsInChildren<Behaviour>(), (obj) => 
+		{
+			if(obj == null)
+            {
+				return false;
+            }
+			return obj.enabled; });
+
 
 		foreach (var com in pauseBehavs)
 		{
@@ -111,11 +118,20 @@ public class Pauser : MonoBehaviour
 	// ポーズ
 	public static void Pause()
 	{
-		foreach (var obj in targets)
-		{
-			obj.OnPause();
-		}
-	}
+        foreach (var obj in targets)
+        {
+            obj.OnPause();
+        }
+
+        //foreach (Pauser obj in GameObject.FindObjectsOfType<Pauser>())
+        //{
+        //	//Debug.Log(obj.gameObject.name);
+        //	if (obj != null)
+        //	{
+        //		obj.OnPause();
+        //	}
+        //}
+    }
 
 	// ポーズ解除
 	public static void Resume()

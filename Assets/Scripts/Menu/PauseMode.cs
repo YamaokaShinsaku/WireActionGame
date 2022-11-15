@@ -27,7 +27,7 @@ public class PauseMode : Pauser
         }
         else
         {
-            //Pauser.Resume();
+            Pauser.Resume();
             // グレースケールをoff
             postEffect.enabled = false;
 
