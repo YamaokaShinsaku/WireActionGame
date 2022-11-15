@@ -14557,6 +14557,7 @@ GameObject:
   - component: {fileID: 2783355261918795667}
   - component: {fileID: 2783355261918795666}
   - component: {fileID: 2783355261918795665}
+  - component: {fileID: 7552613783126391471}
   m_Layer: 6
   m_Name: AttackMagic
   m_TagString: Magic
@@ -14669,6 +14670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2492d6768b43784b924f497863c9e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 0}
 --- !u!114 &2783355261918795665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14682,10 +14684,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CounterSpeed: 0.05
-  target: {fileID: 0}
   lockonTarget: {fileID: 0}
   player: {fileID: 0}
   targetEnemy: {fileID: 0}
+  firstPoint: {fileID: 0}
+  secondPoint: {fileID: 0}
+--- !u!114 &7552613783126391471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783355261918795664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8231adfe232cc448f97733998a1a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2783355263138778815
 GameObject:
   m_ObjectHideFlags: 0

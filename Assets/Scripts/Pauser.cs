@@ -5,140 +5,81 @@ using System;
 
 public class Pauser : MonoBehaviour
 {
-	static List<Pauser> targets = new List<Pauser>();    // ƒ|[ƒY‘ÎÛ‚ÌƒXƒNƒŠƒvƒg
+    static List<Pauser> targets = new List<Pauser>();   // ï¿½|ï¿½[ï¿½Yï¿½ÎÛ‚ÌƒXï¿½Nï¿½ï¿½ï¿½vï¿½g
+    Behaviour[] pauseBehavs = null; // ï¿½|ï¿½[ï¿½Yï¿½ÎÛ‚ÌƒRï¿½ï¿½ï¿½|ï¿½[ï¿½lï¿½ï¿½ï¿½g
 
-	// ƒ|[ƒY‘ÎÛ‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg
-	Behaviour[] pauseBehavs = null;
-	Rigidbody[] rgBodies = null;
-	Vector3[] rgBodyVels = null;
-	Vector3[] rgBodyAVels = null;
-
-	// 2D—pƒRƒ“ƒ|[ƒlƒ“ƒg
-	Rigidbody2D[] rg2dBodies = null;
-	Vector2[] rg2dBodyVels = null;
-	float[] rg2dBodyAVels = null;
-
-	// ‰Šú‰»
-	void Start()
-	{
-		// ƒ|[ƒY‘ÎÛ‚É’Ç‰Á‚·‚é
-		targets.Add(this);
-	}
-
-	// ”jŠü‚³‚ê‚é‚Æ‚«
-	void OnDestory()
-	{
-		// ƒ|[ƒY‘ÎÛ‚©‚çœŠO‚·‚é
-		targets.Remove(this);
-	}
-
-	// ƒ|[ƒY‚³‚ê‚½‚Æ‚«
-	public void OnPause()
-	{
-		if (pauseBehavs != null)
-		{
-			return;
-		}
-
-		// —LŒø‚ÈBehaviour‚ğæ“¾
-		pauseBehavs = Array.FindAll(GetComponentsInChildren<Behaviour>(), (obj) => 
-		{
-			if(obj == null)
-            {
-				return false;
-            }
-			return obj.enabled; });
-
-
-		foreach (var com in pauseBehavs)
-		{
-			com.enabled = false;
-		}
-
-		rgBodies = Array.FindAll(GetComponentsInChildren<Rigidbody>(), (obj) => { return !obj.IsSleeping(); });
-		rgBodyVels = new Vector3[rgBodies.Length];
-		rgBodyAVels = new Vector3[rgBodies.Length];
-		for (var i = 0; i < rgBodies.Length; ++i)
-		{
-			rgBodyVels[i] = rgBodies[i].velocity;
-			rgBodyAVels[i] = rgBodies[i].angularVelocity;
-			rgBodies[i].Sleep();
-		}
-
-		rg2dBodies = Array.FindAll(GetComponentsInChildren<Rigidbody2D>(), (obj) => { return !obj.IsSleeping(); });
-		rg2dBodyVels = new Vector2[rg2dBodies.Length];
-		rg2dBodyAVels = new float[rg2dBodies.Length];
-		for (var i = 0; i < rg2dBodies.Length; ++i)
-		{
-			rg2dBodyVels[i] = rg2dBodies[i].velocity;
-			rg2dBodyAVels[i] = rg2dBodies[i].angularVelocity;
-			rg2dBodies[i].Sleep();
-		}
-	}
-
-	// ƒ|[ƒY‰ğœ‚³‚ê‚½‚Æ‚«
-	public void OnResume()
-	{
-		if (pauseBehavs == null)
-		{
-			return;
-		}
-
-		// ƒ|[ƒY‘O‚Ìó‘Ô‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì—LŒøó‘Ô‚ğ•œŒ³
-		foreach (var com in pauseBehavs)
-		{
-			com.enabled = true;
-		}
-
-		for (var i = 0; i < rgBodies.Length; ++i)
-		{
-			rgBodies[i].WakeUp();
-			rgBodies[i].velocity = rgBodyVels[i];
-			rgBodies[i].angularVelocity = rgBodyAVels[i];
-		}
-
-		for (var i = 0; i < rg2dBodies.Length; ++i)
-		{
-			rg2dBodies[i].WakeUp();
-			rg2dBodies[i].velocity = rg2dBodyVels[i];
-			rg2dBodies[i].angularVelocity = rg2dBodyAVels[i];
-		}
-
-		pauseBehavs = null;
-
-		rgBodies = null;
-		rgBodyVels = null;
-		rgBodyAVels = null;
-
-		rg2dBodies = null;
-		rg2dBodyVels = null;
-		rg2dBodyAVels = null;
-	}
-
-	// ƒ|[ƒY
-	public static void Pause()
-	{
-        foreach (var obj in targets)
-        {
-            obj.OnPause();
-        }
-
-        //foreach (Pauser obj in GameObject.FindObjectsOfType<Pauser>())
-        //{
-        //	//Debug.Log(obj.gameObject.name);
-        //	if (obj != null)
-        //	{
-        //		obj.OnPause();
-        //	}
-        //}
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    void Start()
+    {
+        // ï¿½|ï¿½[ï¿½Yï¿½ÎÛ‚É’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½
+        targets.Add(this);
     }
 
-	// ƒ|[ƒY‰ğœ
-	public static void Resume()
-	{
-		foreach (var obj in targets)
-		{
-			obj.OnResume();
-		}
-	}
+    // ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
+    void OnDestory()
+    {
+        // ï¿½|ï¿½[ï¿½Yï¿½ÎÛ‚ï¿½ï¿½çœï¿½Oï¿½ï¿½ï¿½ï¿½
+        targets.Remove(this);
+    }
+
+    // ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½ê‚½ï¿½Æ‚ï¿½
+    void OnPause()
+    {
+        if (pauseBehavs != null)
+        {
+            return;
+        }
+
+        // ï¿½Lï¿½ï¿½ï¿½ï¿½Behaviourï¿½ï¿½æ“¾
+        pauseBehavs = Array.FindAll(GetComponentsInChildren<Behaviour>(), (obj) => {
+            if (obj == null)
+            {
+                return false;
+            }
+            return obj.enabled;
+        });
+
+        foreach (var com in pauseBehavs)
+        {
+            com.enabled = false;
+        }
+    }
+
+    // ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½Æ‚ï¿½
+    void OnResume()
+    {
+        if (pauseBehavs == null)
+        {
+            return;
+        }
+
+        // ï¿½|ï¿½[ï¿½Yï¿½Oï¿½Ìï¿½Ô‚ï¿½Behaviourï¿½Ì—Lï¿½ï¿½ï¿½ï¿½Ô‚ğ•œŒï¿½
+        foreach (var com in pauseBehavs)
+        {
+            com.enabled = true;
+        }
+        pauseBehavs = null;
+    }
+
+    // ï¿½|ï¿½[ï¿½Y
+    public static void Pause()
+    {
+        foreach (Pauser obj in GameObject.FindObjectsOfType<Pauser>())
+        {
+            //Debug.Log(obj.gameObject.name);
+            if (obj != null)
+            {
+                obj.OnPause();
+            }
+        }
+    }
+
+    // ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½
+    public static void Resume()
+    {
+        foreach (var obj in targets)
+        {
+            obj.OnResume();
+        }
+    }
 }

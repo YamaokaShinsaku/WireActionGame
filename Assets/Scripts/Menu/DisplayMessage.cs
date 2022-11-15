@@ -99,8 +99,8 @@ public class DisplayMessage : MonoBehaviour
                 "position", messageClone.transform.position + new Vector3(fadeOut_x, 0, 0),
                 "time", 5 * Time.unscaledDeltaTime));
 
-            //firstSubPanel.SetActive(false);
-            //secondSubPanel.SetActive(false);
+            firstSubPanel.SetActive(false);
+            secondSubPanel.SetActive(false);
         }
     }
 }
