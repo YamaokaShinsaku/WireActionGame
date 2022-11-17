@@ -40984,14 +40984,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ecbceac3f17e8468aaedde60e3df61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0, z: 0}
-  moveVelocity: {x: 0, y: 0, z: 0}
-  moveSpeed: 3
-  jumpPower: 6
-  maxJumpTime: 0.5
-  isJumping: 0
-  jumpTime: 0
-  groundCheckDistance: 0
   groundCheck: {fileID: 7529193743577630238}
 --- !u!136 &7529193743577630232
 CapsuleCollider:
@@ -41035,8 +41027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69834d22e17105f4abffe0c257d7479d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheckDistance: 0.3
-  isGround: 0
+  groundCheckDistance: 1
+  isGround: 1
 --- !u!1 &7529193793965393310
 GameObject:
   m_ObjectHideFlags: 0

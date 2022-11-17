@@ -10,6 +10,9 @@ public class PanelActive : MonoBehaviour
     [SerializeField]
     private PostEffect postEffect;      // グレースケール
 
+    [SerializeField]
+    private GameObject[] Image;
+
     public bool canWeaponChange;
     public bool isPause;
 
@@ -46,11 +49,21 @@ public class PanelActive : MonoBehaviour
     {
         isPause = true;
         Time.timeScale = 0.0f;
+
+        for (int i = 0; i < Image.Length; i++)
+        {
+            Image[i].SetActive(false);
+        }
     }
 
     private void Resume()
     {
         isPause = false;
         Time.timeScale = 1.0f;
+
+        for (int i = 0; i < Image.Length; i++)
+        {
+            Image[i].SetActive(true);
+        }
     }
 }

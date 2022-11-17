@@ -6,33 +6,11 @@ public class TitlePlayer : MonoBehaviour
 {
     private Rigidbody rb;
 
-    [SerializeField]
-    private Vector3 moveDirection;      // 移動方向
-
-    [SerializeField]
-    private Vector3 moveVelocity;       // 加速度
-
-    [SerializeField]
-    private float moveSpeed = 3.0f;     // 移動スピード
-
-    [SerializeField]
-    private float jumpPower = 6.0f;     // ジャンプ力
-
-    [SerializeField]
-    private float maxJumpTime = 0.5f;   // 最大滞空時間
-
-    private Vector3 latestPosition;     // 前フレームの位置
-
-    //public bool isGround;       // 接地しているかどうか
-    public bool isJumping;      // ジャンプ中かどうか
-    public float jumpTime;      // 現在の滞空時間
-
     private Animator animator;
 
     float forwardAmount;
     float turnAmount;
     Vector3 groundNormal;
-    public float groundCheckDistance;
 
     [SerializeField]
     private GroundCheck groundCheck;

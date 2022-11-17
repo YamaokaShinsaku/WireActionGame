@@ -24,7 +24,7 @@ public class PanelChange : MonoBehaviour
     {
         mainPanel.GetComponent<RectTransform>().SetAsLastSibling();
         mainPanel.SetActive(true);
-        subPanel[0].SetActive(false);
+        subPanel[0].SetActive(true);
         subPanel[1].SetActive(false);
 
         mES = GetComponent<EventSystem>();
