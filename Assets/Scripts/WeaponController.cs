@@ -112,7 +112,7 @@ namespace WeaponChanger
                         test.isBulletTime = false;
                         test.Stop();
                         test.bulletTimeCount = 0.0f;
-                        //Time.timeScale = 1.0f;
+                        Time.timeScale = 1.0f;
                     }
                     else
                     {

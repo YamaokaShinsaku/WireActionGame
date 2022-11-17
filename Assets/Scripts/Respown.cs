@@ -25,6 +25,9 @@ public class Respown : MonoBehaviour
     [SerializeField]
     private PanelActive panelActive;
 
+    [SerializeField]
+    private Animator anim;
+
     private GameObject clone;
     private float castTime = 2.0f;
     private bool castFlag;
@@ -39,6 +42,8 @@ public class Respown : MonoBehaviour
         test = test.GetComponent<SpiderChan.test>();
         weapon = weapon.GetComponent<WeaponChanger.WeaponController>();
         panelActive = panelActive.GetComponent<PanelActive>();
+
+        anim = anim.GetComponent<Animator>();
 
         playerController = playerController.GetComponent<PlayerController.PlayerController>();
         thirdPerson = thirdPerson.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
@@ -66,6 +71,16 @@ public class Respown : MonoBehaviour
 
             castFlag = true;
             isDeth = false;
+
+            thirdPerson.m_Rigidbody.velocity = new Vector3(0,0,0);
+
+            anim.SetFloat("Forward", 0.0f);
+            anim.SetFloat("Turn", 0.0f);
+            anim.SetFloat("Jump", 0.0f);
+            anim.SetFloat("JumpLeg", 0.0f);
+            anim.SetBool("OnGround", true);
+
+            playerController.isJumping = false;
 
             // ワイヤーアクション中に死んだ際の処理
             if (test.springJoint)

@@ -94242,6 +94242,7 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.3
+  m_Rigidbody: {fileID: 0}
 --- !u!114 &7529193743577630236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94411,6 +94412,7 @@ MonoBehaviour:
   respownEffect: {fileID: 170352, guid: 10cfa9b0a97cd1e488e0bd6ed196393e, type: 3}
   weapon: {fileID: 1124144990}
   panelActive: {fileID: 1700863518}
+  anim: {fileID: 7578530305834132638}
   playerController: {fileID: 7529193743577630231}
   thirdPerson: {fileID: 7529193743577630235}
   userControl: {fileID: 7529193743577630234}
