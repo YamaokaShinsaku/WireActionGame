@@ -6646,7 +6646,7 @@ SpriteRenderer:
   m_Size: {x: 5.27, y: 0.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1700863511
@@ -40963,6 +40963,7 @@ GameObject:
   - component: {fileID: 7578530305834132638}
   - component: {fileID: 7529193743577630233}
   - component: {fileID: 7529193743577630232}
+  - component: {fileID: 7529193743577630231}
   - component: {fileID: 7529193743577630238}
   m_Layer: 7
   m_Name: Player_Unit
@@ -40971,6 +40972,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7529193743577630231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529193743577630230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ecbceac3f17e8468aaedde60e3df61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveVelocity: {x: 0, y: 0, z: 0}
+  moveSpeed: 3
+  jumpPower: 6
+  maxJumpTime: 0.5
+  isJumping: 0
+  jumpTime: 0
+  groundCheckDistance: 0
+  groundCheck: {fileID: 7529193743577630238}
 --- !u!136 &7529193743577630232
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -41008,7 +41030,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7529193743577630230}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69834d22e17105f4abffe0c257d7479d, type: 3}
   m_Name: 
