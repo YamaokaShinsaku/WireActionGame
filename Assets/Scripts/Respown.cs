@@ -22,6 +22,9 @@ public class Respown : MonoBehaviour
     [SerializeField]
     private  WeaponChanger.WeaponController weapon;
 
+    [SerializeField]
+    private PanelActive panelActive;
+
     private GameObject clone;
     private float castTime = 2.0f;
     private bool castFlag;
@@ -35,6 +38,7 @@ public class Respown : MonoBehaviour
     {
         test = test.GetComponent<SpiderChan.test>();
         weapon = weapon.GetComponent<WeaponChanger.WeaponController>();
+        panelActive = panelActive.GetComponent<PanelActive>();
 
         playerController = playerController.GetComponent<PlayerController.PlayerController>();
         thirdPerson = thirdPerson.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
@@ -52,6 +56,8 @@ public class Respown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        panelActive = panelActive.GetComponent<PanelActive>();
+
         if (isDeth)
         {
             clone = Instantiate(respownEffect,respownPosition);
@@ -81,7 +87,13 @@ public class Respown : MonoBehaviour
             userControl.enabled = false;
             test.enabled = false;
         }
-        else if(isDeth == false && weapon.isWire)
+        
+        if(panelActive.isPause == true)
+        {
+            test.enabled = false;
+        }
+
+        if(isDeth == false && weapon.isWire && panelActive.isPause == false && test.enabled == false)
         {
             test.enabled = true;
         }

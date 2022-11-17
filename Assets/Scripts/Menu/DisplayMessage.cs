@@ -13,7 +13,6 @@ public class DisplayMessage : MonoBehaviour
     private GameObject canvas;          // 表示するCanvas
     
     private GameObject messageClone;       // messagePrefabのclone作成用
-    private GameObject canvasClone;        // cancasPrefabのclone作成用
 
     private float fadeIn_x = 2000;
     private float fadeOut_x = 3000;
@@ -32,9 +31,7 @@ public class DisplayMessage : MonoBehaviour
     void Start()
     {
         isMenuOpen = false;
-        isFadeOut = false;      
-
-        canvasClone = canvas;
+        isFadeOut = false;
     }
 
     void Update()
@@ -78,15 +75,15 @@ public class DisplayMessage : MonoBehaviour
             // messagePrefabのcloneを作成
             messageClone = Instantiate(messagePrefab);
             messageClone.SetActive(true);
-            messageClone.transform.SetParent(canvasClone.transform, false);
+            messageClone.transform.SetParent(canvas.transform, false);
 
             // メッセージ内容を取得
             Text messageUIText = messageClone.transform.Find("Message").GetComponent<Text>();
             messageUIText.text = message;
             // 画面内に表示
-            iTween.MoveFrom(messageUI, iTween.Hash(
-                "position", messageUI.transform.position + new Vector3(fadeIn_x, 0, 0),
-                "time", 1 * Time.unscaledDeltaTime));
+            iTween.MoveFrom(messageClone, iTween.Hash(
+                "position", messageClone.transform.position + new Vector3(fadeIn_x, 0, 0),
+                "time", 5 * Time.unscaledDeltaTime));
         }
     }
 
