@@ -29,7 +29,6 @@ public class WeaponCollision : MonoBehaviour
         if (!audioSource.isPlaying && isAudioEnd)
         {
             Destroy(cloneEffect);
-            Destroy(this.gameObject);
         }
 
     }
