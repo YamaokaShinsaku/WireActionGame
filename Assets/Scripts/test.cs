@@ -153,6 +153,8 @@ namespace SpiderChan
                 // モーションブラーをoff
                 motionBlur.enabled = false;
 
+                GetComponent<AudioSource>().Stop();
+
                 // バレットタイムを終了する（デバッグ）
                 if (Input.GetMouseButtonDown(0) || leftTrigger > 0 && beforeLeftTrigger == 0.0f)
                 {
@@ -244,7 +246,7 @@ namespace SpiderChan
             }
 
             // 発射ボタンが離されたら
-            if (Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1))
+                if (Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1))
             {
                 isBulletTime = true;
 
@@ -353,6 +355,7 @@ namespace SpiderChan
                 {
                     Play();
                     motionBlur.enabled = true;
+                    GetComponent<AudioSource>().Play();
                 }
 
                 // SpringJointの自然長と接続先を設定
@@ -367,6 +370,7 @@ namespace SpiderChan
                 this.springJoint = null;
 
                 motionBlur.enabled = false;
+                GetComponent<AudioSource>().Stop();
             }
 
             this.needsUpdateSpring = false;

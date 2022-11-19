@@ -8,8 +8,6 @@ public class Homing_2 : MonoBehaviour
     private float Counter = 0f;     // レーザー進行フレーム用
     public float CounterSpeed;      // 進行フレーム数
 
-    //public GameObject target;       // 目標オブジェクト
-
     public LockOnTarget.LockOnTarget lockonTarget;
     public GameObject player;
     [SerializeField]
@@ -103,7 +101,7 @@ public class Homing_2 : MonoBehaviour
         //Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
 
         // エネミーがロックされていないとき
-        if(targetEnemy = null)
+        if (targetEnemy = null)
         {
             Vector3 centerPosition = Camera.main.transform.position;
             // 最終目標座標
@@ -169,7 +167,5 @@ public class Homing_2 : MonoBehaviour
         // 速さ
         //Counter += CounterSpeed;
         Counter += CounterSpeed * Time.deltaTime;
-
-        this.GetComponent<AudioSource>().Play();
     }
 }

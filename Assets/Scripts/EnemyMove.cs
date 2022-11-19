@@ -92,7 +92,6 @@ public class EnemyMove : MonoBehaviour
         if (other.gameObject.tag == "Magic")
         {
             //this.gameObject.SetActive(false);
-
             this.gameObject.transform.parent.gameObject.SetActive(false);
         }
     }
