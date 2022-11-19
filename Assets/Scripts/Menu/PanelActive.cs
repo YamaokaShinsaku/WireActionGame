@@ -13,6 +13,9 @@ public class PanelActive : MonoBehaviour
     [SerializeField]
     private GameObject[] Image;
 
+    [SerializeField]
+    private GameObject reticleCanvas;
+
     public bool canWeaponChange;
     public bool isPause;
 
@@ -49,6 +52,7 @@ public class PanelActive : MonoBehaviour
     {
         isPause = true;
         Time.timeScale = 0.0f;
+        reticleCanvas.SetActive(false);
 
         for (int i = 0; i < Image.Length; i++)
         {
@@ -60,7 +64,7 @@ public class PanelActive : MonoBehaviour
     {
         isPause = false;
         Time.timeScale = 1.0f;
-
+        reticleCanvas.SetActive(true);
         for (int i = 0; i < Image.Length; i++)
         {
             Image[i].SetActive(true);

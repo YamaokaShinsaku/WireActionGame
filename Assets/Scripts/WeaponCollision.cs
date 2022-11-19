@@ -18,6 +18,7 @@ public class WeaponCollision : MonoBehaviour
 
             // 武器オブジェクトを削除
             Destroy(this.gameObject);
+            Destroy(hitEffect);
 
         }
         else

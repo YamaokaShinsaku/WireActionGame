@@ -169,5 +169,7 @@ public class Homing_2 : MonoBehaviour
         // ‘¬‚³
         //Counter += CounterSpeed;
         Counter += CounterSpeed * Time.deltaTime;
+
+        this.GetComponent<AudioSource>().Play();
     }
 }

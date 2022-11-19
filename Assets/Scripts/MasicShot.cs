@@ -74,13 +74,13 @@ public class MasicShot : MonoBehaviour
             cloneThird.GetComponent<Homing_2>().enabled = true;
             cloneForce.GetComponent<Homing_2>().enabled = true;
 
-            count++;
-
             // 3•bŒã‚ÉƒNƒ[ƒ“‚ğíœ
             Destroy(clone, 3f);
             Destroy(cloneSecond, 3f);
             Destroy(cloneThird, 3f);
             Destroy(cloneForce, 3f);
+
+            count++;
         }
 
         beforeTrigger = rightTrigger;
