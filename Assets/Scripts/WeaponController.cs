@@ -18,7 +18,7 @@ namespace WeaponChanger
 
         public SpiderChan.test test;       // ワイヤースクリプト
         //public ClickShot clickShot;        // ショットオブジェクト
-        public MasicShot masicShot;
+        public MasicShot magicShot;
 
         [SerializeField]
         private GameObject idleMagicFire;
@@ -38,7 +38,7 @@ namespace WeaponChanger
         {
             test = test.GetComponent<SpiderChan.test>();
             //clickShot = clickShot.GetComponent<ClickShot>();
-            masicShot = masicShot.GetComponent<MasicShot>();
+            magicShot = magicShot.GetComponent<MasicShot>();
 
             pauseMode = pauseMode.GetComponent<PanelActive>();
 
@@ -49,7 +49,7 @@ namespace WeaponChanger
                     weapons[i].SetActive(true);
                     test.enabled = false;
                     //clickShot.enabled = true;
-                    masicShot.enabled = true;
+                    magicShot.enabled = true;
 
                     isWire = false;
                     isShot = true;
@@ -66,7 +66,7 @@ namespace WeaponChanger
                     weapons[i].SetActive(false);
                     test.enabled = true;
                     //clickShot.enabled = false;
-                    masicShot.enabled = false;
+                    magicShot.enabled = false;
 
                     isWire = true;
                     isShot = false;
@@ -99,7 +99,7 @@ namespace WeaponChanger
                         //weapons[i].SetActive(true);
                         //clickShot.enabled = true;
                         test.enabled = false;
-                        masicShot.enabled = true;
+                        magicShot.enabled = true;
 
                         reticle.SetActive(false);
 
@@ -108,6 +108,8 @@ namespace WeaponChanger
 
                         idleMagicFire.SetActive(true);
                         magicCircle.Play();
+                        magicShot.count = 0;
+                        idleMagicFire.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
                         test.isBulletTime = false;
                         test.Stop();
@@ -119,7 +121,7 @@ namespace WeaponChanger
                         //weapons[i].SetActive(false);
                         //clickShot.enabled = false;
                         test.enabled = true;
-                        masicShot.enabled = false;
+                        magicShot.enabled = false;
 
                         reticle.SetActive(true);
 

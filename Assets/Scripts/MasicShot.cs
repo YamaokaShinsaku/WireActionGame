@@ -12,7 +12,7 @@ public class MasicShot : MonoBehaviour
     private GameObject cloneForce;       // 武器のクローン
 
     [SerializeField]
-    private GameObject cloneCreatePosition;     // クローンを生成する場所
+    public GameObject cloneIdleFire;     // クローンを生成する場所
 
     public Vector3 position;
     public Quaternion rotation;
@@ -60,13 +60,14 @@ public class MasicShot : MonoBehaviour
 
         float rightTrigger = Input.GetAxis("magicShot");
 
-        if (Input.GetKeyDown(KeyCode.J) || rightTrigger > 0 && beforeTrigger == 0.0f)
+        if (Input.GetKeyDown(KeyCode.J) || rightTrigger > 0 && beforeTrigger == 0.0f
+            && count < 4)
         {
             // 武器のクローンを生成
-            clone = Instantiate(shotObj[0], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
-            cloneSecond = Instantiate(shotObj[1], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
-            cloneThird = Instantiate(shotObj[2], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
-            cloneForce = Instantiate(shotObj[3], cloneCreatePosition.transform.position, cloneCreatePosition.transform.rotation);
+            clone = Instantiate(shotObj[0], cloneIdleFire.transform.position, cloneIdleFire.transform.rotation);
+            cloneSecond = Instantiate(shotObj[1], cloneIdleFire.transform.position, cloneIdleFire.transform.rotation);
+            cloneThird = Instantiate(shotObj[2], cloneIdleFire.transform.position, cloneIdleFire.transform.rotation);
+            cloneForce = Instantiate(shotObj[3], cloneIdleFire.transform.position, cloneIdleFire.transform.rotation);
 
             //shotObj.SetActive(false);        // 武器本体を非表示に
             clone.GetComponent<Homing_2>().enabled = true;
@@ -82,13 +83,32 @@ public class MasicShot : MonoBehaviour
 
             count++;
         }
+        if(count == 1)
+        {
+            cloneIdleFire.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+        }
+        if (count == 2)
+        {
+            cloneIdleFire.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+        if (count == 3)
+        {
+            cloneIdleFire.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        }
+        if (count == 4)
+        {
+            cloneIdleFire.SetActive(false);
+        }
+
 
         beforeTrigger = rightTrigger;
 
         //　武器を装填する
-        //if (Input.GetKeyDown(KeyCode.K) || Input.GetButtonDown("magicSet"))
-        //{
-        //    shotObj.SetActive(true);        // 武器本体を非表示に
-        //}
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetButtonDown("magicSet"))
+        {
+            count = 0;
+            cloneIdleFire.SetActive(true);        // 武器本体を非表示に
+            cloneIdleFire.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
     }
 }

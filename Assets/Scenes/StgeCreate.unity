@@ -50376,8 +50376,8 @@ MonoBehaviour:
   - {fileID: 771217957}
   currentNum: 0
   test: {fileID: 7529193743577630236}
-  masicShot: {fileID: 2103294573}
-  idleMagicFire: {fileID: 910590133}
+  magicShot: {fileID: 2103294573}
+  idleMagicFire: {fileID: 1223524561384709}
   isWire: 0
   isShot: 0
   magicCircle: {fileID: 828452270}
@@ -97307,7 +97307,7 @@ MonoBehaviour:
   - {fileID: 1187557023}
   - {fileID: 457479311}
   count: 0
-  cloneCreatePosition: {fileID: 1223524561384709}
+  cloneIdleFire: {fileID: 1223524561384709}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   offset: {x: 0, y: 0, z: 0}
@@ -119499,6 +119499,18 @@ PrefabInstance:
     - target: {fileID: 1492099222333164022, guid: 7b8de47bac7b3744d8ef8152c4533965, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492099222333164022, guid: 7b8de47bac7b3744d8ef8152c4533965, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492099222333164022, guid: 7b8de47bac7b3744d8ef8152c4533965, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492099222333164022, guid: 7b8de47bac7b3744d8ef8152c4533965, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1492099222333164022, guid: 7b8de47bac7b3744d8ef8152c4533965, type: 3}
       propertyPath: m_LocalPosition.x
