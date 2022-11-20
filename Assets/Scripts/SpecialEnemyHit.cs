@@ -5,15 +5,15 @@ using UnityEngine;
 public class SpecialEnemyHit : MonoBehaviour
 {
 
-    [SerializeField]
-    private EnemyCount enemyCount;
+    //[SerializeField]
+    //private EnemyCount enemyCount;
 
     private int hitCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyCount = enemyCount.GetComponent<EnemyCount>();
+       // enemyCount = enemyCount.GetComponent<EnemyCount>();
 
         hitCount = 0;
     }
@@ -25,7 +25,7 @@ public class SpecialEnemyHit : MonoBehaviour
         {
             Debug.Log("SpecialEnemy");
             hitCount++;
-            enemyCount.changeHitCount(hitCount);
+            //enemyCount.changeHitCount(hitCount);
         }
     }
 }

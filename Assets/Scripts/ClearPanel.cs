@@ -5,8 +5,6 @@ using UnityEngine.EventSystems;
 
 public class ClearPanel : MonoBehaviour
 {
-    [SerializeField]
-    private SpecialEnemyCount enemyCount;
 
     public GameObject mainPanel;
 
@@ -32,12 +30,6 @@ public class ClearPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyCount.GetComponent<SpecialEnemyCount>();
-
-        //if(enemyCount.endFlag == true)
-        //{
-        //    mainPanel.SetActive(true);
-        //}
 
         // ゲームパッドのスティックの傾けた時の値を取得
         float x = Input.GetAxis("Horizontal");
@@ -55,11 +47,4 @@ public class ClearPanel : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(button2);
         }
     }
-
-    //public void ClosePanel()
-    //{
-    //    mainPanel.SetActive(false);
-    //    //Destroy(mainPanel);
-    //    enemyCount.endFlag = false;
-    //}
 }

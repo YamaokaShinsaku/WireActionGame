@@ -11,8 +11,8 @@ public class EnemyGenerator : MonoBehaviour
     private float interval;
     [SerializeField]
     private float deltaTime;
-    [SerializeField]
-    private int nowCount;
+    //[SerializeField]
+    //private int nowCount;
     [SerializeField]
     private int maxCount;
 
@@ -42,7 +42,7 @@ public class EnemyGenerator : MonoBehaviour
             }
             deltaTime = 0.0f;
 
-            nowCount++;
+            //nowCount++;
         }
     }
 

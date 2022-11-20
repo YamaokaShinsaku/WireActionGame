@@ -13,6 +13,7 @@ TagManager:
   - Sword
   - DethZone
   - Obelisk
+  - S_Enemy
   layers:
   - Default
   - TransparentFX
