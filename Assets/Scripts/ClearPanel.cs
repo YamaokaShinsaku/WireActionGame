@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class ClearPanel : MonoBehaviour
 {
     [SerializeField]
-    private EnemyCount enemyCount;
+    private SpecialEnemyCount enemyCount;
 
     public GameObject mainPanel;
 
@@ -23,7 +23,6 @@ public class ClearPanel : MonoBehaviour
     void Start()
     {
         mainPanel.GetComponent<RectTransform>().SetAsLastSibling();
-        //mainPanel.SetActive(true);
 
         mES = GetComponent<EventSystem>();
         //ボタンが選択された状態になる
@@ -33,10 +32,12 @@ public class ClearPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyCount.endFlag == true)
-        {
-            mainPanel.SetActive(true);
-        }
+        enemyCount.GetComponent<SpecialEnemyCount>();
+
+        //if(enemyCount.endFlag == true)
+        //{
+        //    mainPanel.SetActive(true);
+        //}
 
         // ゲームパッドのスティックの傾けた時の値を取得
         float x = Input.GetAxis("Horizontal");
@@ -55,10 +56,10 @@ public class ClearPanel : MonoBehaviour
         }
     }
 
-    public void ClosePanel()
-    {
-        mainPanel.SetActive(false);
-        //Destroy(mainPanel);
-        enemyCount.endFlag = false;
-    }
+    //public void ClosePanel()
+    //{
+    //    mainPanel.SetActive(false);
+    //    //Destroy(mainPanel);
+    //    enemyCount.endFlag = false;
+    //}
 }
