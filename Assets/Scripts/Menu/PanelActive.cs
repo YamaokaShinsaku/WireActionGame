@@ -16,6 +16,9 @@ public class PanelActive : MonoBehaviour
     [SerializeField]
     private GameObject reticleCanvas;
 
+    [SerializeField]
+    private SpecialEnemyCount specialEnemy;
+
     public bool canWeaponChange;
     public bool isPause;
 
@@ -32,6 +35,7 @@ public class PanelActive : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        specialEnemy = specialEnemy.GetComponent<SpecialEnemyCount>();
         if (Input.GetButtonDown("MenuOpenButton"))
         {
             canWeaponChange = false;
@@ -48,26 +52,26 @@ public class PanelActive : MonoBehaviour
         }
     }
 
-    private void Pause()
+    public void Pause()
     {
         isPause = true;
         Time.timeScale = 0.0f;
         reticleCanvas.SetActive(false);
 
-        for (int i = 0; i < Image.Length; i++)
-        {
-            Image[i].SetActive(false);
-        }
+        //for (int i = 0; i < Image.Length; i++)
+        //{
+        //    Image[i].SetActive(false);
+        //}
     }
 
-    private void Resume()
+    public void Resume()
     {
         isPause = false;
         Time.timeScale = 1.0f;
         reticleCanvas.SetActive(true);
-        for (int i = 0; i < Image.Length; i++)
-        {
-            Image[i].SetActive(true);
-        }
+        //for (int i = 0; i < Image.Length; i++)
+        //{
+        //    Image[i].SetActive(true);
+        //}
     }
 }

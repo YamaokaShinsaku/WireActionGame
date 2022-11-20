@@ -15,35 +15,30 @@ public class SpecialEnemyCount : MonoBehaviour
     private Text enemyCount;
 
     [SerializeField]
-    private GameObject clearPanel;
-    [SerializeField]
-    private GameObject reticleCanvas;
-    [SerializeField]
-    private PostEffect postEffect;      // グレースケール
+    private Text clearText;
 
+    [SerializeField]
+    private Text menuText;
 
-    private GameObject clone;
-    public PanelActive panelActive;
+    public bool a_flag;
+    public float a_color;
 
     // Start is called before the first frame update
     void Start()
     {
-        postEffect = postEffect.GetComponent<PostEffect>();
         count = specialEnemy.Length;
 
-        panelActive = panelActive.GetComponent<PanelActive>();
+        clearText.enabled = false;
+        menuText.enabled = false;
 
-        clearPanel.SetActive(false);
-
-        var parent = this.transform;
-        clone = Instantiate(clearPanel,clearPanel.transform.position,clearPanel.transform.rotation,parent);
+        a_flag = false;
+        a_color = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
         GameObject[] specialEnemy = GameObject.FindGameObjectsWithTag("S_Enemy");
-        panelActive = panelActive.GetComponent<PanelActive>();
 
         count = specialEnemy.Length;
 
@@ -56,31 +51,53 @@ public class SpecialEnemyCount : MonoBehaviour
 
         if(endFlag == true)
         {
-            OpenPanel();
+            clearText.enabled = true;
+            menuText.enabled = true;
+
+            a_flag = true;
+
+            if (a_flag)
+            {
+                //テキストの透明度を変更する
+                clearText.color = new Color(clearText.color.r, clearText.color.g, clearText.color.b, a_color);
+                menuText.color = new Color(menuText.color.r, menuText.color.g, menuText.color.b, a_color);
+                a_color -= Time.deltaTime;
+                //透明度が0になったら終了する。
+                if (a_color < 0)
+                {
+                    a_color = 0;
+                    a_flag = false;
+                }
+            }
         }
     }
 
-    public void OpenPanel()
+    public void TextActive()
     {
-        panelActive.isPause = true;
-        Time.timeScale = 0.0f;
-        postEffect.enabled = true;
-        reticleCanvas.SetActive(false);
-        count = specialEnemy.Length - 1;
-        if(clone)
+        clearText.enabled = true;
+        menuText.enabled = true;
+
+        a_flag = true;
+        a_color = 5;
+
+        if (a_flag)
         {
-            clone.SetActive(true);
+            //テキストの透明度を変更する
+            clearText.color = new Color(0, 0, 0, a_color);
+            menuText.color = new Color(0, 0, 0, a_color);
+            a_color -= Time.deltaTime;
+            //透明度が0になったら終了する。
+            if (a_color < 0)
+            {
+                a_color = 0;
+                a_flag = false;
+            }
         }
-        endFlag = false;
     }
 
     public void ClosePanel()
     {
-        panelActive.isPause = false;
-        Time.timeScale = 1.0f;
-        postEffect.enabled = false;
-        reticleCanvas.SetActive(true);
-        Destroy(clone);
+        
         Debug.Log("closePanel");
     }
 }
