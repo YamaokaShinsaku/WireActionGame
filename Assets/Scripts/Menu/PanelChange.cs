@@ -15,7 +15,6 @@ public class PanelChange : MonoBehaviour
 
     public GameObject button;
     public GameObject button2;
-    public GameObject button3;
 
     private EventSystem mES;
 
@@ -42,15 +41,16 @@ public class PanelChange : MonoBehaviour
 
         // ゲームパッドのスティックの傾けた時の値を取得
         float y = Input.GetAxis("Vertical");
+        float x = Input.GetAxis("Horizontal");
 
         // 傾きが1の時（↑に倒しているとき）
-        if (/*Input.GetKeyDown(KeyCode.UpArrow)*/ y >= 1)
+        if (/*Input.GetKeyDown(KeyCode.UpArrow)*/ y >= 1 || x <= -1)
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(button);
         }
         // 傾きが-1の時（↓に倒しているとき）
-        if (/*Input.GetKeyDown(KeyCode.DownArrow)*/ y <= -1)
+        if (/*Input.GetKeyDown(KeyCode.DownArrow)*/ y <= -1 || x >= 1)
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(button2);

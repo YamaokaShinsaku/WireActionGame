@@ -17,12 +17,16 @@ public class EnemyCount : MonoBehaviour
     [SerializeField]
     private GameObject[] specialEnemy;
 
+    public bool endFlag;
+
     // Start is called before the first frame update
     void Start()
     {
         enemyMax = specialEnemy.Length;
         nowEnemy = enemyMax;
         enemyCount.text = nowEnemy.ToString();
+
+        endFlag = false;
     }
 
     // Update is called once per frame
@@ -42,6 +46,8 @@ public class EnemyCount : MonoBehaviour
         if (nowEnemy < 0)
         {
             nowEnemy = 0;
+
+            endFlag = true;
         }
 
         enemyCount.text = nowEnemy.ToString();

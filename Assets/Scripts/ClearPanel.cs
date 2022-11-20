@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SubFirstPanel : MonoBehaviour
+public class ClearPanel : MonoBehaviour
 {
+    [SerializeField]
+    private EnemyCount enemyCount;
+
     public GameObject mainPanel;
 
     //　最初にフォーカスするゲームオブジェクト
@@ -21,7 +23,7 @@ public class SubFirstPanel : MonoBehaviour
     void Start()
     {
         mainPanel.GetComponent<RectTransform>().SetAsLastSibling();
-        mainPanel.SetActive(true);
+        //mainPanel.SetActive(true);
 
         mES = GetComponent<EventSystem>();
         //ボタンが選択された状態になる
@@ -31,29 +33,32 @@ public class SubFirstPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(enemyCount.endFlag == true)
+        {
+            mainPanel.SetActive(true);
+        }
+
         // ゲームパッドのスティックの傾けた時の値を取得
-        float y = Input.GetAxis("Vertical");
         float x = Input.GetAxis("Horizontal");
 
         // 傾きが1の時（↑に倒しているとき）
-        if (/*Input.GetKeyDown(KeyCode.UpArrow)*/ /*y >= 1 ||*/ x <= -1)
+        if (/*Input.GetKeyDown(KeyCode.UpArrow)*/ x <= -1)
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(button);
         }
         // 傾きが-1の時（↓に倒しているとき）
-        if (/*Input.GetKeyDown(KeyCode.DownArrow)*/ /*y <= -1 ||*/ x >= 1)
+        if (/*Input.GetKeyDown(KeyCode.DownArrow)*/ x >= 1)
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(button2);
         }
     }
-    public void MainView()
+
+    public void ClosePanel()
     {
-        //mainPanel.GetComponent<RectTransform>().SetAsLastSibling();
-        //Time.timeScale = 0.0f;
-        mainPanel.SetActive(true);
-        this.gameObject.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(button);
+        mainPanel.SetActive(false);
+        //Destroy(mainPanel);
+        enemyCount.endFlag = false;
     }
 }
