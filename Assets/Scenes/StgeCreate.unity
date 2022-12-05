@@ -81296,7 +81296,7 @@ MonoBehaviour:
   casterCenterObj: {fileID: 2130097816}
   spring: 10
   damper: 10
-  equilibrimLength: 1
+  equilibrimLength: 2
   reticle: {fileID: 825327471}
   reticleImageValid: {fileID: 2800000, guid: 94a7d7c606396b449bfac314845c43bd, type: 3}
   reticleImageInValid: {fileID: 2800000, guid: 45294470219f93348b29ae2ac9079514, type: 3}

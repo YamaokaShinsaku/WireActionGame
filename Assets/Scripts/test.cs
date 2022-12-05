@@ -10,7 +10,7 @@ namespace SpiderChan
     public class test : MonoBehaviour
     {
         [SerializeField]
-        private float maxDistance = 100.0f; //  糸を伸ばせる最大距離
+        private float maxDistance = 100.0f;     // 糸を伸ばせる最大距離
 
         [SerializeField]
         private LayerMask interactiveLayers;    // 糸をくっつけられるレイヤー
@@ -31,7 +31,7 @@ namespace SpiderChan
         private float equilibrimLength = 1.0f;     // 糸を縮めた時の自然長
 
         //[SerializeField]
-        //private float ikTransitionTime = 0.5f;      // 腕の位置の遷移時間
+        //private float ikTransitionTime = 0.5f;     // 腕の位置の遷移時間
 
         [SerializeField]
         public RawImage reticle;       // 糸を張れるかどうかの状態に合わせて、照準マークを変更する
@@ -46,7 +46,7 @@ namespace SpiderChan
         private ParticleSystem particle;    // エフェクト（集中線）
 
         [SerializeField]
-        public float bulletTimeCount;         // バレットタイムの制限時間
+        public float bulletTimeCount;       // バレットタイムの制限時間
 
         [SerializeField]
         public bool isBulletTime;        // バレットタイム中かどうか
@@ -55,10 +55,10 @@ namespace SpiderChan
         private GameObject Crystal;     // クリスタル
 
         [SerializeField]
-        private PostEffect postEffect;      // グレースケール
+        private PostEffect postEffect;    // グレースケール
 
         [SerializeField]
-        public MotionBlur motionBlur;      // モーションブラー
+        public MotionBlur motionBlur;     // モーションブラー
 
         public GameObject clone;          // オブジェクトのclone生成用
 
@@ -66,14 +66,13 @@ namespace SpiderChan
         private Transform cameraTransform;
         public LineRenderer lineRenderer;
         public SpringJoint springJoint;
-        private ConfigurableJoint joint;
 
         // 右手を伸ばす、戻す動作をスムーズにするため
         private float currentIkWeight;  // 現在のウェイト
         private float targetIkWeight;   // 目標ウェイト
         private float ikWeightVelocity; // ウェイト変化率
 
-        public bool casting;               // 糸が射出中かどうか
+        public bool casting;                // 糸が射出中かどうか
         private bool needsUpdateSpring;     // FixedUpdate中でSpringJointの状態が必要かどうか
         private float stringLength;         // 現在の糸の長さ....これをFixedUpdate中でSpringJointのmaxDistanceにセットする
         private readonly Vector3[] stringAnchor = new Vector3[2];   // SpringJointのプレイヤー側と接着面側の末端
@@ -109,7 +108,6 @@ namespace SpiderChan
             this.animator = this.GetComponent<Animator>();
             this.cameraTransform = Camera.main.transform;
             this.lineRenderer = this.GetComponent<LineRenderer>();
-
             postEffect = postEffect.GetComponent<PostEffect>();
             motionBlur = motionBlur.GetComponent<MotionBlur>();
 
@@ -128,6 +126,7 @@ namespace SpiderChan
         // Start is called before the first frame update
         void Start()
         {
+            // コンポーネントへの参照を取得
             playerController = playerController.GetComponent<PlayerController.PlayerController>();
             thirdPerson = thirdPerson.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
             userControl = userControl.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>();
@@ -194,7 +193,7 @@ namespace SpiderChan
             //    }
             //}
 
-            ///  糸の射出方向を設定する  ///
+            /// 糸の射出方向を設定する ///
             // 画面中心から正面に伸びるRayを求める
             //this.worldCasterCenter = this.transform.TransformPoint(this.casterCenter);
             this.worldCasterCenter = this.casterCenterObj != null ? this.casterCenterObj.position
@@ -234,7 +233,7 @@ namespace SpiderChan
 
 
                     // 時間経過で収縮する
-                    DOVirtual.DelayedCall(0.5f, () =>
+                    DOVirtual.DelayedCall(0.3f, () =>
                     {
                         this.stringLength = this.equilibrimLength;
                         this.needsUpdateSpring = true;
@@ -255,7 +254,7 @@ namespace SpiderChan
             //}
 
             // 発射ボタンが離されたら
-            if (/*Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1)*/rightTrigger > 0 && beforeRightTrigger == 0.0f)
+            if(/*Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1)*/rightTrigger > 0 && beforeRightTrigger == 0.0f)
             {
                 isBulletTime = true;
 
@@ -314,7 +313,7 @@ namespace SpiderChan
                 //    this.needsUpdateSpring = true;
                 //}
 
-                ///  糸の描画設定
+                /// 糸の描画設定 ///
                 // 糸の端点同士の距離とstringLengthとの乖離具合によって糸を赤くする
                 // 糸が赤くなれば、stringLengthが縮もうとしている
                 this.lineRenderer.SetPositions(this.stringAnchor);
