@@ -62,15 +62,15 @@ namespace SpiderChan
 
         public GameObject clone;          // オブジェクトのclone生成用
 
-        private Animator animator;
+        //private Animator animator;
         private Transform cameraTransform;
         public LineRenderer lineRenderer;
         public SpringJoint springJoint;
 
         // 右手を伸ばす、戻す動作をスムーズにするため
-        private float currentIkWeight;  // 現在のウェイト
-        private float targetIkWeight;   // 目標ウェイト
-        private float ikWeightVelocity; // ウェイト変化率
+        //private float currentIkWeight;  // 現在のウェイト
+        //private float targetIkWeight;   // 目標ウェイト
+        //private float ikWeightVelocity; // ウェイト変化率
 
         public bool casting;                // 糸が射出中かどうか
         private bool needsUpdateSpring;     // FixedUpdate中でSpringJointの状態が必要かどうか
@@ -105,7 +105,7 @@ namespace SpiderChan
         private void Awake()
         {
             // コンポーネントへの参照を取得
-            this.animator = this.GetComponent<Animator>();
+            //this.animator = this.GetComponent<Animator>();
             this.cameraTransform = Camera.main.transform;
             this.lineRenderer = this.GetComponent<LineRenderer>();
             postEffect = postEffect.GetComponent<PostEffect>();
