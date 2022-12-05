@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace SpiderChan
 {
@@ -230,6 +231,14 @@ namespace SpiderChan
                     //this.targetIkWeight = 1.0f;     // IK目標ウェイトを１にする ... 右手を射出方向に伸ばす
                     this.stringLength = Vector3.Distance(this.worldCasterCenter, aimingTarget.point);   // 糸の長さを設定
                     this.needsUpdateSpring = true;
+
+
+                    // 時間経過で収縮する
+                    DOVirtual.DelayedCall(0.5f, () =>
+                    {
+                        this.stringLength = this.equilibrimLength;
+                        this.needsUpdateSpring = true;
+                    });
                 }
             }
             else
@@ -239,14 +248,14 @@ namespace SpiderChan
             }
 
             // 糸を射出中の状態で収縮ボタンが押されたら、糸の長さをequilibrimLengthまで縮小する
-            if (this.casting && Input.GetMouseButtonDown(0) || rightTrigger > 0 && beforeRightTrigger == 0.0f)
-            {
-                this.stringLength = this.equilibrimLength;
-                this.needsUpdateSpring = true;
-            }
+            //if (this.casting && Input.GetMouseButtonDown(0) || rightTrigger > 0 && beforeRightTrigger == 0.0f)
+            //{
+            //    this.stringLength = this.equilibrimLength;
+            //    this.needsUpdateSpring = true;
+            //}
 
             // 発射ボタンが離されたら
-                if (Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1))
+            if (/*Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1)*/rightTrigger > 0 && beforeRightTrigger == 0.0f)
             {
                 isBulletTime = true;
 
