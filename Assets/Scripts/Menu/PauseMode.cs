@@ -8,7 +8,7 @@ public class PauseMode : Pauser
     private DisplayMessage displayMessage;
 
     [SerializeField]
-    private PostEffect postEffect;      // �O���[�X�P�[��
+    private PostEffect postEffect;
 
     [SerializeField]
     ButtonClick buttonClick;
@@ -30,16 +30,15 @@ public class PauseMode : Pauser
         if (displayMessage.isMenuOpen)
         {
             Pauser.Pause();
-            // �O���[�X�P�[����on
+
             postEffect.enabled = true;
-            //player.enabled = false;
 
             canWeaponChange = false;
         }
         else
         {
             Pauser.Resume();
-            // �O���[�X�P�[����off
+
             postEffect.enabled = false;
             //player.enabled = true;
 

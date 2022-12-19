@@ -171,7 +171,7 @@ namespace SpiderChan
                 // グレースケールをoff
                 postEffect.enabled = false;
 
-                Time.timeScale = 1.0f;
+                //Time.timeScale = 1.0f;
                 bulletTimeCount = 5.0f;
             }
 
