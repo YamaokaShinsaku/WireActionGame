@@ -33,10 +33,10 @@ public class PanelChange : MonoBehaviour
 
     private void Update()
     {
-        //if(this.gameObject.activeInHierarchy == true)
-        //{
-        //    Time.timeScale = 0.0f;
-        //}
+        if (this.gameObject.activeInHierarchy == true)
+        {
+            Time.timeScale = 0.0f;
+        }
 
 
         // ゲームパッドのスティックの傾けた時の値を取得

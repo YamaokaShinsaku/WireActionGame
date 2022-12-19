@@ -83,6 +83,7 @@ public class MasicShot : MonoBehaviour
 
             count++;
         }
+        // 残弾数によってサイズを変更
         if(count == 1)
         {
             cloneIdleFire.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);

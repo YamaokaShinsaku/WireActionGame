@@ -10,6 +10,14 @@ public class TimeScaleManager : MonoBehaviour
     public bool isPause;    // 停止
     //public bool isResume;   // 再開
 
+    [SerializeField]
+    private PostEffect postEffect;      // グレースケール
+
+    private void Start()
+    {
+        postEffect = postEffect.GetComponent<PostEffect>();
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.T))
@@ -24,10 +32,14 @@ public class TimeScaleManager : MonoBehaviour
 
         if(isPause)
         {
+            // グレースケールをon
+            postEffect.enabled = true;
             Pause();
         }
         else
         {
+            // グレースケールをoff
+            postEffect.enabled = false;
             Resume();
         }
 

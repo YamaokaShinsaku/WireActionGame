@@ -169,7 +169,7 @@ namespace SpiderChan
                 Stop();
                 motionBlur.enabled = false;
                 // グレースケールをoff
-                postEffect.enabled = false;
+                //postEffect.enabled = false;
 
                 //Time.timeScale = 1.0f;
                 bulletTimeCount = 5.0f;
@@ -219,7 +219,7 @@ namespace SpiderChan
                 {
                     isBulletTime = false;
 
-                    clone = Instantiate(Crystal, aimingTarget.point, Quaternion.identity);
+                    //clone = Instantiate(Crystal, aimingTarget.point, Quaternion.identity);
 
                     playerController.enabled = false;
                     thirdPerson.enabled = true;
@@ -266,7 +266,7 @@ namespace SpiderChan
                 //this.targetIkWeight = 0.0f;     // IK目標ウェイトを0にする ... 右手を待機状態に戻そうとする
                 this.needsUpdateSpring = true;
 
-                Destroy(clone);
+                //Destroy(clone);
             }
 
             // 右腕のIKウェイトを滑らかに変化させる
