@@ -168,10 +168,7 @@ namespace SpiderChan
             {
                 Stop();
                 motionBlur.enabled = false;
-                // グレースケールをoff
-                //postEffect.enabled = false;
 
-                //Time.timeScale = 1.0f;
                 bulletTimeCount = 5.0f;
             }
 
@@ -211,7 +208,6 @@ namespace SpiderChan
             // 射出方向のmaxDistance以内の距離に糸が接着可能な物体があれば、糸を射出できる
             if (Physics.Raycast(aimingRay, out var aimingTarget, this.maxDistance, this.interactiveLayers))
             {
-
                 // reticleの表示を照準マークに変える
                 this.reticle.texture = this.reticleImageValid;
                 // 発射ボタンが押されたら
@@ -230,7 +226,6 @@ namespace SpiderChan
                     //this.targetIkWeight = 1.0f;     // IK目標ウェイトを１にする ... 右手を射出方向に伸ばす
                     this.stringLength = Vector3.Distance(this.worldCasterCenter, aimingTarget.point);   // 糸の長さを設定
                     this.needsUpdateSpring = true;
-
 
                     // 時間経過で収縮する
                     DOVirtual.DelayedCall(0.3f, () =>
