@@ -185,6 +185,9 @@ namespace PlayerController
             rb.AddForce(power * Vector3.up, ForceMode.Impulse);
         }
 
+        /// <summary>
+        /// ジャンプの入力判定
+        /// </summary>
         private void Jump()
         {
             // ジャンプ開始判定

@@ -74,7 +74,7 @@ namespace SpiderChan
 
         public bool casting;                // 糸が射出中かどうか
         private bool needsUpdateSpring;     // FixedUpdate中でSpringJointの状態が必要かどうか
-        private float stringLength;         // 現在の糸の長さ....これをFixedUpdate中でSpringJointのmaxDistanceにセットする
+        public float stringLength;         // 現在の糸の長さ....これをFixedUpdate中でSpringJointのmaxDistanceにセットする
         private readonly Vector3[] stringAnchor = new Vector3[2];   // SpringJointのプレイヤー側と接着面側の末端
         private Vector3 worldCasterCenter;   // casterCenterをワールド座標に変換したもの
 
@@ -254,20 +254,20 @@ namespace SpiderChan
             //}
 
             // 発射ボタンが離されたら
-            if(/*Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1)*/rightTrigger > 0 && beforeRightTrigger == 0.0f)
-            {
-                isBulletTime = true;
+            //if(/*Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1)*/rightTrigger > 0 && beforeRightTrigger == 0.0f)
+            //{
+            //    isBulletTime = true;
 
-                playerController.enabled = true;
-                thirdPerson.enabled = false;
-                userControl.enabled = false;
+            //    playerController.enabled = true;
+            //    thirdPerson.enabled = false;
+            //    userControl.enabled = false;
 
-                this.casting = false;
-                //this.targetIkWeight = 0.0f;     // IK目標ウェイトを0にする ... 右手を待機状態に戻そうとする
-                this.needsUpdateSpring = true;
+            //    this.casting = false;
+            //    //this.targetIkWeight = 0.0f;     // IK目標ウェイトを0にする ... 右手を待機状態に戻そうとする
+            //    this.needsUpdateSpring = true;
 
-                //Destroy(clone);
-            }
+            //    //Destroy(clone);
+            //}
 
             // 右腕のIKウェイトを滑らかに変化させる
             //this.currentIkWeight = Mathf.SmoothDamp(
@@ -344,6 +344,26 @@ namespace SpiderChan
                 return;
             }
 
+            // ワイヤーが限界まで縮まったら
+            if (stringLength == equilibrimLength)
+            {
+                DOVirtual.DelayedCall(1.0f, () =>
+                {
+                    this.casting = false;
+
+
+                    playerController.enabled = true;
+                    thirdPerson.enabled = false;
+                    userControl.enabled = false;
+
+                    Destroy(this.springJoint);
+                    this.springJoint = null;
+
+                    motionBlur.enabled = false;
+                    GetComponent<AudioSource>().Stop();
+                });
+            }
+
             // 糸を射出中なら
             if (this.casting)
             {
@@ -369,6 +389,7 @@ namespace SpiderChan
                 // SpringJointの自然長と接続先を設定
                 this.springJoint.maxDistance = this.stringLength;
                 this.springJoint.connectedAnchor = this.stringAnchor[1];
+
             }
             else
             {
