@@ -350,8 +350,6 @@ namespace SpiderChan
                 DOVirtual.DelayedCall(1.0f, () =>
                 {
                     this.casting = false;
-
-
                     playerController.enabled = true;
                     thirdPerson.enabled = false;
                     userControl.enabled = false;
@@ -361,6 +359,8 @@ namespace SpiderChan
 
                     motionBlur.enabled = false;
                     GetComponent<AudioSource>().Stop();
+
+                    isBulletTime = true;
                 });
             }
 

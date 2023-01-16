@@ -18968,6 +18968,10 @@ PrefabInstance:
       propertyPath: button2
       value: 
       objectReference: {fileID: 592052573}
+    - target: {fileID: 5871829567441122725, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: TitleScene
+      objectReference: {fileID: 0}
     - target: {fileID: 5871829567797263032, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
       propertyPath: button
       value: 

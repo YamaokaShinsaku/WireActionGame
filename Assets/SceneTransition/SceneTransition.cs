@@ -17,8 +17,8 @@ public class SceneTransition : MonoBehaviour
     public void SceneChange(string nextScene)
     {
         Time.timeScale = 1.0f;
-
-        if(SceneManager.GetActiveScene().buildIndex == titleSceneNum)
+        //SceneManager.LoadScene(nextScene);
+        if (SceneManager.GetActiveScene().buildIndex == titleSceneNum)
         {
             nextSceneNum = gameSceneNum;
         }

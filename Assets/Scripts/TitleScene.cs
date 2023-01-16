@@ -19,6 +19,7 @@ public class TitleScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Time.timeScale = 1.0f;
         if(Input.GetButtonDown("SceneChange"))
         {
             sceneTransition.SceneChange(nextScene);
