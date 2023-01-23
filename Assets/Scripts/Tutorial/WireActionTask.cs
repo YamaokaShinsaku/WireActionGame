@@ -6,7 +6,7 @@ public class WireActionTask : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作　　ワイヤーアクション";
+        return "基本操作\nワイヤーアクション";
     }
 
     public string GetText()

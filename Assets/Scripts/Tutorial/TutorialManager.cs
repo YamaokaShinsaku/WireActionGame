@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -49,14 +50,20 @@ public class TutorialManager : MonoBehaviour
         if(currentTask != null && !task_executed)
         {
             // 現在のチュートリアルが実行されたか判定
-            if(currentTask.CheckTask())
+            if (currentTask.CheckTask())
             {
                 task_executed = true;
 
                 // UIアニメーション
+                DOVirtual.DelayedCall(currentTask.GetTransitionTime(),
+                    () => {
+                        iTween.MoveTo(tutorialTextArea.gameObject, iTween.Hash(
+                      "position", tutorialTextArea.transform.position + new Vector3(fadePosX, 0, 0),
+                      "time", 1f));
+                    });
 
-                // 終了したタスクをリストから削除
-                tutorialTask.RemoveAt(0);
+                    // 終了したタスクをリストから削除
+                    tutorialTask.RemoveAt(0);
 
                 var nextTask = tutorialTask.FirstOrDefault();
                 if(nextTask != null)
@@ -93,6 +100,12 @@ public class TutorialManager : MonoBehaviour
 
         // タスク設定時の関数を実行
         task.OnTaskSetting();
+
+            iTween.MoveTo(tutorialTextArea.gameObject,
+                iTween.Hash("position", tutorialTextArea.transform.position 
+                - new Vector3(fadePosX, 0, 0),
+                "time", 1f
+        ));
     }
 
     /// <summary>

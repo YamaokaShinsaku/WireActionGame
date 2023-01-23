@@ -9,7 +9,7 @@ public class MovementTask : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作　　移動";
+        return "基本操作\n移動";
     }
 
     public string GetText()

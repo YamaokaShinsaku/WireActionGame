@@ -6,7 +6,7 @@ public class CameraMovementTask : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作　　カメラ移動";
+        return "基本操作\nカメラ移動";
     }
 
     public string GetText()
