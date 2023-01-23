@@ -13,15 +13,14 @@ public class TutorialManager : MonoBehaviour
     public Text tutorialText;
 
     // チュートリアルタスク
-    public ITutorialTask currentTask;
-    [SerializeField]
-    public List<ITutorialTask> tutorialTask;
+    private ITutorialTask currentTask;
+    private List<ITutorialTask> tutorialTask;
 
     // チュートリアル表示フラグ
-    public bool isEnabled;
+    private bool isEnabled;
 
     // タスクの条件を満たした歳の遷移用フラグ
-    public bool task_executed = false;
+    private bool task_executed = false;
 
     // チュートリアル表示時のUI移動距離
     private float fadePosX = 700;
@@ -40,7 +39,6 @@ public class TutorialManager : MonoBehaviour
 
         // 最初のチュートリアルを設定
         SetCurrentTask(tutorialTask[0]);
-        Debug.Log(tutorialTask[0]);
 
         isEnabled = true;
     }
@@ -56,20 +54,22 @@ public class TutorialManager : MonoBehaviour
                 task_executed = true;
 
                 // UIアニメーション
-                DOVirtual.DelayedCall(currentTask.GetTransitionTime(),
-                    () => {
-                        iTween.MoveTo(tutorialTextArea.gameObject, iTween.Hash(
-                      "position", tutorialTextArea.transform.position + new Vector3(fadePosX, 0, 0),
-                      "time", 1f));
-                    });
+                iTween.MoveTo(tutorialTextArea.gameObject, iTween.Hash(
+                                      "position", tutorialTextArea.transform.localPosition + new Vector3(fadePosX, 0, 0),
+                                      "time", 1f));
 
-                    // 終了したタスクをリストから削除
-                    tutorialTask.RemoveAt(0);
+                // 終了したタスクをリストから削除
+                tutorialTask.RemoveAt(0);
 
                 var nextTask = tutorialTask.FirstOrDefault();
                 if(nextTask != null)
                 {
-                    SetCurrentTask(tutorialTask[0]);
+                    // 遅延実行
+                    DOVirtual.DelayedCall(1.0f,
+                        ()=>{
+                            SetCurrentTask(tutorialTask[0]);
+                        });
+                    //SetCurrentTask(tutorialTask[0]);
                 }
             }
         }
@@ -102,8 +102,8 @@ public class TutorialManager : MonoBehaviour
 
         // UIアニメーション
         iTween.MoveTo(tutorialTextArea.gameObject,iTween.Hash(
-           "position", tutorialTextArea.transform.position  - new Vector3(fadePosX, 0, 0),
-                "time", 5f));
+           "position", tutorialTextArea.transform.localPosition  - new Vector3(fadePosX, 0, 0),
+                "time", 1f));
     }
 
     /// <summary>
