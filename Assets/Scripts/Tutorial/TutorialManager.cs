@@ -12,21 +12,21 @@ public class TutorialManager : MonoBehaviour
     public Text tutorialText;
 
     // チュートリアルタスク
-    protected ITutorialTask currentTask;
-    protected List<ITutorialTask> tutorialTask;
+    public ITutorialTask currentTask;
+    [SerializeField]
+    public List<ITutorialTask> tutorialTask;
 
     // チュートリアル表示フラグ
-    private bool isEnabled;
+    public bool isEnabled;
 
     // タスクの条件を満たした歳の遷移用フラグ
-    private bool task_executed = false;
+    public bool task_executed = false;
 
     // チュートリアル表示時のUI移動距離
     private float fadePosX = 350;
 
     void Start()
     {
-
         // チュートリアルの一覧
         tutorialTask = new List<ITutorialTask>()
         {
@@ -38,6 +38,7 @@ public class TutorialManager : MonoBehaviour
         // 最初のチュートリアルを設定
         //StartCoroutine("SetCurrentTask(tutorialTask.First())");
         SetCurrentTask(tutorialTask[0]);
+        Debug.Log(tutorialTask[0]);
 
         isEnabled = true;
     }
@@ -78,17 +79,17 @@ public class TutorialManager : MonoBehaviour
     /// <param name="task">タスク</param>
     /// <param name="time">待機時間</param>
     /// <returns></returns>
-    protected IEnumerable SetCurrentTask(ITutorialTask task, float time = 0)
+    protected void SetCurrentTask(ITutorialTask task, float time = 0)
     {
-        // time が指定されている場合は待機
-        yield return new WaitForSeconds(time);
-
         currentTask = task;
         task_executed = false;
 
         // UIにタイトルと説明文を設定
         tutorialTitle.text = task.GetTitle();
         tutorialText.text = task.GetText();
+
+        Debug.Log(tutorialTitle.text);
+        Debug.Log(tutorialText.text);
 
         // タスク設定時の関数を実行
         task.OnTaskSetting();
