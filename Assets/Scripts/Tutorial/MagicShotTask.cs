@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 魔法発射のチュートリアル
+/// </summary>
 public class MagicShotTask : ITutorialTask
 {
     public string GetTitle()

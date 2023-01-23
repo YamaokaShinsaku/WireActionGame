@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 武器切り替えのチュートリアル
+/// </summary>
 public class WeaponChangeTask : ITutorialTask
 {
     public string GetTitle()

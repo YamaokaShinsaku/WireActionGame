@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// カメラ操作のチュートリアル
+/// </summary>
 public class CameraMovementTask : ITutorialTask
 {
     public string GetTitle()

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ワイヤー操作のチュートリアル
+/// ジャンプのチュートリアル
 /// </summary>
-public class WireActionTask : ITutorialTask
+public class JumpTask : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作\nワイヤーアクション";
+        return "基本操作\nジャンプ";
     }
 
     public string GetText()
     {
-        return "RBでワイヤーを発射\nワイヤーが消えると5秒間停止";
+        return "Aボタンでジャンプ\n入力時間で高さが変わる";
     }
 
     public void OnTaskSetting()
@@ -24,7 +24,7 @@ public class WireActionTask : ITutorialTask
 
     public bool CheckTask()
     {
-        if(Input.GetButtonDown("WireShot"))
+        if (Input.GetButtonDown("Jump"))
         {
             return true;
         }
@@ -34,6 +34,6 @@ public class WireActionTask : ITutorialTask
 
     public float GetTransitionTime()
     {
-        return 1.0f;
+        return 2.0f;
     }
 }

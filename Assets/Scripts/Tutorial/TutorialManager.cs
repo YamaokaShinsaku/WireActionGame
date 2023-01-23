@@ -32,6 +32,7 @@ public class TutorialManager : MonoBehaviour
         {
             new CameraMovementTask(),
             new MovementTask(),
+            new JumpTask(),
             new WireActionTask(),
             new WeaponChangeTask(),
             new MagicShotTask(),

@@ -16,7 +16,7 @@ namespace WeaponChanger
         [SerializeField]
         private int currentNum = 0;     // アイテム番号
 
-        public SpiderChan.test test;       // ワイヤースクリプト
+        public SpiderChan.test test;    // ワイヤースクリプト
         public MasicShot magicShot;
 
         [SerializeField]
@@ -81,8 +81,9 @@ namespace WeaponChanger
 
             // 武器を切り替える
             if (Input.GetKeyDown(KeyCode.L)
-                || Input.GetButtonDown("WeaponChange") 
+                || Input.GetButtonDown("WeaponChange")
                 && test.isBulletTime == false
+                && test.casting == false
                 && pauseMode.canWeaponChange == true)
             {
                 currentNum = (currentNum + 1) % weapons.Length;
@@ -126,5 +127,4 @@ namespace WeaponChanger
             }
         }
     }
-
 }
