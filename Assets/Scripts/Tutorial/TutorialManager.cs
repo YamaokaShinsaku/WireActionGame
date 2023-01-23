@@ -24,7 +24,7 @@ public class TutorialManager : MonoBehaviour
     public bool task_executed = false;
 
     // チュートリアル表示時のUI移動距離
-    private float fadePosX = 350;
+    private float fadePosX = 700;
 
     void Start()
     {
@@ -34,10 +34,11 @@ public class TutorialManager : MonoBehaviour
             new CameraMovementTask(),
             new MovementTask(),
             new WireActionTask(),
+            new WeaponChangeTask(),
+            new MagicShotTask(),
         };
 
         // 最初のチュートリアルを設定
-        //StartCoroutine("SetCurrentTask(tutorialTask.First())");
         SetCurrentTask(tutorialTask[0]);
         Debug.Log(tutorialTask[0]);
 
@@ -68,9 +69,7 @@ public class TutorialManager : MonoBehaviour
                 var nextTask = tutorialTask.FirstOrDefault();
                 if(nextTask != null)
                 {
-
                     SetCurrentTask(tutorialTask[0]);
-                    //StartCoroutine("SetCurrentTask(nextTask, 1.0f)");
                 }
             }
         }
@@ -101,11 +100,10 @@ public class TutorialManager : MonoBehaviour
         // タスク設定時の関数を実行
         task.OnTaskSetting();
 
-            iTween.MoveTo(tutorialTextArea.gameObject,
-                iTween.Hash("position", tutorialTextArea.transform.position 
-                - new Vector3(fadePosX, 0, 0),
-                "time", 1f
-        ));
+        // UIアニメーション
+        iTween.MoveTo(tutorialTextArea.gameObject,iTween.Hash(
+           "position", tutorialTextArea.transform.position  - new Vector3(fadePosX, 0, 0),
+                "time", 5f));
     }
 
     /// <summary>

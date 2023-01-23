@@ -17,7 +17,6 @@ namespace WeaponChanger
         private int currentNum = 0;     // アイテム番号
 
         public SpiderChan.test test;       // ワイヤースクリプト
-        //public ClickShot clickShot;        // ショットオブジェクト
         public MasicShot magicShot;
 
         [SerializeField]
@@ -37,9 +36,7 @@ namespace WeaponChanger
         void Start()
         {
             test = test.GetComponent<SpiderChan.test>();
-            //clickShot = clickShot.GetComponent<ClickShot>();
             magicShot = magicShot.GetComponent<MasicShot>();
-
             pauseMode = pauseMode.GetComponent<PanelActive>();
 
             for (int i = 0; i < weapons.Length; i++)
@@ -48,7 +45,6 @@ namespace WeaponChanger
                 {
                     weapons[i].SetActive(true);
                     test.enabled = false;
-                    //clickShot.enabled = true;
                     magicShot.enabled = true;
 
                     isWire = false;
@@ -65,7 +61,6 @@ namespace WeaponChanger
                 {
                     weapons[i].SetActive(false);
                     test.enabled = true;
-                    //clickShot.enabled = false;
                     magicShot.enabled = false;
 
                     isWire = true;
@@ -96,8 +91,6 @@ namespace WeaponChanger
                 {
                     if (i == currentNum)
                     {
-                        //weapons[i].SetActive(true);
-                        //clickShot.enabled = true;
                         test.enabled = false;
                         magicShot.enabled = true;
 
@@ -118,8 +111,6 @@ namespace WeaponChanger
                     }
                     else
                     {
-                        //weapons[i].SetActive(false);
-                        //clickShot.enabled = false;
                         test.enabled = true;
                         magicShot.enabled = false;
 
