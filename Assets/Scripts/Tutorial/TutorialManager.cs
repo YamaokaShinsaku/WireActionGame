@@ -36,6 +36,7 @@ public class TutorialManager : MonoBehaviour
             new WireActionTask(),
             new WeaponChangeTask(),
             new MagicShotTask(),
+            new MenuTask(),
         };
 
         // 最初のチュートリアルを設定

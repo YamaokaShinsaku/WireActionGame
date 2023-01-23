@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 魔法発射のチュートリアル
-/// </summary>
-public class MagicShotTask : ITutorialTask
+public class MenuTask : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作\n魔法発射";
+        return "基本操作\nメニュー";
     }
 
     public string GetText()
     {
-        return "RTで魔法発射（4発）\n4発打った後RBで再装填";
+        return "X : メニューを開く\nY : メニューを閉じる";
     }
 
     public void OnTaskSetting()
@@ -24,14 +21,16 @@ public class MagicShotTask : ITutorialTask
 
     public bool CheckTask()
     {
-        float rightTrigger = Input.GetAxis("magicShot");
-
-        if (rightTrigger > 0)
+       if(Input.GetButtonDown("MenuOpenButton"))
+       {
+            return true;
+       }
+        if (Input.GetButtonDown("MenuCloseButton"))
         {
             return true;
         }
 
-            return false;
+        return false;
     }
 
     public float GetTransitionTime()
