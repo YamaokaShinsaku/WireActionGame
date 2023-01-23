@@ -56,8 +56,8 @@ public class TutorialManager : MonoBehaviour
 
                 // UIアニメーション
                 iTween.MoveTo(tutorialTextArea.gameObject, iTween.Hash(
-                                      "position", tutorialTextArea.transform.localPosition + new Vector3(fadePosX, 0, 0),
-                                      "time", 1f));
+                    "position", tutorialTextArea.transform.localPosition + new Vector3(fadePosX, 0, 0),
+                    "time", 1f));
 
                 // 終了したタスクをリストから削除
                 tutorialTask.RemoveAt(0);
