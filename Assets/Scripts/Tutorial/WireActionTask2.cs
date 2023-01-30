@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// ジャンプのチュートリアル
-/// </summary>
-public class JumpTask : ITutorialTask
+public class WireActionTask2 : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作\nジャンプ";
+        return "基本操作\nワイヤーアクション(2/2)";
     }
 
     public string GetText()
     {
-        return "Aボタンでジャンプ\n入力時間で高さが変わる";
+        return "停止中にもう一度RBを押すと\nワイヤーを発射";
     }
 
     public void OnTaskSetting()
@@ -24,7 +21,7 @@ public class JumpTask : ITutorialTask
 
     public bool CheckTask()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("WireShot"))
         {
             return true;
         }

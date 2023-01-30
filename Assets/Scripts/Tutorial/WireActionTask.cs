@@ -9,7 +9,7 @@ public class WireActionTask : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作\nワイヤーアクション";
+        return "基本操作\nワイヤーアクション(1/2)";
     }
 
     public string GetText()
@@ -34,6 +34,6 @@ public class WireActionTask : ITutorialTask
 
     public float GetTransitionTime()
     {
-        return 2.0f;
+        return 5.0f;
     }
 }

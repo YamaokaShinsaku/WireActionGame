@@ -36,6 +36,6 @@ public class MagicShotTask : ITutorialTask
 
     public float GetTransitionTime()
     {
-        return 2.0f;
+        return 5.0f;
     }
 }

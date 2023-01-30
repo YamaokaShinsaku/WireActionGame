@@ -34,6 +34,7 @@ public class TutorialManager : MonoBehaviour
             new MovementTask(),
             new JumpTask(),
             new WireActionTask(),
+            new WireActionTask2(),
             new WeaponChangeTask(),
             new MagicShotTask(),
             new MenuTask(),
@@ -58,7 +59,7 @@ public class TutorialManager : MonoBehaviour
                 // UIアニメーション
                 iTween.MoveTo(tutorialTextArea.gameObject, iTween.Hash(
                     "position", tutorialTextArea.transform.localPosition + new Vector3(fadePosX, 0, 0),
-                    "time", 1f));
+                    "time", 3f));
 
                 // 終了したタスクをリストから削除
                 tutorialTask.RemoveAt(0);
@@ -67,7 +68,7 @@ public class TutorialManager : MonoBehaviour
                 if(nextTask != null)
                 {
                     // 遅延実行
-                    DOVirtual.DelayedCall(1.0f,
+                    DOVirtual.DelayedCall(3.0f,
                         ()=>{
                             SetCurrentTask(tutorialTask[0]);
                         });
@@ -105,7 +106,7 @@ public class TutorialManager : MonoBehaviour
         // UIアニメーション
         iTween.MoveTo(tutorialTextArea.gameObject,iTween.Hash(
            "position", tutorialTextArea.transform.localPosition  - new Vector3(fadePosX, 0, 0),
-                "time", 1f));
+                "time", 3f));
     }
 
     /// <summary>
