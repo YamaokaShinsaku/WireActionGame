@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class Homing_2 : MonoBehaviour
 {
-    private float DivNum = 40;      //分割数
-    private float Counter = 0f;     //レーザー進行フレーム用
+    private float DivNum = 40;      // 分割数
+    private float Counter = 0f;     // レーザー進行フレーム用
+    public float CounterSpeed;      // 進行フレーム数
 
-    public GameObject target;       // 目標オブジェクト
+    public LockOnTarget.LockOnTarget lockonTarget;
+    public GameObject player;
+    [SerializeField]
+    private GameObject targetEnemy;
+
+    // ベジェ曲線の目標座標を持つオブジェクト
+    [SerializeField]
+    public Transform firstPoint;
+    [SerializeField]
+    public Transform secondPoint;
+
     private float u = 0f;           //ベジェ曲線位置用
 
     private Vector3 P0 = Vector3.zero;      // ベジェ曲線の発生位置
@@ -18,6 +29,7 @@ public class Homing_2 : MonoBehaviour
 
     private Vector3 P3 = Vector3.zero;      // 目標座標
 
+    // 補完用
     private Vector3 P01 = Vector3.zero;
 
     private Vector3 P12 = Vector3.zero;
@@ -51,27 +63,60 @@ public class Homing_2 : MonoBehaviour
             this.transform.position.y,
             this.transform.position.z);
 
-        // ベジェ曲線下側の目標座標
-        P1 = new Vector3(
-            Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x),
-            Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
-            Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z));
+        // ベジェ曲線最初の目標座標
+        //P1 = new Vector3(
+        //    /*Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x)*/
+        //    this.transform.position.x - 10.0f,
+        //    Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y)
+        //    //this.transform.position.y - 10.0f
+        //    ,
+        //    /*Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z)*/
+        //    this.transform.position.z + 20.0f);
 
-        // ベジェ曲線真ん中付近の目標座標
-        P2 = new Vector3(
-            Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x),
-            Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
-            Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z));
+        // ベジェ曲線二つ目の目標座標
+        //P2 = new Vector3(
+        //    /*Random.Range(-5.0f + this.transform.position.x, 5.0f + this.transform.position.x)*/
+        //    this.transform.position.x,
+        //    Random.Range(0.0f + this.transform.position.y, 0.0f + this.transform.position.y),
+        //    /*Random.Range(-5.0f + this.transform.position.z, 5.0f + this.transform.position.z)*/
+        //    this.transform.position.z - 20.0f);
 
-        // 目標座標
-        Create_P3xyz(target.transform.position.x, target.transform.position.y, target.transform.position.z);
+        // ベジェ曲線最初の目標座標
+        P1 = new Vector3(firstPoint.position.x, firstPoint.position.y, firstPoint.position.z);
+        // ベジェ曲線二つ目の目標座標
+        P2 = new Vector3(secondPoint.position.x,secondPoint.position.y,secondPoint.position.z);
 
+        // 最終目標座標
+        //Create_P3xyz(target.transform.position.x, target.transform.position.y, target.transform.position.z);
+        lockonTarget = player.GetComponentInChildren<LockOnTarget.LockOnTarget>();
+
+        //// 目標座標
+       // Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
     }
 
     void Update()
     {
+        //targetEnemy = lockonTarget.serchTag(this.gameObject,"Enemy");
+        //// 目標座標
+        //Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
+
+        // エネミーがロックされていないとき
+        if (targetEnemy = null)
+        {
+            Vector3 centerPosition = Camera.main.transform.position;
+            // 最終目標座標
+            Create_P3xyz(centerPosition.x, centerPosition.y, centerPosition.z);
+        }
+        // エネミーがロックされているとき
+        else if (targetEnemy = lockonTarget.serchTag(this.gameObject, "Enemy"))
+        {
+            // エネミーの座標を最終目標座標に
+            Create_P3xyz(targetEnemy.transform.position.x, targetEnemy.transform.position.y, targetEnemy.transform.position.z);
+        }
+
+
         // ベジェ曲線の位置を移動
-        u = (1.0f / DivNum) * Counter;//ベジェ曲線の位置を移動させる
+        u = (1.0f / DivNum) * Counter;
 
         P01 = new Vector3(
             (1.0f - u) * P0.x + u * P1.x,
@@ -108,23 +153,19 @@ public class Homing_2 : MonoBehaviour
         pos = P03;
 
         // ターゲットの方向にY軸回転する
-        Vector3 direction = target.transform.position - this.transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-        Quaternion rotation2 = Quaternion.LookRotation(direction, Vector3.right);
+        //Vector3 direction = target.transform.position - this.transform.position;
+        //Vector3 direction = targetEnemy.transform.position - this.transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+        //Quaternion rotation2 = Quaternion.LookRotation(direction, Vector3.right);
 
-        rotation = new Quaternion(1.0f/*rotation2.x * target.transform.position.y*/, rotation.y * 2.0f, rotation.z, rotation.w);
-        
-
+        //rotation = new Quaternion(1.0f/*rotation2.x * target.transform.position.y*/, rotation.y * 2.0f, rotation.z, rotation.w);
 
         // 表示座標
         this.transform.position = pos;
-        this.transform.rotation = rotation;
-
-        // 確認用の線
-        Debug.DrawRay(this.transform.position, this.transform.up * 100, Color.red);
+        //this.transform.rotation = rotation;
 
         // 速さ
-        Counter += 0.05f;
-
+        //Counter += CounterSpeed;
+        Counter += CounterSpeed * Time.deltaTime;
     }
 }

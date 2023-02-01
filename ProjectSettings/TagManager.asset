@@ -8,7 +8,12 @@ TagManager:
   - Slash
   - Fire
   - Enemy
+  - Ground
+  - Magic
   - Sword
+  - DethZone
+  - Obelisk
+  - S_Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +21,7 @@ TagManager:
   - Cube
   - Water
   - UI
-  - Sword
+  - Magic
   - Player
   - Effect
   - Crystal

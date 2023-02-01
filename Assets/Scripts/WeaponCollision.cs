@@ -4,23 +4,54 @@ using UnityEngine;
 
 public class WeaponCollision : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject hitEffect;
+
+    private GameObject cloneEffect;
+
+    [SerializeField]
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip audioClip;
+
+    private bool isAudioEnd;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        isAudioEnd = false;
+        audioSource.clip = audioClip;
+    }
+
+    private void Update()
+    {
+        // å†ç”ŸãŒçµ‚ã‚ã£ãŸã‚‰
+        if (!audioSource.isPlaying && isAudioEnd)
+        {
+            Destroy(cloneEffect);
+        }
+
+    }
+
     void OnCollisionEnter(Collision collision)
     {
-        // ƒGƒlƒ~[‚É“–‚½‚Á‚½‚ç
+        // ï¿½Gï¿½lï¿½~ï¿½[ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("enemyHit");
-            collision.gameObject.GetComponent<Renderer>().material.color = Color.black;
+            //collision.gameObject.GetComponent<Renderer>().material.color = Color.black;
+            cloneEffect = Instantiate(hitEffect, this.transform.position, this.transform.rotation);
 
-            // •ŠíƒIƒuƒWƒFƒNƒg‚ğíœ
-            Destroy(this.gameObject);
+            audioSource.Play();
+            isAudioEnd = true;
+
+            // ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½íœ
+            //Destroy(this.gameObject);
+
         }
         else
         {
             Debug.Log("elseHit");
         }
-
-        // ƒIƒuƒWƒFƒNƒg‚ğíœ
-        //Destroy(this.gameObject);
     }
 }

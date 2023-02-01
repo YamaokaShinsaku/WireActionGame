@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace SpiderChan
 {
@@ -9,7 +10,7 @@ namespace SpiderChan
     public class test : MonoBehaviour
     {
         [SerializeField]
-        private float maxDistance = 100.0f; //  糸を伸ばせる最大距離
+        private float maxDistance = 100.0f;     // 糸を伸ばせる最大距離
 
         [SerializeField]
         private LayerMask interactiveLayers;    // 糸をくっつけられるレイヤー
@@ -29,74 +30,74 @@ namespace SpiderChan
         [SerializeField]
         private float equilibrimLength = 1.0f;     // 糸を縮めた時の自然長
 
-        [SerializeField]
-        private float ikTransitionTime = 0.5f;      // 腕の位置の遷移時間
+        //[SerializeField]
+        //private float ikTransitionTime = 0.5f;     // 腕の位置の遷移時間
 
         [SerializeField]
-        private RawImage reticle;       // 糸を張れるかどうかの状態に合わせて、照準マークを変更する
+        public RawImage reticle;       // 糸を張れるかどうかの状態に合わせて、照準マークを変更する
 
         [SerializeField]
-        private Texture reticleImageValid;      // 照準マーク
+        public Texture reticleImageValid;      // 照準マーク
 
         [SerializeField]
-        private Texture reticleImageInValid;    // 禁止マーク
+        public Texture reticleImageInValid;    // 禁止マーク
+
         [SerializeField]
         private ParticleSystem particle;    // エフェクト（集中線）
 
         [SerializeField]
-        private float bulletTimeCount;         // バレットタイムの制限時間
+        public float bulletTimeCount;       // バレットタイムの制限時間
 
         [SerializeField]
-        bool isBulletTime;        // バレットタイム中かどうか
+        public bool isBulletTime;        // バレットタイム中かどうか
 
         [SerializeField]
         private GameObject Crystal;     // クリスタル
 
+        [SerializeField]
+        private PostEffect postEffect;    // グレースケール
 
-        private GameObject clone;       // オブジェクトのclone生成用
+        [SerializeField]
+        public MotionBlur motionBlur;     // モーションブラー
 
-        private Animator animator;
+        public GameObject clone;          // オブジェクトのclone生成用
+
+        //private Animator animator;
         private Transform cameraTransform;
-        private LineRenderer lineRenderer;
-        private SpringJoint springJoint;
-        private ConfigurableJoint joint;
+        public LineRenderer lineRenderer;
+        public SpringJoint springJoint;
 
         // 右手を伸ばす、戻す動作をスムーズにするため
-        private float currentIkWeight;  // 現在のウェイト
-        private float targetIkWeight;   // 目標ウェイト
-        private float ikWeightVelocity; // ウェイト変化率
+        //private float currentIkWeight;  // 現在のウェイト
+        //private float targetIkWeight;   // 目標ウェイト
+        //private float ikWeightVelocity; // ウェイト変化率
 
-        private bool casting;               // 糸が射出中かどうか
+        public bool casting;                // 糸が射出中かどうか
         private bool needsUpdateSpring;     // FixedUpdate中でSpringJointの状態が必要かどうか
-        private float stringLength;         // 現在の糸の長さ....これをFixedUpdate中でSpringJointのmaxDistanceにセットする
+        public float stringLength;         // 現在の糸の長さ....これをFixedUpdate中でSpringJointのmaxDistanceにセットする
         private readonly Vector3[] stringAnchor = new Vector3[2];   // SpringJointのプレイヤー側と接着面側の末端
         private Vector3 worldCasterCenter;   // casterCenterをワールド座標に変換したもの
 
-        public int jointCount;
+        public PlayerController.PlayerController playerController;
+        public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter thirdPerson;
+        public UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl userControl;
+        public GroundCheck groundCheck;
 
-        void HingeJoint()
-        {
-            if (Physics.Linecast(this.stringAnchor[0], this.stringAnchor[1],
-                out var obstacle, this.interactiveLayers))
-            {
-                // 障害物があれば、接着点を障害物に変更する
-                this.stringAnchor[1] = obstacle.point;
-
-                this.needsUpdateSpring = true;
-            }
-        }
+        private float beforeRightTrigger;
+        private float beforeLeftTrigger;
+        private bool isGround;
 
         /// <summary>
         /// エフェクト再生
         /// </summary>
-        private void Play()
+        public void Play()
         {
             particle.Play();
         }
         /// <summary>
         /// エフェクト停止
         /// </summary>
-        private void Stop()
+        public void Stop()
         {
             particle.Stop();
         }
@@ -104,9 +105,11 @@ namespace SpiderChan
         private void Awake()
         {
             // コンポーネントへの参照を取得
-            this.animator = this.GetComponent<Animator>();
+            //this.animator = this.GetComponent<Animator>();
             this.cameraTransform = Camera.main.transform;
             this.lineRenderer = this.GetComponent<LineRenderer>();
+            postEffect = postEffect.GetComponent<PostEffect>();
+            motionBlur = motionBlur.GetComponent<MotionBlur>();
 
             // worldCasterCenterの初期化
             //this.worldCasterCenter = this.transform.TransformPoint(this.casterCenter);    // 手から発射する
@@ -114,6 +117,8 @@ namespace SpiderChan
 
             bulletTimeCount = 5.0f;
             isBulletTime = false;
+            postEffect.enabled = false;
+            motionBlur.enabled = false;
 
             Stop();
         }
@@ -121,30 +126,49 @@ namespace SpiderChan
         // Start is called before the first frame update
         void Start()
         {
-
+            // コンポーネントへの参照を取得
+            playerController = playerController.GetComponent<PlayerController.PlayerController>();
+            thirdPerson = thirdPerson.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
+            userControl = userControl.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>();
+            groundCheck = groundCheck.GetComponent<GroundCheck>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            isGround = groundCheck.isGround;
+
+            float rightTrigger = Input.GetAxis("contractionWire");
+            float leftTrigger = Input.GetAxis("StopBulletTime");
+
             // バレットタイム
             if (isBulletTime)
             {
-                Play();
                 Time.timeScale = 0.01f;
                 bulletTimeCount -= Time.unscaledDeltaTime;
 
+                // グレースケールをon
+                postEffect.enabled = true;
+
+                // モーションブラーをoff
+                motionBlur.enabled = false;
+
+                GetComponent<AudioSource>().Stop();
+
                 // バレットタイムを終了する（デバッグ）
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || leftTrigger > 0 && beforeLeftTrigger == 0.0f)
                 {
                     isBulletTime = false;
-                    //Stop();
+
+                    // グレースケールをoff
+                    postEffect.enabled = false;
                 }
             }
             else
             {
                 Stop();
-                Time.timeScale = 1.0f;
+                motionBlur.enabled = false;
+
                 bulletTimeCount = 5.0f;
             }
 
@@ -166,7 +190,7 @@ namespace SpiderChan
             //    }
             //}
 
-            ///  糸の射出方向を設定する  ///
+            /// 糸の射出方向を設定する ///
             // 画面中心から正面に伸びるRayを求める
             //this.worldCasterCenter = this.transform.TransformPoint(this.casterCenter);
             this.worldCasterCenter = this.casterCenterObj != null ? this.casterCenterObj.position
@@ -181,24 +205,34 @@ namespace SpiderChan
                 ? focus.point - this.worldCasterCenter
                 : cameraForward);
 
-
             // 射出方向のmaxDistance以内の距離に糸が接着可能な物体があれば、糸を射出できる
             if (Physics.Raycast(aimingRay, out var aimingTarget, this.maxDistance, this.interactiveLayers))
             {
                 // reticleの表示を照準マークに変える
                 this.reticle.texture = this.reticleImageValid;
                 // 発射ボタンが押されたら
-                if (/*Input.GetButtonDown("Shot")*/Input.GetMouseButtonDown(1))
+                if (Input.GetButtonDown("WireShot") || Input.GetMouseButtonDown(1))
                 {
                     isBulletTime = false;
 
-                    clone = Instantiate(Crystal, aimingTarget.point, Quaternion.identity);
+                    //clone = Instantiate(Crystal, aimingTarget.point, Quaternion.identity);
+
+                    playerController.enabled = false;
+                    thirdPerson.enabled = true;
+                    userControl.enabled = true;
 
                     this.stringAnchor[1] = aimingTarget.point;  // 糸の接着面末端を設定
                     this.casting = true;
                     //this.targetIkWeight = 1.0f;     // IK目標ウェイトを１にする ... 右手を射出方向に伸ばす
                     this.stringLength = Vector3.Distance(this.worldCasterCenter, aimingTarget.point);   // 糸の長さを設定
                     this.needsUpdateSpring = true;
+
+                    // 時間経過で収縮する
+                    DOVirtual.DelayedCall(0.3f, () =>
+                    {
+                        this.stringLength = this.equilibrimLength;
+                        this.needsUpdateSpring = true;
+                    });
                 }
             }
             else
@@ -208,23 +242,27 @@ namespace SpiderChan
             }
 
             // 糸を射出中の状態で収縮ボタンが押されたら、糸の長さをequilibrimLengthまで縮小する
-            if (this.casting && /*Input.GetButtonDown("Contract")*/Input.GetMouseButtonDown(0))
-            {
-                this.stringLength = this.equilibrimLength;
-                this.needsUpdateSpring = true;
-            }
+            //if (this.casting && Input.GetMouseButtonDown(0) || rightTrigger > 0 && beforeRightTrigger == 0.0f)
+            //{
+            //    this.stringLength = this.equilibrimLength;
+            //    this.needsUpdateSpring = true;
+            //}
 
             // 発射ボタンが離されたら
-            if (/*Input.GetButtonUp("Shot")*/Input.GetMouseButtonUp(1))
-            {
-                isBulletTime = true;
+            //if(/*Input.GetButtonUp("WireShot") || Input.GetMouseButtonUp(1)*/rightTrigger > 0 && beforeRightTrigger == 0.0f)
+            //{
+            //    isBulletTime = true;
 
-                this.casting = false;
-                //this.targetIkWeight = 0.0f;     // IK目標ウェイトを0にする ... 右手を待機状態に戻そうとする
-                this.needsUpdateSpring = true;
+            //    playerController.enabled = true;
+            //    thirdPerson.enabled = false;
+            //    userControl.enabled = false;
 
-                Destroy(clone);
-            }
+            //    this.casting = false;
+            //    //this.targetIkWeight = 0.0f;     // IK目標ウェイトを0にする ... 右手を待機状態に戻そうとする
+            //    this.needsUpdateSpring = true;
+
+            //    //Destroy(clone);
+            //}
 
             // 右腕のIKウェイトを滑らかに変化させる
             //this.currentIkWeight = Mathf.SmoothDamp(
@@ -235,6 +273,9 @@ namespace SpiderChan
 
             // 糸の状態を更新する
             this.UpdateString();
+
+            beforeRightTrigger = rightTrigger;
+            beforeLeftTrigger = leftTrigger;
         }
 
         /// <summary>
@@ -249,6 +290,13 @@ namespace SpiderChan
                 // 糸のプレイヤー側の末端を設定
                 this.stringAnchor[0] = this.worldCasterCenter;
 
+                // プレイヤーが地面から離れてるとき
+                if (isGround == false)
+                {
+                    Play();
+                    motionBlur.enabled = true;
+                }
+
                 // プレイヤーと接着面との間に障害物があるかチェック
                 //if (Physics.Linecast(this.stringAnchor[0], this.stringAnchor[1],
                 //    out var obstacle, this.interactiveLayers))
@@ -260,9 +308,7 @@ namespace SpiderChan
                 //    this.needsUpdateSpring = true;
                 //}
 
-                HingeJoint();
-
-                ///  糸の描画設定
+                /// 糸の描画設定 ///
                 // 糸の端点同士の距離とstringLengthとの乖離具合によって糸を赤くする
                 // 糸が赤くなれば、stringLengthが縮もうとしている
                 this.lineRenderer.SetPositions(this.stringAnchor);
@@ -293,6 +339,26 @@ namespace SpiderChan
                 return;
             }
 
+            // ワイヤーが限界まで縮まったら
+            if (stringLength == equilibrimLength)
+            {
+                DOVirtual.DelayedCall(1.0f, () =>
+                {
+                    this.casting = false;
+                    playerController.enabled = true;
+                    thirdPerson.enabled = false;
+                    userControl.enabled = false;
+
+                    Destroy(this.springJoint);
+                    this.springJoint = null;
+
+                    motionBlur.enabled = false;
+                    GetComponent<AudioSource>().Stop();
+
+                    isBulletTime = true;
+                });
+            }
+
             // 糸を射出中なら
             if (this.casting)
             {
@@ -307,9 +373,18 @@ namespace SpiderChan
                     this.springJoint.damper = this.damper;
                 }
 
+                // プレイヤーが地面から離れてるとき
+                if(isGround == false)
+                {
+                    Play();
+                    motionBlur.enabled = true;
+                    GetComponent<AudioSource>().Play();
+                }
+
                 // SpringJointの自然長と接続先を設定
                 this.springJoint.maxDistance = this.stringLength;
                 this.springJoint.connectedAnchor = this.stringAnchor[1];
+
             }
             else
             {
@@ -317,6 +392,9 @@ namespace SpiderChan
                 // 糸による引っぱりを起こらなくする
                 Destroy(this.springJoint);
                 this.springJoint = null;
+
+                motionBlur.enabled = false;
+                GetComponent<AudioSource>().Stop();
             }
 
             this.needsUpdateSpring = false;
