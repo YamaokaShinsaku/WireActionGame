@@ -7,8 +7,9 @@ public class TitleScene : MonoBehaviour
     [SerializeField]
     private SceneTransition sceneTransition;
 
-    [SerializeField]
-    private string nextScene;
+    public string nextGameScene;
+
+    public string nextTutrialScene;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +21,15 @@ public class TitleScene : MonoBehaviour
     void Update()
     {
         Time.timeScale = 1.0f;
-        if(Input.GetButtonDown("SceneChange"))
+        if(Input.GetButtonDown("GameSceneChange"))
         {
-            sceneTransition.SceneChange(nextScene);
+            sceneTransition.nextSceneName = nextGameScene;
+            sceneTransition.SceneChange(nextGameScene);
+        }
+        else if (Input.GetButtonDown("TutrialSceneChange"))
+        {
+            sceneTransition.nextSceneName = nextTutrialScene;
+            sceneTransition.SceneChange(nextTutrialScene);
         }
     }
 }

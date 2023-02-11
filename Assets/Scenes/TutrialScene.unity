@@ -16073,6 +16073,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2579096312825604076, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
+      propertyPath: m_Text
+      value: "\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u3092\u7D42\u4E86\u3057\u307E\u3059\u304B\uFF1F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655511189492792871, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5871829566976961637, guid: d9a51d8f1bc64f64988c3d206b1286ab, type: 3}
       propertyPath: m_Name
       value: MessagePanel
@@ -16542,7 +16550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &282808466
 Transform:
   m_ObjectHideFlags: 0
@@ -22828,7 +22836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &558166149
 Transform:
   m_ObjectHideFlags: 0
@@ -29332,7 +29340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &619011868
 Transform:
   m_ObjectHideFlags: 0
@@ -32126,7 +32134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &760713212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35427,7 +35435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &915779623
 Transform:
   m_ObjectHideFlags: 0
@@ -37579,7 +37587,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1020598077
 RectTransform:
@@ -50796,7 +50804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1383877189
 Transform:
   m_ObjectHideFlags: 0
@@ -53025,7 +53033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1529578779
 Transform:
   m_ObjectHideFlags: 0
@@ -71882,8 +71890,8 @@ Canvas:
   m_GameObject: {fileID: 2124502502}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 1107514259}
+  m_RenderMode: 1
+  m_Camera: {fileID: 284504317}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

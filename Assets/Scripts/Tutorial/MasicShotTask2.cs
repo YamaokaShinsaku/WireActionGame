@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class WireActionTask2 : ITutorialTask
+public class MasicShotTask2 : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作\nワイヤーアクション(2/2)";
+        return "チュートリアル終了";
     }
 
     public string GetText()
     {
-        return "停止中にもう一度RBを押すと\nワイヤーを発射\nLTを押すと停止時間終了";
+        return "操作に慣れてきたら\nメニューからタイトルへ";
     }
 
     public void OnTaskSetting()
@@ -21,16 +22,11 @@ public class WireActionTask2 : ITutorialTask
 
     public bool CheckTask()
     {
-        if (Input.GetButtonDown("WireShot"))
-        {
-            return true;
-        }
-
         return false;
     }
 
     public float GetTransitionTime()
     {
-        return 15.0f;
+        return 10.0f;
     }
 }

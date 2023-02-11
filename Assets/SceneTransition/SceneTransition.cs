@@ -6,24 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    [SerializeField]
-    private string nextSceneName;   // 次のシーンの名前
+    public string nextSceneName;   // 次のシーンの名前
 
     private int nextSceneNum;      // 次のシーン
 
     private int titleSceneNum = 0;
     private int gameSceneNum = 1;
+    private int tutrialSceneNum = 2;
 
     public void SceneChange(string nextScene)
     {
         Time.timeScale = 1.0f;
-        //SceneManager.LoadScene(nextScene);
+
         if (SceneManager.GetActiveScene().buildIndex == titleSceneNum)
         {
-            nextSceneNum = gameSceneNum;
+            if(nextSceneName == "StageCreate")
+            {
+                nextSceneNum = gameSceneNum;
+            }
+            else if(nextSceneName == "TutrialScene")
+            {
+                nextSceneNum = tutrialSceneNum;
+            }
         }
 
         if (SceneManager.GetActiveScene().buildIndex == gameSceneNum)
+        {
+            nextSceneNum = titleSceneNum;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == tutrialSceneNum)
         {
             nextSceneNum = titleSceneNum;
         }

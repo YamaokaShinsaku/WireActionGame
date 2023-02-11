@@ -9,7 +9,7 @@ public class MagicShotTask : ITutorialTask
 {
     public string GetTitle()
     {
-        return "基本操作\n魔法発射";
+        return "基本操作\n魔法発射(1/2)";
     }
 
     public string GetText()
@@ -36,6 +36,6 @@ public class MagicShotTask : ITutorialTask
 
     public float GetTransitionTime()
     {
-        return 5.0f;
+        return 10.0f;
     }
 }

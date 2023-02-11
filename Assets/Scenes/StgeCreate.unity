@@ -60761,6 +60761,7 @@ MonoBehaviour:
   - {fileID: 205763764}
   reticleCanvas: {fileID: 2124502502}
   specialEnemy: {fileID: 1700863520}
+  timeScale: {fileID: 1573089708}
   canWeaponChange: 0
   isPause: 0
 --- !u!114 &1700863520
@@ -71060,8 +71061,8 @@ Canvas:
   m_GameObject: {fileID: 2124502502}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 1107514259}
+  m_RenderMode: 1
+  m_Camera: {fileID: 284504317}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

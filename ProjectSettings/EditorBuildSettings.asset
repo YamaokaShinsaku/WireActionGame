@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StgeCreate.unity
     guid: 1bb9513e43ee1294eab40e28a965ef4d
+  - enabled: 1
+    path: Assets/Scenes/TutrialScene.unity
+    guid: 6621f8fd72f889145ad190fab68b631e
   m_configObjects: {}

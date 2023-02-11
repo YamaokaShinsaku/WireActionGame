@@ -34,6 +34,6 @@ public class WireActionTask : ITutorialTask
 
     public float GetTransitionTime()
     {
-        return 5.0f;
+        return 10.0f;
     }
 }

@@ -25,16 +25,16 @@ public class MenuTask : ITutorialTask
        {
             return true;
        }
-        if (Input.GetButtonDown("MenuCloseButton"))
-        {
-            return true;
-        }
+       if (Input.GetButtonDown("MenuCloseButton"))
+       {
+           return true;
+       }
 
         return false;
     }
 
     public float GetTransitionTime()
     {
-        return 2.0f;
+        return 10.0f;
     }
 }
