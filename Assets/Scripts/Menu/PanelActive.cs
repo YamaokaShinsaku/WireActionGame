@@ -19,6 +19,9 @@ public class PanelActive : MonoBehaviour
     [SerializeField]
     private SpecialEnemyCount specialEnemy;
 
+    [SerializeField]
+    private TimeScaleManager timeScale;
+
     public bool canWeaponChange;
     public bool isPause;
 
@@ -27,6 +30,7 @@ public class PanelActive : MonoBehaviour
     {
         messagePanel.SetActive(false);
         postEffect = postEffect.GetComponent<PostEffect>();
+        timeScale = timeScale.GetComponent<TimeScaleManager>();
 
         canWeaponChange = true;
         isPause = false;
@@ -39,39 +43,18 @@ public class PanelActive : MonoBehaviour
         if (Input.GetButtonDown("MenuOpenButton"))
         {
             canWeaponChange = false;
-            Pause();
+            //Pause();
+            timeScale.isPause = true;
             postEffect.enabled = true;
             messagePanel.SetActive(true);
         }
         if (Input.GetButtonDown("MenuCloseButton"))
         {
             canWeaponChange = true;
-            Resume();
+            //Resume();
+            timeScale.isPause = false;
             postEffect.enabled = false;
             messagePanel.SetActive(false);
         }
-    }
-
-    public void Pause()
-    {
-        isPause = true;
-        Time.timeScale = 0.0f;
-        reticleCanvas.SetActive(false);
-
-        //for (int i = 0; i < Image.Length; i++)
-        //{
-        //    Image[i].SetActive(false);
-        //}
-    }
-
-    public void Resume()
-    {
-        isPause = false;
-        Time.timeScale = 1.0f;
-        reticleCanvas.SetActive(true);
-        //for (int i = 0; i < Image.Length; i++)
-        //{
-        //    Image[i].SetActive(true);
-        //}
     }
 }

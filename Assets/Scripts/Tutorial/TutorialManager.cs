@@ -76,10 +76,10 @@ public class TutorialManager : MonoBehaviour
                 }
             }
         }
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            SwitchEnabled();
-        }
+        //if(Input.GetKeyDown(KeyCode.H))
+        //{
+        //    SwitchEnabled();
+        //}
     }
 
     /// <summary>
